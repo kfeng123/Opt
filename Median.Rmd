@@ -1,0 +1,56 @@
+---
+title: "Median"
+author: "Wang Rui"
+date: "September 5, 2016"
+output: 
+  html_document: 
+    theme: cosmo
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Median
+
+### Definition:(TPE Problem 1.7)
+
+A median of \(X\) is any value \(m\) such that \(P(X\leq m)\geq \frac{1}{2}\) and \( P(X\geq m)\geq \frac{1}{2}\).
+
+### Some basic properties:
+
+- the definition is equivalent to
+
+$$
+P(X<m)\leq \frac{1}{2}\quad P(X>m)\leq \frac{1}{2}
+$$
+
+- the set of median is a closed interval. 
+
+- If \(P(X\leq m)> \frac{1}{2}\) or \(P(X\geq m)> \frac{1}{2}\), then \(P(X=m)>0\).
+
+- Suppose \(m\) is median. If \(P(X=m)>0\), then the median is unique. Inversely, if the median is an interval, then we have \(P(X=m)=0\) and \(P(X\leq m)=P(X\geq m)= \frac{1}{2}\)  for all median \(m\). Furthermore, if the median interval is \([m_1,m_2]\) with \(m_1<m_2\), then \(P(X\in [m_1,m_2])=0\).
+
+**Theorem**: If \(\phi(a)=E|X-a|<\infty\) for some $a$, then \(\phi(a)\) is minimized by any median of \(X\).
+
+**Pf**: if \(c_1<c_2\), then
+$$
+E|X-c_2|-E|X-c_1|=(c_2-c_1)(P(X\leq c_1)-P(X> c_1))+2E[(c_2-X)1_{(c_1<X\leq c_2)}].
+$$
+
+If \(c_1\) and \(c_2\) are both median. The above is \(0\). If \(c_1\) is median, \(c_2\) is not, then the above \(>0\). On the other hand,
+
+$$
+E|X-c_2|-E|X-c_1|=(c_2-c_1)(P(X\leq c_2)-P(X> c_2))+2E[(c_1-X)1_{(c_1<X\leq c_2)}].
+$$
+
+So if \(c_1<c_2\) are both less than median, then the above is \(<0\). It completes the proof.
+
+### Definition in CSP
+**Def** The median of a distribution \(P\) on the real line can be defined as the smallest value of \(m\) for which \(P(-\infty,m]\geq \frac{1}{2}\).
+
+**Remark** It is in fact the left end point of the median interval defined in TPE.
+
+**Theorem** The median is a continuous function of distribution function. In another word, suppose \(P\) is a fixed distribution, for every \(\epsilon>0\), there exists a \(\delta\) such that, \(\sup_t |Q(-\infty,t]-P(-\infty,t]|<\delta\) implies \(|median(Q)-median(P)|\leq \epsilon\)
+
+**Pf** 
