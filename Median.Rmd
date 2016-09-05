@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Median
 
-### Definition:(TPE Problem 1.7)
+### Definition:(TPE Problem 1.1.7)
 
 A median of \(X\) is any value \(m\) such that \(P(X\leq m)\geq \frac{1}{2}\) and \( P(X\geq m)\geq \frac{1}{2}\).
 
@@ -51,6 +51,24 @@ So if \(c_1<c_2\) are both less than median, then the above is \(<0\). It comple
 
 **Remark** It is in fact the left end point of the median interval defined in TPE.
 
-**Theorem** The median is a continuous function of distribution function. In another word, suppose \(P\) is a fixed distribution, for every \(\epsilon>0\), there exists a \(\delta\) such that, \(\sup_t |Q(-\infty,t]-P(-\infty,t]|<\delta\) implies \(|median(Q)-median(P)|\leq \epsilon\)
+**Theorem** Suppose \(m\) is the median (CSP sense). If \(P(-\infty,t]>\frac{1}{2}\) for each \(t>m\) (the median interval just have one point). The median is a continuous functional of distribution function. In another word, suppose \(P\) is a fixed distribution, for every \(\epsilon>0\), there exists a \(\delta\) such that, \(\sup_t |Q(-\infty,t]-P(-\infty,t]|<\delta\) implies \(|median(Q)-median(P)|\leq \epsilon\)
 
-**Pf** 
+**Pf** First note that it naturally holds that \(P(-\infty,t]<\frac{1}{2}\) for each \(t<m\). For a fixed \(\epsilon>0\), we have
+$$
+P(-\infty,t-\epsilon]<\frac{1}{2}\quad P(-\infty,t+\epsilon]>\frac{1}{2}.
+$$
+So there exists a small \(\delta\) such that as long as \(\sup_t|Q(-\infty,t]-P(-\infty,t]|<\delta\), we have
+$$
+Q(-\infty,t-\epsilon]<\frac{1}{2}\quad Q(-\infty,t+\epsilon]>\frac{1}{2}.
+$$
+So \(median(Q)\in (m-\epsilon,m+\epsilon]\). It completes the proof.
+
+
+
+Combining with classical Glivenko-Cantelli theorem (\(\sup_t |P_n(-\infty,t]-P(-\infty,t]|\to 0\) almost surely), we deduce that **sample median is strongly consistent as an estimator of the population median** with fairly weak assumptions.
+
+**Definition** Let \(X\) be a **positive** (continuous) random variable. If \(E X<\infty\), then the value of \(c\) such that \(E[X I(X\leq c)]=E[X I(X\geq c)]\) is called a **scale median**. (TPE Problem 3.3.7)
+
+**Theorem** \(c\) minimizes \(E|X/c-1|\).
+
+**Pf** Note that \(E|X/c-1|=E[X(1/c-1/X)]\). Treat $1/c$ and $1/X$ as $c$ and $X$ in previous proof, do similar decomposition.

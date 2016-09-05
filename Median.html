@@ -124,8 +124,8 @@ $(document).ready(function () {
 
 <div id="median" class="section level2">
 <h2>Median</h2>
-<div id="definitiontpe-problem-1.7" class="section level3">
-<h3>Definition:(TPE Problem 1.7)</h3>
+<div id="definitiontpe-problem-1.1.7" class="section level3">
+<h3>Definition:(TPE Problem 1.1.7)</h3>
 <p>A median of <span class="math inline">\(X\)</span> is any value <span class="math inline">\(m\)</span> such that <span class="math inline">\(P(X\leq m)\geq \frac{1}{2}\)</span> and ( P(Xm)).</p>
 </div>
 <div id="some-basic-properties" class="section level3">
@@ -155,8 +155,16 @@ E|X-c_2|-E|X-c_1|=(c_2-c_1)(P(X\leq c_2)-P(X&gt; c_2))+2E[(c_1-X)1_{(c_1&lt;X\le
 <h3>Definition in CSP</h3>
 <p><strong>Def</strong> The median of a distribution <span class="math inline">\(P\)</span> on the real line can be defined as the smallest value of <span class="math inline">\(m\)</span> for which <span class="math inline">\(P(-\infty,m]\geq \frac{1}{2}\)</span>.</p>
 <p><strong>Remark</strong> It is in fact the left end point of the median interval defined in TPE.</p>
-<p><strong>Theorem</strong> The median is a continuous function of distribution function. In another word, suppose <span class="math inline">\(P\)</span> is a fixed distribution, for every <span class="math inline">\(\epsilon&gt;0\)</span>, there exists a <span class="math inline">\(\delta\)</span> such that, <span class="math inline">\(\sup_t |Q(-\infty,t]-P(-\infty,t]|&lt;\delta\)</span> implies <span class="math inline">\(|median(Q)-median(P)|\leq \epsilon\)</span></p>
-<p><strong>Pf</strong></p>
+<p><strong>Theorem</strong> Suppose <span class="math inline">\(m\)</span> is the median (CSP sense). If <span class="math inline">\(P(-\infty,t]&gt;\frac{1}{2}\)</span> for each <span class="math inline">\(t&gt;m\)</span> (the median interval just have one point). The median is a continuous functional of distribution function. In another word, suppose <span class="math inline">\(P\)</span> is a fixed distribution, for every <span class="math inline">\(\epsilon&gt;0\)</span>, there exists a <span class="math inline">\(\delta\)</span> such that, <span class="math inline">\(\sup_t |Q(-\infty,t]-P(-\infty,t]|&lt;\delta\)</span> implies <span class="math inline">\(|median(Q)-median(P)|\leq \epsilon\)</span></p>
+<p><strong>Pf</strong> First note that it naturally holds that <span class="math inline">\(P(-\infty,t]&lt;\frac{1}{2}\)</span> for each <span class="math inline">\(t&lt;m\)</span>. For a fixed <span class="math inline">\(\epsilon&gt;0\)</span>, we have <span class="math display">\[
+P(-\infty,t-\epsilon]&lt;\frac{1}{2}\quad P(-\infty,t+\epsilon]&gt;\frac{1}{2}.
+\]</span> So there exists a small <span class="math inline">\(\delta\)</span> such that as long as <span class="math inline">\(\sup_t|Q(-\infty,t]-P(-\infty,t]|&lt;\delta\)</span>, we have <span class="math display">\[
+Q(-\infty,t-\epsilon]&lt;\frac{1}{2}\quad Q(-\infty,t+\epsilon]&gt;\frac{1}{2}.
+\]</span> So <span class="math inline">\(median(Q)\in (m-\epsilon,m+\epsilon]\)</span>. It completes the proof.</p>
+<p>Combining with classical Glivenko-Cantelli theorem (<span class="math inline">\(\sup_t |P_n(-\infty,t]-P(-\infty,t]|\to 0\)</span> almost surely), we deduce that <strong>sample median is strongly consistent as an estimator of the population median</strong> with fairly weak assumptions.</p>
+<p><strong>Definition</strong> Let <span class="math inline">\(X\)</span> be a <strong>positive</strong> (continuous) random variable. If <span class="math inline">\(E X&lt;\infty\)</span>, then the value of <span class="math inline">\(c\)</span> such that <span class="math inline">\(E[X I(X\leq c)]=E[X I(X\geq c)]\)</span> is called a <strong>scale median</strong>. (TPE Problem 3.3.7)</p>
+<p><strong>Theorem</strong> <span class="math inline">\(c\)</span> minimizes <span class="math inline">\(E|X/c-1|\)</span>.</p>
+<p><strong>Pf</strong> Note that <span class="math inline">\(E|X/c-1|=E[X(1/c-1/X)]\)</span></p>
 </div>
 </div>
 
