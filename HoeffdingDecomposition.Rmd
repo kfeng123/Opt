@@ -1,0 +1,58 @@
+---
+title: "Hoeffding Decomposition"
+author: "Wang Rui"
+date: "November 3, 2016"
+output: html_document
+---
+
+
+
+Conditional expectation has an important property:
+
+**Theorem** Suppose \(X\) is square-integrable, then \((X-E[X|Y])\) is orthogonal to \(g(Y)\) for every measurable square-integrable $g(Y)$. Inversely, if \((X-f(Y)\) is orthogonal to \(g(Y)\) for every measurable square-integrable $g(Y)$, then \(E[X-f(Y)|Y]=0\), that is \(f(Y)=E[X|Y]\).
+
+---- 
+
+Assume \(X_1,\ldots, X_n\) are ind. 
+
+Given \(A\subset \{1,\ldots,n\}\), let \(H_A\) denote the set of all square-integrable random variables of the type
+\[
+g_A(X_i : i\in A)
+\]
+such that
+\[
+E(g_A|X_j:j\in B)=0, \textrm{ every } B: |B|<|A|
+\]
+(Define \(E(T|\emptyset)=ET\))
+
+**Proposition** spaces \(H_A\) are pairwise orthogonal.
+
+Let \(P_A T\) denote the projection of \(T\) onto \(H_A\)
+
+**Theorem** Let \(X_1,\ldots, X_n\) be ind, let \(T\) satisfying \(ET^2<\infty\). Then the projection of \(T\) onto \(H_A\) is given by
+\[
+P_A T=\sum_{B\subset A} (-1)^{|A|-|B|}E(T|X_i : i\in B)
+\]
+**Pf** 
+
+- Step1
+
+\(P_A T\) is in \(H_A\)
+
+- Step2
+
+\(T-P_A T\) is orthogonal to \(H_A\)
+
+
+
+**Theorem** The sum of the spaces \(H_B\) with \(B\subset A\) equals to all square-integrable functions of (\(X_i: i\in A\))
+
+**Pf**
+
+- Step1
+
+If \(T\) is orthogonal to \(H_B\) for every subset \(B\subset A\) of a given set \(A\), then \(E(T|A)=0\).
+
+- Step2
+
+A simple argument.
