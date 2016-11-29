@@ -1,0 +1,14 @@
+---
+title: "Rtricks"
+author: "Wang Rui"
+date: "November 20, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+>Sys.sleep()
+
+can suspend for a while.
