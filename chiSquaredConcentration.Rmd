@@ -1,0 +1,70 @@
+---
+title: "chiSquareConcentration"
+author: "Wang Rui"
+date: "April 13, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+By the Cramer-Chernoff method, we have the following simple lemma.
+
+** Lemma**
+    Under the assumption of Lemma~\ref{matrixDeviation}, for every $t> 0$, with probability at least $1-\exp\big(-{t^2}/{2}\big)$ one has
+    $$
+    tr(ZZ^T)\geq Nn\Big(1-\sqrt{\frac{2}{Nn}}t\Big),
+    $$
+    and with probability at least $1-\exp\big(-{t^2}/4+t^3/(6\sqrt{Nn})\big)$ one has
+    $$
+    tr(ZZ^T)\leq Nn\Big(1+\sqrt{\frac{1}{Nn}}t\Big).
+    $$
+    
+** Proof **
+    Note that $tr(ZZ^T)\sim \chi^2_{Nn}$. Then for $t>0$, we have
+    $$
+    \begin{split}
+        &\Pr\big(-tr (ZZ^T)+ Nn \geq t\big)
+        = 
+        \Pr\big(\exp(-\lambda\chi^2_{Nn}+  Nn\lambda) \geq \exp (t\lambda)\big)\\
+        \leq &
+        \exp(\big(Nn-t\big)\lambda) E \exp(-\lambda \chi^2_{Nn})
+        =
+        \exp\Big(\big(Nn-t\big)\lambda -\frac{Nn}{2}\log(1+2\lambda)\Big),
+    \end{split}
+    $$
+    where $\lambda>0$ can be arbitrary.
+    If $0<t< Nn$, let $\lambda=\frac{t}{2(Nn-t)}$ and we get
+    $$
+    \begin{split}
+        &\Pr\big(-tr (ZZ^T)+ Nn \geq t\big)
+        \leq
+        \exp\Big(\frac{t}{2}+\frac{Nn}{2}\log(1-\frac{t}{Nn})\Big).
+    \end{split}
+    $$
+    Since for $0<x<1$, $\log(1-x)\leq -x-{x^2}/{2}$, we have that
+    $$
+    \begin{split}
+        &\Pr\big(-tr (ZZ^T)+ Nn \geq t\big)
+        \leq
+        \exp\Big(-\frac{t^2}{4Nn}\Big).
+    \end{split}
+    $$
+    If $t\geq Nn$ The left hand side of~\eqref{concentrationLemmaEq} is $0$ for trivial reason.
+    Hence~\eqref{concentrationLemmaEq} holds for all $t>0$.
+    The first conclusion follows by substituting $t$ by $\sqrt{2Nn}t$.
+    Similarly, for $t>0$, we have
+    $$
+    \Pr\big(tr (ZZ^T)-Nn\geq t\big)\leq \exp\Big(-\frac{t}{2}+\frac{Nn}{2}\log (1+\frac{t}{Nn})\Big).
+    $$
+    Since for $x>0$, $\log(1+x)\leq x-x^2/2+x^3/3$, we have that
+    $$
+    \begin{split}
+        &\Pr\big(tr (ZZ^T)- Nn \geq t\big)
+        \leq
+        \exp\Big(-\frac{t^2}{4Nn}+\frac{t^3}{6(Nn)^2}\Big).
+    \end{split}
+    $$
+    The second conclusion follows by substituting $t$ by $\sqrt{Nn}t$.
+
+
