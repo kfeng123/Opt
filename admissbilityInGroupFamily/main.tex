@@ -1,0 +1,543 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\DeclareMathOperator{\myE}{E}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+
+
+\begin{document}
+\title{Admissibility and Minimaxity in Group Families}
+\maketitle
+\section{The principle of equivariance}
+Let $X$ be a random observation taking on values in a sample space $\mathcal{X}$ according to a probability distribution from the family
+\begin{equation}\label{probabilityModel}
+\mathcal{P}=\{P_{\theta},\theta\in\Omega\}.
+\end{equation}
+
+Let $g$ be a $1:1$ transformations of the sample space onto itself.
+If for each $\theta$ the distribution of $X'=g X$ is again a member of $\mathcal{P}$, say $P_{\theta'}$, and if as $\theta$ traverses $\Omega$, so does $\theta'$, then the probability model~\eqref{probabilityModel} is \emph{invariant} under the transformation $g$.
+The transformation $g$ induces a transformation $\bar{g}:\theta\mapsto \theta'$.
+By definition, $\bar{g}$ is a surjection from $\Omega$ onto $\Omega$. Under certain regularity condition, it is also $1:1$.
+
+Now, suppose we would like to estimate $h(\theta)$. Assume $h(\bar{g}\theta)$ depends on $\theta$ only through $h(\theta)$, that is,
+\begin{equation}\label{hProperty}
+    h(\theta_1)=h(\theta_2)\quad \textrm{implies}\quad h(\bar{g}\theta_1)=h(\bar{g}\theta_2).
+\end{equation}
+Let $\mathcal{H}=\{h(\theta):\theta\in\Omega\}$. Then $\bar{g}$ induces a $1:1$ transformation $g^*$ from $\mathcal{H}$ onto itself.
+\begin{equation*}
+    g^* h(\theta)=h(\bar{g}\theta).
+\end{equation*}
+\begin{definition}
+    If the probability model~\eqref{probabilityModel} is invariant under $g$,
+        $h(\theta)$ satisfies~\eqref{hProperty}, and
+    the loss function $L$ satisfies
+    \begin{equation*}
+        L(\bar{g}\theta, g^* d)=L(\theta,d),
+    \end{equation*}
+    the problem of estimating $h(\theta)$ with loss function $L$ is invariant under $g$.
+\end{definition}
+
+Suppose we have decided to use $\delta(X)$ to estimate $h(\theta)$.
+\begin{itemize}
+\item
+\emph{Functional Equivariance:}  It is natural to use
+\begin{equation*}
+g^*\delta(X)\textrm{ as the estimator of } g^* h(\theta).
+\end{equation*}
+\item
+    \emph{Formal Invariance:} Consider transformation $X'=gX$.
+        Then $X'\sim P_{\theta'}$ with $\theta'=\bar{g}\theta$. We would like to estimate $g^*h(\theta)=h(\bar{g}\theta)=h(\theta')$. We should use $\delta(X')$ to estimate $h(\theta')$. That is, use
+        \begin{equation*}
+            \delta(gX)\textrm{ to estimate } g^*h(\theta).
+        \end{equation*}
+\end{itemize}
+
+Instead of a single transformation $g$, we often consider a group $G$ of transformations.
+We say a estimation problem is invariant under group $G$ if it is invariant under every $g\in G$.
+\begin{definition}
+    In an invariant estimation problem, an estimator $\delta(X)$ is said to be \emph{equivariant} if 
+    \begin{equation*}
+        \delta(gX)=g^*\delta(X)
+    \end{equation*}
+    for all $g\in G$.
+\end{definition}
+\begin{theorem}
+    If $\delta$ is an equivariant estimator in a problem which is invariant under a transformation $g$, then the risk function of $\delta$ satisfies
+    \begin{equation*}
+        \textrm{$R(\bar{g}\theta,\delta)=R(\theta,\delta)$ for all $\theta$.}
+    \end{equation*}
+\end{theorem}
+\begin{definition}
+    For a group $\bar{G}$ of transformations of $\Omega$, two points $\theta_1,\theta_2\in \Omega$ are equivalent if there exists a $\bar{g}\in\bar{G}$ such that $\bar{g}\theta_1=\theta_2$.
+    The totality of points equivalent to a given point (and hence to each other) is called an \emph{orbit} of $\bar{G}$. The group $\bar{G}$ is \emph{transitive} over $\Omega$ if it has only one orbit.
+\end{definition}
+For an invariant estimation problem, the risk function of any equivariant estimator is constant on the orbits of $\bar{G}$.
+ If $\bar{G}$ is transitive, the risk of any equivariant estimation is constant.
+In this case, a minimum risk equivariant (MRE) estimator will typically exist.
+\section{Equivariant Bayes}
+\begin{theorem}
+    If the loss function $L(\theta,d)$ is strictly convex in $d$, a Bayes solution $\delta_{\Lambda}$ is unique (a.e. $\mathcal{P}$) provided
+    \begin{itemize}
+        \item
+            $r(\Lambda,\delta_{\Lambda})$ is finite and
+        \item
+            if $Q$ is the marginal distribution of $X$ given by
+            \begin{equation*}
+                Q(A)=\int P_{\theta}(X\in A) d\,\Lambda(\theta),
+            \end{equation*}
+            then a.e. $Q$ implies a.e. $\mathcal{P}$.
+    \end{itemize}
+\end{theorem}
+\begin{proof}
+    Since
+    $$
+    r(\Lambda,\delta_{\Lambda})=\myE_X[\myE_{\Theta|X}[L(\Theta,\delta_{\Lambda}(X))]],
+    $$
+    $\delta_{\Lambda}(x)=\arg\min_{d}\myE_{\Theta|X=x}L(\Theta,d)$ is a Bayes solution.
+    If there exists another Bayes solution $\delta'$.
+    we have
+    \begin{equation}\label{posteriorRisk}
+        \myE_{\Theta|X=x}L(\Theta,\delta'(x))=\myE_{\Theta|X=x}L(\Theta,\delta_{\Lambda}(x))\quad \textrm{a.e. Q.}
+    \end{equation}
+    But $\myE_{\Theta|X=x}L(\Theta,d)$ is convex in $d$, hence~\eqref{posteriorRisk} implies
+    \begin{equation*}
+        \delta'(X)=\delta_{\Lambda}(X)\quad \textrm{a.e. Q.}
+    \end{equation*}
+\end{proof}
+
+
+We shall say that a prior distribution $\Lambda$ for $\Theta$ is \emph{invariant} with respect to $\bar{G}$ if the distribution of $\bar{g}\Theta$ is also $\Lambda$ for all $\bar{g}\in\bar{G}$.
+If $\Lambda$ is invariant, any $\delta$ satisfies
+\begin{equation*}
+    \myE R(\Theta,\delta)=\myE R(\bar{g}\Theta,\delta).
+\end{equation*}
+But
+\begin{equation*}
+    R(\bar{g}\theta,\delta)=\myE_{\bar{g}\theta}[L(\bar{g}\theta,\delta(X))]=
+    \myE_{\theta}[L(\bar{g}\theta,\delta(gX))]=
+    \myE_{\theta}[L(\theta,g^{*-1}\delta (gX))]=R(\theta,g^{*-1}\delta g).
+\end{equation*}
+Hence
+\begin{equation*}
+    \myE R(\Theta,\delta)=
+\myE R(\Theta,g^{*-1}\delta g).
+\end{equation*}
+If the Bayes estimator $\delta_{\Lambda}$ is unique, $\delta_{\Lambda}=g^{*-1}\delta_{\Lambda} g$ or $\delta_{\Lambda}(gX)=g^* \delta_{\Lambda}(X)$, this appears to prove $\delta_{\Lambda}$ to be equivariant.
+However, at this point, a technical difficulty arises. Uniqueness can be asserted only up to null sets, that is, sets $N$ with $P_\theta(N)=0$ for all $\theta$.
+Moreover, the set $N$ may depend on $g$.
+An estimator $\delta$ satisfying
+\begin{equation*}
+    \textrm{$\delta(gX)=g^* \delta(x)$ for all $x\neq N_g$}
+\end{equation*}
+where $P_\theta (N_g)=0$ for all $\theta$ is said to be \emph{almost equivariant}.
+\begin{theorem}\label{theorem3}
+    Suppose that an estimation problem is invariant under a group and
+    \begin{itemize}
+        \item$\Lambda$ is an invariant prior,
+        \item
+            the Bayes estimator $\delta_{\Lambda}$ is unique.
+    \end{itemize}
+           Then it is almost equivariant.
+\end{theorem}
+
+\section{Admissibility and minimaxity in group families}
+\begin{lemma}
+    A unique Bayes estimator is admissible.
+\end{lemma}
+\begin{proof}
+    If the risk of a unique Bayes estimator is dominated by another estimator, it's Bayes risk also is, which contradicts the uniqueness.
+\end{proof}
+Theorem~\ref{theorem3} implies that there exists an (almost) equivariant estimator which is admissible.
+Under weak additional assumptions, given any almost equivariant estimator $\delta$, there exists an equivariant estimator $\delta'$ which differs from $\delta$ only on a fixed null set $N$.
+
+From now on, we assume $\bar{G}$ is transitive over $\Omega$. Then the risk function of any equivariant estimator is a constant.
+\begin{theorem}\label{theorem4}
+    Under the conditions of Theorem~\ref{theorem3}, if $\bar{G}$ is transitive over $\Omega$, then $\delta_{\Lambda}$ is MRE, admissible and minimax.
+\end{theorem}
+\begin{proof}
+    By uniqueness of Bayes estimator, $\delta_{\Lambda}$ is admissible.
+An admissible estimator with constant risk is minimax.
+\end{proof}
+The crucial assumption in this approach is the existence of an invariant prior distribution.
+\begin{example}[Finite group]
+    Let $X_1,\ldots,X_n$ be iid according to the normal distribution $N(\xi,1)$. Then, the problem of estimating $\xi$ with squared error loss remains invariant under the two-element group $G$, which consists of the identity transformation $e$ and the transformation
+    \begin{equation*}
+        g(x_1,\ldots,x_n)=(-x_1,\ldots,-x_n);\quad \bar{g}\xi=-\xi;\quad g^* d=-d.
+    \end{equation*}
+    In the present case, any distribution $\Lambda$ for $\xi$ which is symmetric with respect to the origin is invariant. If the Bayes estimator is unique, there is a version of the Bayes solution which is equivariant, that is, which satisfies $\delta(-x_1,\ldots,-x_n)=-\delta(x_1,\ldots,x_n)$. The group $\bar{G}$ in this case is, of course, not transitive over $\Omega$.
+
+    We shall show in the end of the note that an equivariant Bayes estimator always exists even if Bayes estimator is not unique.
+\end{example}
+\begin{example}[Circular location family]
+For a number $a$, let $a^*$ be a number such that $a=2\kappa \pi +a^*$ and $0\leq a^* < 2\pi$.
+
+    Suppose $U_1,\ldots,U_n$ be iid on $(0,2\pi)$ according to a distribution function $F$ with density $f$.
+    Suppose that each point is translated on the circle by an amount $\theta$ ($0\leq \theta < 2\pi$) and $X_i=(U_i+\theta)^*$.
+    Since $U_i+\theta\sim f(x_i-\theta)$, we have $X_i\sim f((x_i-\theta)^*)$.
+
+    As an illustration. Suppose $Y_1,\ldots,Y_n$ be iid according to $G(y-\eta)$.
+    Let $X_i=Y_i-[Y_i]$, then
+    \begin{equation*}
+        \begin{aligned}
+            \Pr(X_i\leq x)&=\Pr(\sum_{k=-\infty}^{+\infty} \{k\leq Y\leq k+x\})\\
+            &=\sum_{k=-\infty}^{+\infty} (G(x+k-\eta)-G(k-\eta))\\
+            &=\sum_{k=-\infty}^{+\infty} (G(x+k-[\eta])-G(k-[\eta])).
+        \end{aligned}
+    \end{equation*}
+Then $2\pi X_i$ is a circular location family.
+
+    Consider the problem of estimating $\theta$.
+    The rotation group $G$, $\bar{G}$ and $G^*$ can be represented by
+    \begin{equation*}
+        x_i'=(x_i+c)^*,\quad
+        \theta'=(\theta+c)^*,\quad
+        d'=(d+c)^*.
+    \end{equation*}
+    If a loss function $L(\theta,d)$ is invariant under G, then
+    \begin{equation*}
+        L(\theta,d)=L((\theta+c)^*,(d+c)^*).
+    \end{equation*}
+    Let $c=-\theta$, then $L(\theta,d)=\rho[(d-\theta)^*]$.
+    Typically, one would want it to depend only on $(d-\theta)^{**}=\min\{(d-\theta)^*,(2\pi-(d-\theta))^*\}$, which is the difference between $d$ and $\theta$ along the smaller of the two arcs connecting them. 
+    Thus, the loss might be $((d-\theta)^{**})^2$ or $|(d-\theta)^{**}|$. It is important to notice that neither of these is convex.
+    
+    An invariant distribution $\Lambda$ for $\theta$ is the uniform distribution over $(0,2\pi)$.
+    For any Bayes solution $\delta_{\Lambda}$, there exists an equivariant estimator $\delta^*$ or $\delta^{**}$ dominate it (See the end of the note.).
+    Then $\delta^*$ or $\delta^{**}$ are also Bayes solution and has constant risk. Hence it is admissible ??? and minimax.
+    If the loss function is not convex, $\delta^{**}$ can not be used and the equivariant Bayes procedure may be randomized.
+\end{example}
+
+
+Let us next turn to the question of the admissibility and minimaxity of MRE estimators which are Bayes solutions with respect to improper priors.
+\begin{example}[Location family on the line]
+    Suppose that $\mathbf{X}=(X_1,\ldots,X_n)$ has density
+    \begin{equation*}
+        f(\mathbf{x}-\theta)=f(x_1-\theta,\ldots,x_n-\theta),
+    \end{equation*}
+    and let $G$ and $\bar{G}$ be the groups f translations $x_i'=x_i+a$ and $\theta'=\theta+a$.
+    Lebesgue measure is an invariant measure on $\Omega$.
+
+    The posterior density is
+    \begin{equation*}
+        \frac{f(\mathbf{x}-\theta)}{\int f(\mathbf{x}-\theta)d\theta}.
+    \end{equation*}
+    Here we have $\int f(\mathbf{x}-\theta)d\theta <\infty$ a.s.\ since
+    \begin{equation*}
+        \begin{aligned}
+            &\int\int f(\mathbf{x}-\theta)d\theta dx_1\ldots dx_{n-1}\\
+            =&
+        \int\int f(x_1-\theta,\ldots,x_n-\theta) dx_1\ldots dx_{n-1}d\theta\\
+            =&
+            \int\int f(x_1,\ldots,x_{n-1},x_n-\theta) dx_1\ldots dx_{n-1}d\theta\\
+            =&1.
+        \end{aligned}
+    \end{equation*}
+Therefore, the posterior density is well defined. The generalized Bayes estimator of $\theta$, with loss function is obtained by minimizing the posterior expected loss
+\begin{equation*}
+    \frac{\int L(\theta,\delta(\mathbf{x}))f(\mathbf{x}-\theta) d\theta}{\int f(\mathbf{x}-\theta)d\theta}.
+\end{equation*}
+    For the case that $L$ is squared error, the minimizing value of $\delta(x)$ is the posterior expectation of $\theta$, which was seen to be the Pitman estimator.
+
+    Since Lebesgue measure is not a probability distribution, Theorem~\eqref{theorem4} is not applicable and we cannot conclude that the Pitman estimator is admissible or even minimax.
+\end{example}
+\begin{theorem}\label{theorem5}
+    Suppose $\mathbf{X}=(X_1,\ldots,X_n)$ is distributed according to the density $f(\mathbf{x}-\theta)$ and that the Pitman estimator 
+    \begin{equation*}
+        \delta^*(\mathbf{x})=\frac{\int \theta f(\mathbf{x}-\theta)d\theta}{\int f(\mathbf{x}-\theta)d\theta}
+    \end{equation*}
+    has finite variance. Then, $\delta^*$ is minimax for squared error loss.
+\end{theorem}
+\begin{proof}
+    For any estimator $\delta$,
+    \begin{equation*}
+        \sup_{\theta}R(\theta,\delta)
+        \geq \int R(\theta,\delta)\Lambda(d\theta)
+        \geq \int R(\theta,\delta_\Lambda)\Lambda(d\theta).
+    \end{equation*}
+    Hence a minimax lower bound is
+    \begin{equation*}
+        \sup_{\theta}R(\theta,\delta)
+        \geq \sup_{\Lambda} \int R(\theta,\delta_\Lambda)\Lambda(d\theta).
+    \end{equation*}
+    We shall prove that $\delta^*$ reaches this lower bound.
+    Let $\delta_T$ be the Bayes estimator with respect to the prior
+    \begin{equation*}
+        \pi_T(u)=\left\{\begin{aligned}&\frac{1}{2T}&\textrm{if $|u|<T$}\\
+        &0&\textrm{otherwise,}\end{aligned}\right.
+    \end{equation*}
+    
+
+    Since $\delta^*$ is an equivariant estimator, it has constant risk $r^*=E_0 \delta^{*2} (\mathbf{X})$.
+    Since
+        \begin{equation*}
+        \sup_{\Lambda} \int R(\theta,\delta_\Lambda)\Lambda(d\theta)
+ \geq\lim\inf r_T,
+        \end{equation*}
+        we only need to show $\lim\inf r_T\geq r^*$.
+        We begin by establishing the lower bound for $r_T$
+        \begin{equation}\label{eqd38}
+            r_T\geq (1-\epsilon)\inf_{\substack{ a\leq -\epsilon T\\b\geq \epsilon T}} \myE_0 \delta_{a,b}^2(\mathbf{X}),
+        \end{equation}
+        where $\epsilon$ is any number between 0 and 1, and $\delta_{a,b}$ is the Bayes estimator with respect to the uniform prior on $(a,b)$ so that, in particular, $\delta_T=\delta_{-T,T}$.
+        We have
+        \begin{equation*}
+            \delta_{a,b}(\mathbf{x})=\frac{\int_{a}^b uf(\mathbf{x}-u)du}{\int_a^b f(\mathbf{x}-u)du}.
+        \end{equation*}
+        For any $c$,
+        \begin{equation*}
+            \begin{aligned}
+                &\delta_{a,b}(\mathbf{x}+c)
+            =\frac{\int_{a}^b uf(\mathbf{x}-(u-c))du}{\int_a^b f(\mathbf{x}-(u-c))du}\\
+                =&\frac{\int_{a}^b (u-c)f(\mathbf{x}-(u-c))du}{\int_a^b f(\mathbf{x}-(u-c))du}+c\\
+                =&\frac{\int_{a-c}^{b-c} u f(\mathbf{x}-u)du}{\int_{a-c}^{b-c} f(\mathbf{x}-u)du}+c=
+                \delta_{a-c,b-c}(\mathbf{x})+c.
+            \end{aligned}
+        \end{equation*}
+Hence
+        \begin{equation*}
+            \myE_\theta(\delta_{-T,T}(\mathbf{X})-\theta)^2
+            =\myE_0[\delta_{-T-\theta,T-\theta}(\mathbf{X})^2].
+        \end{equation*}
+        Then
+        \begin{equation*}
+            \begin{aligned}
+                r_T&=\frac{1}{2T}\int_{-T}^T\myE_0[\delta_{-T-\theta,T-\theta}(\mathbf{X})^2]d\theta\\
+                &\geq
+                (1-\epsilon)\inf_{|\theta|\leq (1-\epsilon)T}\myE_0[\delta_{-T-\theta,T-\theta}(\mathbf{X})^2]\\
+                &\geq
+            (1-\epsilon)\inf_{\substack{ a\leq -\epsilon T\\b\geq \epsilon T}} \myE_0 \delta_{a,b}^2(\mathbf{X}).
+            \end{aligned}
+        \end{equation*}
+        Therefore,
+        \begin{equation*}
+            \begin{aligned}
+                \liminf_{T\to \infty} r_T &\geq
+                (1-\epsilon)\liminf_{\substack{ a\to -\infty\\b\to +\infty}} \myE_0 \delta_{a,b}^2(\mathbf{X})\\
+                &\geq
+                (1-\epsilon)\myE_0 \liminf_{\substack{ a\to -\infty\\b\to +\infty}} \delta_{a,b}^2(\mathbf{X})\\
+                &=(1-\epsilon)\myE_0 \liminf_{\substack{ a\to -\infty\\b\to +\infty}} \frac{\int_{a}^{b} u f(\mathbf{x}-u)du}{\int_{a}^{b} f(\mathbf{x}-u)du}\\
+                &=(1-\epsilon)\myE_0   \delta^*(\mathbf{X}).
+            \end{aligned}
+        \end{equation*}
+
+\end{proof}
+Thereom~\ref{theorem5} is due to Girshick and Savage(1951). The proof given here is due to Peter Bickel.
+\begin{theorem}
+    Suppose $X_1,\ldots,X_n$ are iid random variables with density $f(x-\theta)$.
+    If there exists an equivariant estimator $\delta_0$ of $\theta$ for which $\myE_0|\delta_0(\mathbf{X})|^3<\infty$, then the Pitman estimator $\delta^*$ is admissible under squared error loss.
+\end{theorem}
+The admissibility result need not hold when the third-moment condition is dropped.
+\begin{itemize}
+    \item
+        For location problem, the MRE estimator has been proved to be admissible under more general loss functions.
+        A key assumption is the uniqueness of the MRE estimator.
+        The MRE estimator is not admissible in the case of nonuniqueness.
+    \item
+        An MRE estimator may be inadmissible in the presence of nuisance parameters, when the corresponding estimator with knwon values of the nuisance parameters is admissible.
+    \item
+        MRE estimators will typically not be admissible except in the simplest situations, but they have a much better chance of being minimax.
+    \item 
+        The idea of Theorem~\ref{theorem5} is to use a sequence of prior distribution to approximate the Lebesgue measure. We only need to prove the Bayes risk tends to the risk of MRE. To prove the admissibility, we need to consider the convergence rate of the risks.
+\end{itemize}
+
+\begin{example}[MRE not minimax]
+    Let the pairs $(X_1,X_2)$ and $(Y_1,Y_2)$ be independent, each with a bivariate normal distribution with mean zero.
+    Let their covariance matrices be $\Sigma=[\sigma_{ij}]$ and $\Delta \Sigma=[\Delta \sigma_{ij}]$, $\Delta$.
+    Consider the problem of estimating $\Delta$ with loss function
+    \begin{equation*}
+        L(\Delta,d)=\left\{
+            \begin{aligned}
+                1\quad & \textrm{if $\frac{|d-\Delta|}{\Delta}>1/2$}\\
+                0\quad & \textrm{otherwise}.
+            \end{aligned}
+            \right.
+    \end{equation*}
+    The problem is invariant under the transformation
+    \begin{equation*}
+            \begin{aligned}
+                X_1'=a_1 X_1+a_2 X_2,\quad &Y_1'=c(a_1Y_1+a_2 Y_2),\\
+                X_2'=b_1 X_1+b_2 X_2,\quad &Y_2'=c(b_1Y_1+b_2 Y_2),
+            \end{aligned}
+    \end{equation*}
+    with $a_1 b_2\neq a_2 b_1$ and $c>0$.
+    The only equivariant estimator is $\delta(\mathbf{x},\mathbf{y})=0$.
+   Since $L(\Delta,0)=1$, the risk is $1$.
+    On the other hand $k^* Y_2^2/X_2^2$ has risk less than 1 since
+
+    \begin{equation*}
+        R=P(|k^* Y_2^2/X_2^2-1|>1/2)<1.
+    \end{equation*}
+\end{example}
+
+\begin{example}[A raondom walk]
+    Let the parameter space $\Omega$ consist of all elements $\theta$ of the free group with two generators, that is, the totality of formal products $\pi_1\ldots\pi_n$ ($n=0,1,2,\ldots$) where each $\pi_i$ is one of the elements $a,a^{-1},b,b^{-1}$ and in which all products $aa^{-1},a^{-1}a,bb^{-1},b^{-1}b$ have been canceled. The empty product ($n=0$) is denoted by $e$.
+    The sample point $X=\theta \epsilon$, where $\epsilon$ equals one of $a,a^{-1},b,b^{-1}$ with probability $1/4$.
+    Suppose $\theta=\pi_1\ldots\pi_n$, then
+    \begin{equation*}
+        X=\left\{
+            \begin{aligned} 
+                &\pi_1\ldots\pi_n \epsilon\quad& \textrm{if $\epsilon\neq \pi_n^{-1}$}\\
+                &\pi_1\ldots\pi_{n-1} \quad& \textrm{if $\epsilon=\pi_n^{-1}$}
+            \end{aligned}
+            \right.
+    \end{equation*}
+    
+
+    The problem is to estimate $\theta$ based on $X$.
+    The loss will be $1$ if $d\neq\theta$ and $0$ otherwise.
+    Suppose $X=\pi_1\ldots\pi_k$, then a natural estimator of $\theta$ is
+    \begin{equation*}
+        \hat{\theta}=\left\{
+            \begin{aligned}
+                &\pi_1\ldots\pi_{k-1} \quad& \textrm{if $X\neq e$}\\
+                &e \quad& \textrm{if $X=e$}
+            \end{aligned}
+            \right.
+    \end{equation*}
+    Note that as long as $\epsilon$ is not the rightmost element of $\theta$, we have $\hat{\theta}=\theta$.
+    Hence $\Pr(\hat{\theta}\neq \theta)\leq 1/4$.
+
+The problem is invariant under transformation
+    \begin{equation*}
+        X\mapsto \pi_{-r}\ldots\pi_{-1} X,
+        \quad
+        \theta\mapsto \pi_{-r}\ldots\pi_{-1} \theta,
+        \quad
+        d\mapsto \pi_{-r}\ldots\pi_{-1} d.
+        \quad
+    \end{equation*}
+    Hence every equivariant estimator $\delta(X)$ must satisfies
+    $g^{-1}\delta(gX)=\delta(X)$.
+    Let $g={X^{-1}}$, then $\delta(X)=X\delta(e)$.
+    Then
+    \begin{equation*}
+        \Pr(\delta(X)\neq \theta)=
+        \Pr(X\delta(e)\neq \theta)=
+        \Pr(\theta\epsilon\delta(e)\neq \theta)=
+        \Pr(\epsilon\delta(e)\neq e)=
+        \Pr(\epsilon\neq e\delta(e)^{-1})=3/4.
+    \end{equation*}
+    Hence no equivariant estimator is minimax or admissible.
+\end{example}
+\begin{example}[Discrete location family]
+Let $X=U+\theta$ where $U$ takes on the values $1,2,\ldots$ with probability
+    \begin{equation*}
+        P(U=k)=p_k.
+    \end{equation*}
+    We observe $x$ and wish to estimate $\theta$ with loss function
+    \begin{equation*}
+        L(\theta,d)=\left\{
+            \begin{aligned}
+                &d-\theta \quad& \textrm{if $d\geq \theta$}\\
+                &0 \quad& \textrm{if $d\leq \theta$}.
+            \end{aligned}
+            \right.
+    \end{equation*}
+    The problem is invariant under arbitrary translation of $X,\theta$ and $d$ by the same amount.
+    The only equivariant estimators are those of the form $X-c$. The risk is
+    \begin{equation*}
+        R(\theta,X-c)=
+        \myE_0 L(0,X-c)=\sum_{x>c} (x-c)p_x.
+    \end{equation*}
+    If $p_x=1/x(x+1)$, then the risk is infinity. On the other hand, $\delta(x)=x-M|x|$, $M>1$ has finite risk. In fact,
+    \begin{equation*}
+        \begin{aligned}
+            R(\theta,X-M|X|)&=
+        \myE(X-M|X|-\theta)^+\\
+            &=
+        \myE(U-M|U+\theta|)^+.
+        \end{aligned}
+    \end{equation*}
+    Note that $U-M|U+\theta|>0$ is equivalent to $\frac{-\theta M }{M+1}<U<\frac{\theta M}{1-M}$, we have
+    \begin{equation*}
+        \begin{aligned}
+            R(\theta,X-M|X|)&=
+        \myE(U-M|U+\theta|)^+\\
+            &\leq \myE U\mathbf{1}_{\{\frac{-\theta M }{M+1}<U<\frac{\theta M}{1-M}\}}\\
+            &=\sum_{\frac{-\theta M }{M+1}<k<\frac{\theta M}{1-M}}k\frac{1}{k(k+1)}\\
+            &=\sum_{\frac{-\theta M }{M+1}<k<\frac{\theta M}{1-M}}\frac{1}{(k+1)}\\
+            &=\int_{\frac{-\theta M }{M+1}-1}^{\frac{\theta M}{1-M}}\frac{1}{(x+1)}dx\\
+            &\leq 1+\int_{\frac{-\theta M }{M+1}}^{\frac{\theta M}{1-M}}\frac{1}{(x+1)}dx\\
+            &= 1+\int_{\frac{- M }{M+1}}^{\frac{ M}{1-M}}\frac{1}{(x+1)}dx.
+        \end{aligned}
+    \end{equation*}
+
+\end{example}
+
+\subsection{When $\bar{G}$ is not transitive}
+
+Let a problem remain invariant relative to the groups $G$, $\bar{G}$ and $G^*$ over the spaces $\mathcal{X}$, $\Omega$, and $D$ respectively.
+Then a randomized estimator $\delta(x)$ is defined to be invariant if for all $x$ and $g$ the conditional distribution of $\delta(x)$ given $x$ is the same as that of $g^{*-1}\delta(gx)$.
+
+Suppose $G=\{g_1,\ldots,g_N\}$ is finite.
+Let $\delta(x)$ be an estimator. Define
+\begin{equation*}
+    \delta_i(x)=g_i^{*-1}\delta(g_i x).
+\end{equation*}
+Consider the randomized estimator $\delta^*$ for which
+\begin{equation}\label{randomized1}
+    \delta^*(x)=\delta_i (x)\textrm{ with probability $1/N$ for each $i=1,\ldots,N$},
+\end{equation}
+and assuming the set $D$ of possible decisions to be convex, the estimator
+\begin{equation}\label{randomized2}
+    \delta^{**} (x)= \frac{1}{N}\sum_{i=1}^N \delta_i(x)
+\end{equation}
+which, for given $x$, is the expected value of $\delta^*(x)$.
+
+Note that for a $g\in G$, with probability $1/N$, 
+\begin{equation*}
+    g^{*-1}\delta^*(gx)=g^{*-1}\delta_i(gx)=g^{*-1}g_i^{*-1}\delta_i(g_i g x)=(g_i g)^{*-1}\delta_i(g_i g x). 
+\end{equation*}
+As $g_i$ goes through $G$, $g_i g$ also goes through $G$.
+Hence $g^{*-1}\delta^*(gx)$ has the same conditional distribution as $\delta^*(x)$ and it is equivariant.
+Similarly, $g^{**}$ is also equivariant.
+\begin{equation*}
+    \begin{aligned}
+        R(\theta,\delta^{*})&= \myE_\theta[\myE[L(\theta,\delta^{*}(X))|X]]=\myE_\theta[\frac{1}{N}\sum_{i=1}^N L(\theta,\delta_i(X))]\\
+        &=
+        \frac{1}{N}\sum_{i=1}^N\myE_\theta[ L(\theta,g_i^{*-1}\delta(g_iX))]=
+        \frac{1}{N}\sum_{i=1}^N\myE_{g_i\theta}[ L(\theta,g_i^{*-1}\delta(X))]\\
+        &=
+        \frac{1}{N}\sum_{i=1}^N\myE_{g_i\theta}[ L(\theta,g_i^{*-1}\delta(X))]
+        =
+        \frac{1}{N}\sum_{i=1}^N\myE_{g_i\theta}[ L(\bar{g}_i\theta,\delta(X))]\\
+        &=
+        \frac{1}{N}\sum_{i=1}^N R(\bar{g}_i\theta ,\delta)\leq \sup_{\theta}R(\theta,\delta)
+    \end{aligned}
+\end{equation*}
+If $L(\theta,d)$ is convex in $d$, $R(\theta,\delta^{**})\leq R(\theta,\delta^*)$.
+Hence every minimax estimator can be improved to be equivariant.
+
+Suppose, next, that $\delta_0$ is admissible among al equivariant estimators. If $\delta_0$ is not admissible within the class of all estimators, it is deminated by some $\delta$. But then $\delta^{*}$ dominate $\delta_0$, which is a contradiction.
+
+Suppose $G$ is infinite but there exists an invariant measure $K$ on $G$ with $K(G)<\infty$.
+Without loss of generality, assume $K(G)=1$.
+
+Let $\mathbf{g}$ be a random group with distribution $K$,
+then $\delta^*$ becomes
+\begin{equation*}
+    \delta^{*}(x)=\delta_{\mathbf{g}}(x).
+\end{equation*}
+and $\delta^{**}$ becomes
+\begin{equation*}
+    \delta^{**}(x)=\int \delta_{{g}}(x)K(dg).
+\end{equation*}
+
+
+Further exploration leads to Hunt-Stein theorem.
+
+
+
+
+
+
+\end{document}
