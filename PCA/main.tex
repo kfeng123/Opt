@@ -1,0 +1,190 @@
+\documentclass[11pt]{article}
+ 
+\usepackage{lineno,hyperref}
+
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{booktabs}
+
+%%%%%%%%%%%%%%  Notations %%%%%%%%%%
+\DeclareMathOperator{\mytr}{tr}
+\DeclareMathOperator{\mydiag}{diag}
+\DeclareMathOperator{\myrank}{Rank}
+\DeclareMathOperator{\myE}{E}
+\DeclareMathOperator{\myVar}{Var}
+
+
+\newcommand{\Ba}{\mathbf{a}}    \newcommand{\Bb}{\mathbf{b}}    \newcommand{\Bc}{\mathbf{c}}    \newcommand{\Bd}{\mathbf{d}}    \newcommand{\Be}{\mathbf{e}}    \newcommand{\Bf}{\mathbf{f}}    \newcommand{\Bg}{\mathbf{g}}    \newcommand{\Bh}{\mathbf{h}}    \newcommand{\Bi}{\mathbf{i}}    \newcommand{\Bj}{\mathbf{j}}    \newcommand{\Bk}{\mathbf{k}}    \newcommand{\Bl}{\mathbf{l}}
+\newcommand{\Bm}{\mathbf{m}}    \newcommand{\Bn}{\mathbf{n}}    \newcommand{\Bo}{\mathbf{o}}    \newcommand{\Bp}{\mathbf{p}}    \newcommand{\Bq}{\mathbf{q}}    \newcommand{\Br}{\mathbf{r}}    \newcommand{\Bs}{\mathbf{s}}    \newcommand{\Bt}{\mathbf{t}}    \newcommand{\Bu}{\mathbf{u}}    \newcommand{\Bv}{\mathbf{v}}    \newcommand{\Bw}{\mathbf{w}}    \newcommand{\Bx}{\mathbf{x}}
+\newcommand{\By}{\mathbf{y}}    \newcommand{\Bz}{\mathbf{z}}    
+\newcommand{\BA}{\mathbf{A}}    \newcommand{\BB}{\mathbf{B}}    \newcommand{\BC}{\mathbf{C}}    \newcommand{\BD}{\mathbf{D}}    \newcommand{\BE}{\mathbf{E}}    \newcommand{\BF}{\mathbf{F}}    \newcommand{\BG}{\mathbf{G}}    \newcommand{\BH}{\mathbf{H}}    \newcommand{\BI}{\mathbf{I}}    \newcommand{\BJ}{\mathbf{J}}    \newcommand{\BK}{\mathbf{K}}    \newcommand{\BL}{\mathbf{L}}
+\newcommand{\BM}{\mathbf{M}}    \newcommand{\BN}{\mathbf{N}}    \newcommand{\BO}{\mathbf{O}}    \newcommand{\BP}{\mathbf{P}}    \newcommand{\BQ}{\mathbf{Q}}    \newcommand{\BR}{\mathbf{R}}    \newcommand{\BS}{\mathbf{S}}    \newcommand{\BT}{\mathbf{T}}    \newcommand{\BU}{\mathbf{U}}    \newcommand{\BV}{\mathbf{V}}    \newcommand{\BW}{\mathbf{W}}    \newcommand{\BX}{\mathbf{X}}
+\newcommand{\BY}{\mathbf{Y}}    \newcommand{\BZ}{\mathbf{Z}}    
+
+\newcommand{\bfsym}[1]{\ensuremath{\boldsymbol{#1}}}
+
+ \def\balpha{\bfsym \alpha}
+ \def\bbeta{\bfsym \beta}
+ \def\bgamma{\bfsym \gamma}             \def\bGamma{\bfsym \Gamma}
+ \def\bdelta{\bfsym {\delta}}           \def\bDelta {\bfsym {\Delta}}
+ \def\bfeta{\bfsym {\eta}}              \def\bfEta {\bfsym {\Eta}}
+ \def\bmu{\bfsym {\mu}}                 \def\bMu {\bfsym {\Mu}}
+ \def\bnu{\bfsym {\nu}}
+ \def\btheta{\bfsym {\theta}}           \def\bTheta {\bfsym {\Theta}}
+ \def\beps{\bfsym \varepsilon}          \def\bepsilon{\bfsym \varepsilon}
+ \def\bsigma{\bfsym \sigma}             \def\bSigma{\bfsym \Sigma}
+ \def\blambda {\bfsym {\lambda}}        \def\bLambda {\bfsym {\Lambda}}
+ \def\bomega {\bfsym {\omega}}          \def\bOmega {\bfsym {\Omega}}
+ \def\brho   {\bfsym {\rho}}
+ \def\btau{\bfsym {\tau}}
+ \def\bxi{\bfsym {\xi}}
+ \def\bzeta{\bfsym {\zeta}}
+% May add more in future.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\theoremstyle{plain}
+\newtheorem{theorem}{\quad\quad Theorem}
+\newtheorem{proposition}{\quad\quad Proposition}
+\newtheorem{corollary}{\quad\quad Corollary}
+\newtheorem{lemma}{\quad\quad Lemma}
+\newtheorem{example}{Example}
+\newtheorem{assumption}{\quad\quad Assumption}
+\newtheorem{condition}{\quad\quad Condition}
+
+\theoremstyle{definition}
+\newtheorem{remark}{\quad\quad Remark}
+\theoremstyle{remark}
+
+
+\begin{document}
+\title{Notes of~\cite{paul2007asymptotics}}
+\author{Rui Wang, Xingzhong Xu \vspace{0.1in}\\}
+\date{\today}
+\maketitle
+
+\begin{abstract}
+\end{abstract}
+
+\noindent {\it Key words}\/: High dimension, Huber loss.
+
+
+\section{Weak concentration inequalities for quadratic forms}
+\begin{lemma}
+    Suppose $X$ and $Y$ are iid $N_n(0,I_n)$, $C$ is a $n\times n$ matrix, $\|C\|$ is the largest singular value of $C$. Then for $0<\delta<1$,
+    $$
+    \Pr(\frac{1}{n}|X^T C Y|>t) \leq 2 \exp\Big(-\frac{(1-\delta^2)nt^2}{2\|C\|^2}\Big),\quad \text{for $0\leq t\leq \frac{\delta}{1-\delta^2}\|C\|$}.
+    $$
+\end{lemma}
+\begin{proof}
+    For $\lambda \leq \frac{1}{\|C\|}$, we have
+    \begin{equation}\label{lemma1:1}
+        \begin{aligned}
+            \Pr(X^T C Y > \lambda nt)&\leq \exp(-nt)\myE \exp(\lambda X^T C Y)\\
+            &= \exp(-\lambda nt)\myE \exp(\frac{\lambda^2}{2}\|CY\|^2)\\
+            &= \exp(-\lambda nt)|I_n-\lambda^2 C^T C|^{-1/2}.
+        \end{aligned}
+    \end{equation}
+Now, use the fact that $\log |I_n-\lambda^2 C^T C|=\sum_{i=1}^n \log(1-\lambda^2 \lambda_i(C^T C))$. We have
+\begin{equation*}
+    \begin{aligned}
+-\log |I_n-\lambda^2 C^T C|
+        =&\sum_{i=1}^n -\log(1-\lambda^2 \lambda_i(C^T C))\\
+        \leq&  -n\log(1-\lambda^2 \|C\|^2)\\
+        \leq & n \frac{\lambda^2\|C\|^2}{1-\lambda^2 \|C\|^2}.
+    \end{aligned}
+\end{equation*}
+Hence with~\eqref{lemma1:1}, for $0<\delta<1$ and $0\leq \lambda\leq \frac{\delta}{\|C\|}$, we have,
+    \begin{equation}\label{lemma1:2}
+        \begin{aligned}
+            \Pr(X^T C Y > \lambda nt)
+            &\leq 
+            \exp(-n\lambda t+\frac{n}{2}\frac{\lambda^2\|C\|^2}{1-\lambda^2 \|C\|^2})\\
+            &= 
+            \exp\Big\{n(-\lambda \|C\| \frac{t}{\|C\|}+\frac{1}{2}\frac{(\lambda\|C\|)^2}{1-(\lambda \|C\|)^2})\Big\}\\
+            &= 
+            \exp\Big\{n(-\lambda \|C\| \frac{t}{\|C\|}+\frac{1}{2}\frac{(\lambda\|C\|)^2}{1-\delta^2})\Big\}.
+        \end{aligned}
+    \end{equation}
+The last expression is a quadratic form of $\lambda \|C\|$, it takes it's minimum when $\lambda \|C\|=\frac{1-\delta^2}{\|C\|}t$.
+To make this value fall in the interval $(0,\delta)$, we require $t\leq \frac{\delta}{1-\delta^2}\|C\|$. Thus, for $0\leq t\leq\frac{\delta}{1-\delta^2}\|C\|$, we have
+    \begin{equation*}
+        \begin{aligned}
+            \Pr(X^T C Y > \lambda nt)
+            &\leq 
+            \exp\Big\{n(-\frac{1-\delta^2}{\|C\|}t \frac{t}{\|C\|}+\frac{1}{2}\frac{(\frac{1-\delta^2}{\|C\|}t)^2}{1-\delta^2})\Big\}\\
+            &=
+            \exp\Big\{n(-\frac{1-\delta^2}{\|C\|}t \frac{t}{\|C\|}+\frac{1}{2}\frac{(\frac{1-\delta^2}{\|C\|}t)^2}{1-\delta^2})\Big\}\\
+            &=
+            \exp\Big\{-\frac{n}{2}\frac{1-\delta^2}{\|C\|^2}t^2\Big\}.
+        \end{aligned}
+    \end{equation*}
+\end{proof}
+\begin{lemma}
+    Suppose $X$ is distributed as $N_n(0,I_n)$. Then for $0<\delta <1$,
+    $$
+        \Pr(\frac{1}{n}(X^T C X -\mytr C)>t)
+    \leq 2\exp(-\frac{\delta n t^2}{4\|C\|^2})\quad \text{for $t\leq \frac{\|C\|(1-\delta)}{\delta}$}.
+    $$
+\end{lemma}
+\begin{proof}
+$$
+    \begin{aligned}
+        \Pr(\frac{1}{n}(X^T C X -\mytr C)>t) &=
+    \Pr(\lambda X^T C X >\lambda(nt+ \mytr C)) \\
+        &\leq
+    \exp(-\lambda(nt+\mytr C))
+        \myE (\exp(\lambda X^T C X))\\
+        &=
+    \exp(-\lambda(nt+\mytr C))
+        |I_n-2\lambda C|^{-1/2}\\
+        &=
+    \exp\big(-\lambda(nt+\mytr C)
+        -\frac{1}{2}\log|I_n-2\lambda C|\big)\\
+        &\leq
+    \exp\big(-\lambda nt-\lambda\mytr C
+        -\frac{1}{2}\log|I_n-2\lambda C|\big).
+    \end{aligned}
+    $$
+We have the inequality
+$$
+    -\log(1-u)-u\leq \frac{u^2}{2(1-|u|)}\quad \text{for $u\in(-1,1)$}.
+$$
+Hence
+$$
+    \begin{aligned}
+        \Pr(\frac{1}{n}(X^T C X -\mytr C)>t) &\leq
+        \exp\big(-\lambda nt +\frac{1}{2}\sum_{i=1}^n \frac{(2\lambda \lambda_i(C))^2}{2(1-2|\lambda \lambda_i(C)|)}\big).
+    \end{aligned}
+    $$
+    For $\lambda\leq \frac{1-\delta}{2\|C\|}$
+    $$
+    \begin{aligned}
+    -\lambda nt +\frac{1}{2}\sum_{i=1}^n \frac{(2\lambda \lambda_i(C))^2}{2(1-2|\lambda \lambda_i(C)|)}
+        &\leq
+    -\lambda nt +\frac{1}{2}\sum_{i=1}^n \frac{(2\lambda \lambda_i(C))^2}{2\delta}\\
+        &\leq
+        -\lambda nt + \frac{n\lambda^2 \|C\|^2}{\delta}\\
+    \end{aligned}
+    $$
+    For $t\leq \frac{\|C\|(1-\delta)}{\delta}$, we let $\lambda=\frac{\delta t}{2\|C\|^2}$, then
+    $$
+    \begin{aligned}
+        -\lambda nt + \frac{n\lambda^2 \|C\|^2}{\delta}
+        &\leq
+        -\frac{\delta n t^2}{4\|C\|^2}
+    \end{aligned}
+    $$
+\end{proof}
+\section*{References}
+
+
+\bibliographystyle{apalike}
+\bibliography{mybibfile}
+
+\end{document}

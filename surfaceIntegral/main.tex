@@ -1,0 +1,194 @@
+\documentclass[11pt, letterpaper]{article}
+ 
+\usepackage{lineno,hyperref}
+
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{booktabs}
+
+%%%%%%%%%%%%%%  Notations %%%%%%%%%%
+\DeclareMathOperator{\mytr}{tr}
+\DeclareMathOperator{\mydiag}{diag}
+\DeclareMathOperator{\myrank}{Rank}
+\DeclareMathOperator{\myE}{E}
+\DeclareMathOperator{\myVar}{Var}
+
+
+\newcommand{\Ba}{\mathbf{a}}    \newcommand{\Bb}{\mathbf{b}}    \newcommand{\Bc}{\mathbf{c}}    \newcommand{\Bd}{\mathbf{d}}    \newcommand{\Be}{\mathbf{e}}    \newcommand{\Bf}{\mathbf{f}}    \newcommand{\Bg}{\mathbf{g}}    \newcommand{\Bh}{\mathbf{h}}    \newcommand{\Bi}{\mathbf{i}}    \newcommand{\Bj}{\mathbf{j}}    \newcommand{\Bk}{\mathbf{k}}    \newcommand{\Bl}{\mathbf{l}}
+\newcommand{\Bm}{\mathbf{m}}    \newcommand{\Bn}{\mathbf{n}}    \newcommand{\Bo}{\mathbf{o}}    \newcommand{\Bp}{\mathbf{p}}    \newcommand{\Bq}{\mathbf{q}}    \newcommand{\Br}{\mathbf{r}}    \newcommand{\Bs}{\mathbf{s}}    \newcommand{\Bt}{\mathbf{t}}    \newcommand{\Bu}{\mathbf{u}}    \newcommand{\Bv}{\mathbf{v}}    \newcommand{\Bw}{\mathbf{w}}    \newcommand{\Bx}{\mathbf{x}}
+\newcommand{\By}{\mathbf{y}}    \newcommand{\Bz}{\mathbf{z}}    
+\newcommand{\BA}{\mathbf{A}}    \newcommand{\BB}{\mathbf{B}}    \newcommand{\BC}{\mathbf{C}}    \newcommand{\BD}{\mathbf{D}}    \newcommand{\BE}{\mathbf{E}}    \newcommand{\BF}{\mathbf{F}}    \newcommand{\BG}{\mathbf{G}}    \newcommand{\BH}{\mathbf{H}}    \newcommand{\BI}{\mathbf{I}}    \newcommand{\BJ}{\mathbf{J}}    \newcommand{\BK}{\mathbf{K}}    \newcommand{\BL}{\mathbf{L}}
+\newcommand{\BM}{\mathbf{M}}    \newcommand{\BN}{\mathbf{N}}    \newcommand{\BO}{\mathbf{O}}    \newcommand{\BP}{\mathbf{P}}    \newcommand{\BQ}{\mathbf{Q}}    \newcommand{\BR}{\mathbf{R}}    \newcommand{\BS}{\mathbf{S}}    \newcommand{\BT}{\mathbf{T}}    \newcommand{\BU}{\mathbf{U}}    \newcommand{\BV}{\mathbf{V}}    \newcommand{\BW}{\mathbf{W}}    \newcommand{\BX}{\mathbf{X}}
+\newcommand{\BY}{\mathbf{Y}}    \newcommand{\BZ}{\mathbf{Z}}    
+
+\newcommand{\bfsym}[1]{\ensuremath{\boldsymbol{#1}}}
+
+ \def\balpha{\bfsym \alpha}
+ \def\bbeta{\bfsym \beta}
+ \def\bgamma{\bfsym \gamma}             \def\bGamma{\bfsym \Gamma}
+ \def\bdelta{\bfsym {\delta}}           \def\bDelta {\bfsym {\Delta}}
+ \def\bfeta{\bfsym {\eta}}              \def\bfEta {\bfsym {\Eta}}
+ \def\bmu{\bfsym {\mu}}                 \def\bMu {\bfsym {\Mu}}
+ \def\bnu{\bfsym {\nu}}
+ \def\btheta{\bfsym {\theta}}           \def\bTheta {\bfsym {\Theta}}
+ \def\beps{\bfsym \varepsilon}          \def\bepsilon{\bfsym \varepsilon}
+ \def\bsigma{\bfsym \sigma}             \def\bSigma{\bfsym \Sigma}
+ \def\blambda {\bfsym {\lambda}}        \def\bLambda {\bfsym {\Lambda}}
+ \def\bomega {\bfsym {\omega}}          \def\bOmega {\bfsym {\Omega}}
+ \def\brho   {\bfsym {\rho}}
+ \def\btau{\bfsym {\tau}}
+ \def\bxi{\bfsym {\xi}}
+ \def\bzeta{\bfsym {\zeta}}
+% May add more in future.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\theoremstyle{plain}
+\newtheorem{theorem}{\quad\quad Theorem}
+\newtheorem{proposition}{\quad\quad Proposition}
+\newtheorem{corollary}{\quad\quad Corollary}
+\newtheorem{lemma}{\quad\quad Lemma}
+\newtheorem{example}{Example}
+\newtheorem{assumption}{\quad\quad Assumption}
+\newtheorem{condition}{\quad\quad Condition}
+
+\theoremstyle{definition}
+\newtheorem{remark}{\quad\quad Remark}
+\theoremstyle{remark}
+
+
+\begin{document}
+\title{Surface Integrals over $n$-Dimensional Spheres}
+\maketitle
+
+\section{Introduction}
+This notes is adapted from Stan's library.
+
+Let $\mathbb{R}^n$ denote the $n$-dimensional Euclidean space, $\Br$ the positive vector in $\mathbb{R}^n$ and $r=|\Br|$ its norm
+$$
+\Br=(x_1,,\ldots,x_n), \quad r=|\Br|=\sqrt{x_1^2+\cdots+x_n^2}.
+$$
+We shall often use $n$-tuples of non-negative real exponents
+$
+\Bp=(p_1,\ldots,p_n)
+$, which, however, are not to be intended as elements of $\mathbb{R}^n$.
+The shorthand will be exploited in conventional expressions of the type
+$$E(\Br,\Bp)=\prod_{k=1}^n (x_k^2)^{p_k}.$$
+An $n$-dimensional spherical surface $S(R)$ of radius $R$ is defined by the condition
+$$
+\sum_{k=1}^n \frac{x_k^2}{R^2}=1.
+$$
+An $n$-dimensional spherical volumes $V(R)$ of ratius $R$ is defined by the condition
+$$
+\sum_{k=1}^n \frac{x_k^2}{R^2}\leq 1.
+$$
+We are interested in the evaluation of the following integrals over $S(R)$:
+\begin{equation}\label{eq:1}
+S_n(\Bp,R)=\int_{S(R)}E(\Br,\Bp)\, \mathrm{d} \sigma,
+\end{equation}
+where $\mathrm{d}\sigma$ is an $(n-1)$-dimensional surface element, and the following integrals over $V(R)$:
+$$
+W_n(\Bp,R)=\int_{V(R)}E(\Br,\Bp)\, \mathrm{d} \tau,
+$$
+where $\mathrm{d}\tau$ is  the volume element.
+\section{Evaluation of the integrals}
+\subsection{Volume integrals}
+This sub section is devoted to $W_n(\Bp,R)$.
+In Cartesian coordinates, the volumn element $\mathrm{d}\tau $ is given by
+$$
+\mathrm{d}\tau=\mathrm{d}x_1\mathrm{d}x_2\ldots\mathrm{d}x_n.
+$$
+By a coordinates-scaling transformation, we have
+$$
+W_n(\Bp,R)=R^{2p+n}W_n(\Bp), \quad \text{where $p=\sum_{i=1}^n p_i$ and }W_n(\Bp)=\int_{V_n(1)}E(\Br,\Bp)\,\mathrm{d}\tau.
+$$
+The integral $W_n(\Bp)$ can be computed iteratively. Write
+$$
+W_n(\Bp)=\int_{-1}^1\,\mathrm{d}x_n \int_{V_{n-1}(\sqrt{1-x_n^2})}E(\Br,\Bp)\,\mathrm{d}x_1\ldots\mathrm{d}x_{n-1}.
+$$
+Let $\Br'=(x_1,\ldots,x_{n-1})$ and $\Bp'=(p_1,\ldots,p_{n-1})$. Then
+$$
+\begin{aligned}
+    W_n(\Bp)&=\int_{-1}^1 x_n^{2p_n}\,\mathrm{d}x_n \int_{V_{n-1}(\sqrt{1-x_n^2})}E(\Br',\Bp')\,\mathrm{d}x_1\ldots\mathrm{d}x_{n-1}\\
+    &=
+    \int_{-1}^1 x_n^{2p_n} (\sqrt{1-x_n^2})^{2p'+n-1}\,\mathrm{d}x_n \int_{V_{n-1}(1)}E(\Br',\Bp')\,\mathrm{d}x_1\ldots\mathrm{d}x_{n-1}.
+\end{aligned}
+$$
+Let $x_n=\cos(\theta)$, $\theta\in(0,\pi)$. Then 
+$$
+\begin{aligned}
+    W_n(\Bp)
+    &=
+    \int_{0}^{\pi} \big(\cos^{2}(\theta)\big)^{p_n} \sin^{2p'+n}(\theta)\,\mathrm{d}\theta \int_{V_{n-1}(1)}E(\Br',\Bp')\,\mathrm{d}x_1\ldots\mathrm{d}x_{n-1}\\
+    &=\text{Beta}(\frac{n+1}{2}+\sum_{k=1}^{n-1}p_k, \frac{1}{2}+p_n) W_{n-1}(\Bp').\\
+    &=\frac{\Gamma(\frac{n+1}{2}+\sum_{k=1}^{n-1}p_k)\Gamma (\frac{1}{2}+p_n)}{\Gamma(\frac{n+2}{2}+\sum_{k=1}^n p_k)} W_{n-1}(\Bp').\\
+\end{aligned}
+$$
+By recurrence, we have
+$$
+W_n(\Bp)=\frac{\prod_{k=1}^n \Gamma(p_k+1/2)}{\Gamma(p+{n+2}/{2})}.
+$$
+Then
+\begin{equation}\label{eq:2}
+W_n(\Bp,R)=R^{2p+n}\frac{\prod_{k=1}^n \Gamma(p_k+1/2)}{\Gamma(p+{(n+2)}/{2})}.
+\end{equation}
+Here $p_k$ is any real value greater than $-1/2$.
+
+\subsection{Integrals over spheres}
+In this sub section, we deal with $S_n(\Bp,R)$.
+The evaluation is considerably simplified by three facts:
+\begin{itemize}
+    \item
+By~\eqref{eq:2}, we have
+\begin{equation}
+    W_n(\Bp,R)=R^{2p+n}\frac{2}{2p+n}\frac{\prod_{k=1}^n \Gamma(p_k+1/2)}{\Gamma(p+{n}/{2})}.
+\end{equation}
+\item
+Integral~\eqref{eq:1} has the nearly self-evident scaling property
+$$
+S_n(\Bp,R)= R^{2p+n-1}S_n(\Bp,1),\quad \text{where $p=\sum_{k=1}^n p_k$},
+$$
+arising from the fact that $E(\Br,\Bp)$ scales with $2p$-th power of $R$ and $\text{d}\sigma$ scales with $(n-1)$-st power of $R$.
+\item
+    For spheres, the volume integration can be carried out by summing the contributions of concentric shells defined by radii $r$ and $r+\mathrm{d}r$, for $r$ ranges from $0$ to $R$. Hence
+$$
+        W_n(\Bp,R)=\int_0^R S_n(\Bp,r)\, \mathrm{d}r.
+$$
+\end{itemize}
+
+From these observation, it follows that
+$$
+S_n(\Bp,R)=\frac{\partial}{\partial R} W_n(\Bp,R)=2R^{2p+n-1}\frac{\prod_{k=1}^n \Gamma(p_k+1/2)}{\Gamma(p+n/2)}.
+$$
+Here $p_k$ is any real value greater than $-1/2$.
+\section{Special cases}
+Setting all the $p$'s equal to $v/2$, one obtains the following formula, valid for any $v>-1$:
+$$
+\int_{S(R)}|x_1 x_2 \ldots x_n|^v\,\mathrm{d}\sigma=2 R^{nv+n-1}\frac{\Gamma^n((v+1)/2)}{\Gamma(n(v+1)/2)}.
+$$
+When only one of  the $p$'s equals $v/2$ and all  the others are zero, we have, for any $v>-1$, that
+$$
+\int_{S(R)}|x_1|^v\, \mathrm{d}\sigma=2\pi^{(n-1)/2}R^{n+v-1}\frac{\Gamma((v+1)/2)}{\Gamma((v+n)/2)}.
+$$
+
+The surface of the $n$-dimensional unit sphere is
+$$
+S_n=\frac{2\pi^{n/2}}{\Gamma(n/2)}.
+$$
+
+
+\section*{Acknowledgements}
+This work was supported by the National Natural Science Foundation of China under Grant No.\ xxxxx, xxxx.
+
+
+\section*{References}
+
+\bibliographystyle{apalike}
+\bibliography{mybibfile}
+
+\end{document}

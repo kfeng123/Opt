@@ -1,0 +1,16 @@
+% Encoding: ISO-8859-1
+
+@Article{paul2007asymptotics,
+  author    = {Paul, Debashis},
+  title     = {Asymptotics of sample eigenstruture for a large dimensional spiked covariance model},
+  journal   = {Statistica Sinica},
+  year      = {2007},
+  volume    = {17},
+  pages     = {1617},
+  file      = {paul2007asymptotics.pdf:paul2007asymptotics.pdf:PDF},
+  groups    = {factor and PCA},
+  owner     = {kfeng123},
+  timestamp = {2017.08.05},
+}
+
+@Comment{jabref-meta: databaseType:bibtex;}
