@@ -16,6 +16,7 @@
 \DeclareMathOperator{\myrank}{Rank}
 \DeclareMathOperator{\myE}{E}
 \DeclareMathOperator{\myVar}{Var}
+\DeclareMathOperator{\myMed}{Med}
 
 
 \newcommand{\Ba}{\mathbf{a}}    \newcommand{\Bb}{\mathbf{b}}    \newcommand{\Bc}{\mathbf{c}}    \newcommand{\Bd}{\mathbf{d}}    \newcommand{\Be}{\mathbf{e}}    \newcommand{\Bf}{\mathbf{f}}    \newcommand{\Bg}{\mathbf{g}}    \newcommand{\Bh}{\mathbf{h}}    \newcommand{\Bi}{\mathbf{i}}    \newcommand{\Bj}{\mathbf{j}}    \newcommand{\Bk}{\mathbf{k}}    \newcommand{\Bl}{\mathbf{l}}
@@ -64,7 +65,7 @@
 
 \begin{document}
 \title{Notes of~\cite{paul2007asymptotics}}
-\author{Rui Wang, Xingzhong Xu \vspace{0.1in}\\}
+\author{Rui Wang \vspace{0.1in}\\}
 \date{\today}
 \maketitle
 
@@ -181,6 +182,19 @@ $$
     \end{aligned}
     $$
 \end{proof}
+\section{Concentration bound for the eigenvalues of wishart matrix}
+\begin{proposition}
+    Let $\BZ$ be $N\times n$ random matrix with all elements iid distributed as $N(0,1)$.
+    Assume $N/n\to \gamma\in(0,1)$.
+    Let $\kappa_{\gamma}=(1+\sqrt{\gamma})^2$.
+    Then for any $0< \delta< \kappa_{\gamma}/2$,
+    $$
+    \Pr(|\lambda_1(\frac{1}{n}\BZ\BZ^T)-\kappa_{\gamma}|\geq \delta)\leq 2\exp\Big(-\frac{n\delta^2}{32\kappa_{\gamma}}\Big),\quad \text{for $n\geq n_0(\gamma,\delta)$}
+    $$
+    where $n_0(\gamma,\delta)$ is an integer large enough such that $|\myMed\big(\lambda_1(\frac{1}{n}\BZ\BZ^T)\big)-\kappa_{\gamma}|\leq \delta/4$ for $n\geq n_0(\gamma,\delta)$.
+\end{proposition}
+
+
 \section*{References}
 
 

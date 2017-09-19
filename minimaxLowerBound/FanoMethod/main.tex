@@ -4,9 +4,11 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{galois} % composition function \comp
 \usepackage{bm}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{mathrsfs}
 \usepackage{amsthm}
 \usepackage{graphicx}
 \usepackage{color}
@@ -48,6 +50,58 @@ Throughout, we let $\mathcal{P}$ denote a class of distributions on a sample spa
 The goal is to estimate the parameter $\theta(P)$ based on observations $X_i$ drawn from the distribution $P$.
 
 To evaluate the quality of an estimator $\hat{\theta}$, we let $\rho:\Theta\times\Theta \to \mathbb{R}_{+}$ denote a semimetric on the space $\Theta$, which we use to measure the error of an estimator for the parameter $\theta$, and let $\Phi:\mathbb{R}_+\to \mathbb{R}_+$ be a non-decreasing function with $\Phi(0)=0$.
+
+\paragraph{From estimation to testing}
+Given an index set $\mathcal{V}$ of finite cardinality, consider a family of distributions $\{P_v\}_{v\in\mathcal{V}}$ contained within $\mathcal{P}$.
+This family induces a collection of parameters $\{\theta(P_v)\}_{v\in\mathcal{V}}$; we call the family a $2\delta$-packing in the $\rho$-semimetric if 
+$$
+\rho(\theta(\theta(P_v),\theta(P_{v'})))\geq 2\delta \quad \textrm{for all $v\neq v'$}.
+$$
+We use this family to define the canonical hypothesis testing problem:
+\begin{itemize}
+    \item
+        first, nature chooses $V$ according to the uniform distribution over $\mathcal{V}$;
+    \item
+        second, conditioned on the choice $V=v$, the random sample $X=X_1^n=(X_1,\ldots,X_n)$ is drawn from  the $n$-fold product distribution $P_v^n$.
+\end{itemize}
+\begin{proposition}
+    The minimax error has lower bound
+    $$
+    \mathfrak{M}_n(\theta(\mathcal{P}),\Phi\comp \rho)\geq \Phi(\delta) \inf_{\Psi} \mathbb{P}(\Psi(X_1,\ldots,X_n)\neq V).
+    $$
+\end{proposition}
+
+\section{Metric entropy and packing numbers}
+\begin{itemize}
+    \item
+        Covering number: $N(\delta,\Theta,\rho)$
+    \item
+        Metric entropy: $\log N(\delta,\Theta,\rho)$
+    \item
+        Packing number: $M(\delta,\Theta,\rho)$
+\end{itemize}
+\begin{lemma}
+    $M(2\delta,\Theta,\rho)\leq N(\delta,\Theta,\rho)\leq M(\delta,\Theta,\rho)$
+\end{lemma}
+\begin{lemma}[Gilbert-Vershamov bound]
+    Let $d\geq 1$. There is a subset $\mathcal{V}$ of the $d$-dimensional hypercube $\mathcal{H}_d=\{-1,1\}^d$ of size $|\mathcal{V}|\geq \exp(d/8)$ such that the $\ell_1$-distance
+    $$
+    \|v-v'\|_1 =2\sum_{j=1}^d \mathbf{1}\{v_j\neq v_j'\}\geq \frac{d}{2}
+    $$
+    for all $v\neq v'$ with $v,v'\in \mathcal{V}$.
+\end{lemma}
+\begin{lemma}
+    Let $\|\cdot\|$ be any norm in $\mathbb{R}^d$.
+    Let $\mathbb{B}$ denote the unit $\|\cdot\|$-ball in $\mathbb{R}^d$. Then
+    $$
+    \left(\frac{1}{\delta}\right)^d
+    \leq 
+    N(\delta,\mathbb{B},\|\cdot\|)
+    \leq
+    \left(1+\frac{2}{\delta}\right)^d.
+    $$
+\end{lemma}
+
 \section{Fano inequality}
 Let $V$ be a random variable taking values in a finite set $\mathcal{V}$, and assume that we observe a random variable $X$, and then must estimate or guess the true value of $\hat{V}$. That is, we have the Markov chain
 $$
@@ -87,7 +141,13 @@ Note that $h_2(\Pr(\hat{V}\neq V))\leq \log 2$ and
     
 \end{proposition}
 
-\section{Th classical (local) Fano method}
+\section{The classical (local) Fano method}
+\begin{proposition}
+    Let $\{\theta(P_v)\}_{v\in V}$ be a $2\delta$-packing in the $\rho$-semimetric. Assume that $V$ is uniform on the set $\mathcal{V}$, and conditional on $V=v$, we draw a sample $X\sim P_v$. Then the minimax risk has lower bound
+    $$
+    \mathfrak{M}(\theta(\mathcal{P});\Phi\comp \rho)\geq \Phi(\delta)\left(1-\frac{I(V;X)+\log 2}{\log |\mathcal{V}|}\right).
+    $$
+\end{proposition}
 
 
 \section*{References}
