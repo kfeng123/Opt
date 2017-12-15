@@ -1,0 +1,242 @@
+\documentclass[11pt, letterpaper]{article}
+ 
+\usepackage{lineno,hyperref}
+
+\usepackage{galois} % composition function \comp
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{booktabs}
+\usepackage[page,title]{appendix}
+%\renewcommand\appendixname{haha}
+\usepackage{enumerate}
+\usepackage{changepage}
+\usepackage{datetime}
+\newdate{date}{9}{1}{2017}
+
+%%%%%%%%  page setup %%%%%%%%
+\textheight 8.5 in
+\textwidth 6.5 in
+\topmargin -0.5 in
+\oddsidemargin -0.1 in
+
+%%%%%%%%%%%%%%  Notations %%%%%%%%%%
+\DeclareMathOperator{\mytr}{tr}
+\DeclareMathOperator{\mydiag}{diag}
+\DeclareMathOperator{\myrank}{Rank}
+\DeclareMathOperator{\myP}{P}
+\DeclareMathOperator{\myE}{E}
+\DeclareMathOperator{\myVar}{Var}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+
+\newcommand{\Ba}{\mathbf{a}}    \newcommand{\Bb}{\mathbf{b}}    \newcommand{\Bc}{\mathbf{c}}    \newcommand{\Bd}{\mathbf{d}}    \newcommand{\Be}{\mathbf{e}}    \newcommand{\Bf}{\mathbf{f}}    \newcommand{\Bg}{\mathbf{g}}    \newcommand{\Bh}{\mathbf{h}}    \newcommand{\Bi}{\mathbf{i}}    \newcommand{\Bj}{\mathbf{j}}    \newcommand{\Bk}{\mathbf{k}}    \newcommand{\Bl}{\mathbf{l}}
+\newcommand{\Bm}{\mathbf{m}}    \newcommand{\Bn}{\mathbf{n}}    \newcommand{\Bo}{\mathbf{o}}    \newcommand{\Bp}{\mathbf{p}}    \newcommand{\Bq}{\mathbf{q}}    \newcommand{\Br}{\mathbf{r}}    \newcommand{\Bs}{\mathbf{s}}    \newcommand{\Bt}{\mathbf{t}}    \newcommand{\Bu}{\mathbf{u}}    \newcommand{\Bv}{\mathbf{v}}    \newcommand{\Bw}{\mathbf{w}}    \newcommand{\Bx}{\mathbf{x}}
+\newcommand{\By}{\mathbf{y}}    \newcommand{\Bz}{\mathbf{z}}    
+\newcommand{\BA}{\mathbf{A}}    \newcommand{\BB}{\mathbf{B}}    \newcommand{\BC}{\mathbf{C}}    \newcommand{\BD}{\mathbf{D}}    \newcommand{\BE}{\mathbf{E}}    \newcommand{\BF}{\mathbf{F}}    \newcommand{\BG}{\mathbf{G}}    \newcommand{\BH}{\mathbf{H}}    \newcommand{\BI}{\mathbf{I}}    \newcommand{\BJ}{\mathbf{J}}    \newcommand{\BK}{\mathbf{K}}    \newcommand{\BL}{\mathbf{L}}
+\newcommand{\BM}{\mathbf{M}}    \newcommand{\BN}{\mathbf{N}}    \newcommand{\BO}{\mathbf{O}}    \newcommand{\BP}{\mathbf{P}}    \newcommand{\BQ}{\mathbf{Q}}    \newcommand{\BR}{\mathbf{R}}    \newcommand{\BS}{\mathbf{S}}    \newcommand{\BT}{\mathbf{T}}    \newcommand{\BU}{\mathbf{U}}    \newcommand{\BV}{\mathbf{V}}    \newcommand{\BW}{\mathbf{W}}    \newcommand{\BX}{\mathbf{X}}
+\newcommand{\BY}{\mathbf{Y}}    \newcommand{\BZ}{\mathbf{Z}}    
+
+\newcommand{\bfsym}[1]{\ensuremath{\boldsymbol{#1}}}
+
+ \def\balpha{\bfsym \alpha}
+ \def\bbeta{\bfsym \beta}
+ \def\bgamma{\bfsym \gamma}             \def\bGamma{\bfsym \Gamma}
+ \def\bdelta{\bfsym {\delta}}           \def\bDelta {\bfsym {\Delta}}
+ \def\bfeta{\bfsym {\eta}}              \def\bfEta {\bfsym {\Eta}}
+ \def\bmu{\bfsym {\mu}}                 \def\bMu {\bfsym {\Mu}}
+ \def\bnu{\bfsym {\nu}}
+ \def\btheta{\bfsym {\theta}}           \def\bTheta {\bfsym {\Theta}}
+ \def\beps{\bfsym \varepsilon}          \def\bepsilon{\bfsym \varepsilon}
+ \def\bsigma{\bfsym \sigma}             \def\bSigma{\bfsym \Sigma}
+ \def\blambda {\bfsym {\lambda}}        \def\bLambda {\bfsym {\Lambda}}
+ \def\bomega {\bfsym {\omega}}          \def\bOmega {\bfsym {\Omega}}
+ \def\brho   {\bfsym {\rho}}
+ \def\btau{\bfsym {\tau}}
+ \def\bxi{\bfsym {\xi}}
+ \def\bzeta{\bfsym {\zeta}}
+% May add more in future.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\theoremstyle{plain}
+\newtheorem{theorem}{\quad\quad Theorem}
+\newtheorem{proposition}{\quad\quad Proposition}
+\newtheorem{corollary}{\quad\quad Corollary}
+\newtheorem{lemma}{\quad\quad Lemma}
+\newtheorem{example}{Example}
+\newtheorem{assumption}{\quad\quad Assumption}
+\newtheorem{condition}{\quad\quad Condition}
+
+\theoremstyle{definition}
+\newtheorem{remark}{\quad\quad Remark}
+\theoremstyle{remark}
+
+
+\begin{document}
+\title{Some Theory of Likelihood}
+\maketitle
+\section{To be done}
+\begin{itemize}
+    \item
+        {\color{red} Understand existing theory in exponential family. 
+        Some paper to be read:~\citet{portnoy1988asymptotic,Ghosal2000Asymptotic}.}
+    \item
+        Give the theory of posterior Bayes factor under exponential family.
+    \item
+        Beyond exponential family.~\citep{berger2003approximatios}.
+    \item
+        Bartlett correction.
+    \item
+    General integral likelihood ratio test.
+    \item
+        Nonasymptotic. Read~\cite{spokoiny2012parametric}'s paper.
+    \item
+    Consider the sparse case as in~\cite{stadler2016two}.
+\end{itemize}
+\section{Introduction}
+
+\section{Results for exponential family}
+The content of this section is adapted from~\cite{Ghosal2000Asymptotic}.
+
+The following result, known as acute angle principle, is a key tool for the analysis.
+\begin{lemma}[~\cite{book:263774}, Theorem 6.3.4.]\label{acute}
+    Let $C$ be an open, bounded set in $\mathbb{R}^n$ and assume that $F:\bar{C}\subset \mathbb{R}^n \mapsto \mathbb{R}^n$ is countinuous and satisfies $(x-x_0)^T F(x)\geq 0$ for some $x_0\in C$ and all $x\in \partial C$. Then $F(x)=0$ has a solution in $\bar{C}$.
+\end{lemma}
+
+We make the following assumptions.
+\begin{assumption}\label{model}
+    The $p$ dimensional independent random samples $X_1,\ldots, X_n$ are from a standard exponential family with density
+    $$f(x;\theta_n)=\exp[x^T \theta_n-\psi_n(\theta_n)]$$ 
+    with respect to $\mu_n$.
+    Where $\theta_n\in\Theta_n$, an \textbf{open} subset of $\mathbb{R}^n$.
+    Sometimes we suppress the subscript $n$.
+
+    The true parameter is denoted by $\theta_0$.
+    To prevent $\theta_0$ approaching the boundary as $n\to \infty$, we assume that for a fixed $\epsilon_0>0$ independent of n, $B(\theta_0,\epsilon_0)\subset \Theta$.
+
+
+    It's well known that $\myE X_1=\psi'(\theta_0)$ and $\myVar X_1=\psi''(\theta_0)$. $\psi''(\theta_0)$ is also the Fisher information matrix. We assume that $\psi''(\theta_0)$ is positive definite.
+\end{assumption}
+\begin{assumption}\label{pAndN}
+$p\to \infty$ as $n\to \infty$.
+\end{assumption}
+
+Let the positive definite matrix $\BJ$ be the  square root of $\psi''(\theta_0)$, that is $\psi''(\theta_0)=\BJ^2$.
+The MLE $\hat{\theta}$ of $\theta$ is unique and satisfies $\psi'(\hat{\theta})=\bar{X}$.
+
+For a square matrix $\BA$, $\|\BA\|$ will stand for its operator norm.
+
+The function $\psi(\theta)$ is in fact the cumulant generating function of $X_1$. 
+\cite{portnoy1988asymptotic} gave the following Taylor series expansions.
+\begin{proposition}\label{Taylor}
+    Suppose Assumption~\ref{model} holds.
+    For any $\theta$ and $\theta_0$ in $\Theta$, the following expansions hold for some $\tilde{\theta}$ between $\theta$ and $\theta_0$:
+    $$
+    \begin{aligned}
+        \psi(\theta)=&\psi(\theta_0)+(\theta-\theta_0)^T \psi'(\theta_0)+\frac{1}{2}(\theta-\theta_0)^T \psi''(\theta_0) (\theta-\theta_0)\\
+        &+\frac{1}{6}\myE_{\theta_0}\Big((\theta-\theta_0)^T (U-\myE_{\theta_0}U)\Big)^3\\
+        &+\frac{1}{24}\Big\{
+            \myE_{\tilde{\theta}}\Big((\theta-\theta_0)^T (U-\myE_{\tilde\theta}U)\Big)^4-
+            3\big[\myE_{\tilde{\theta}}\big((\theta-\theta_0)^T (U-\myE_{\tilde\theta}U)\big)^2\big]^2
+            \Big\},
+    \end{aligned}
+    $$
+    $$
+    \begin{aligned}
+        \alpha^T\psi'(\theta)=&\alpha^T \psi'(\theta_0)+\alpha^T \psi''(\theta_0) (\theta-\theta_0)\\
+        &+\frac{1}{2}\myE_{\theta_0}\big((\theta-\theta_0)^T (U-\myE_{\theta_0}U)\big)^2 \alpha^T (U-\myE_{\theta_0}U)\\
+        &+\frac{1}{6}
+            \myE_{\tilde{\theta}}\big((\theta-\theta_0)^T (U-\myE_{\tilde\theta}U)\big)^3 \alpha^T (U-\myE_{\tilde\theta}U)\\
+            &-\frac{1}{2}
+            \myE_{\tilde{\theta}}\big((\theta-\theta_0)^T (U-\myE_{\tilde\theta}U)\big)^2
+            \myE_{\tilde{\theta}}(\theta-\theta_0)^T (U-\myE_{\tilde\theta}U) \alpha^T (U-\myE_{\tilde\theta}U),
+    \end{aligned}
+    $$
+    $$
+    \begin{aligned}
+        \alpha^T\psi'(\theta)=&\alpha^T \psi'(\theta_0)+\alpha^T \psi''(\theta_0) (\theta-\theta_0)
+        +\frac{1}{2}\myE_{\tilde\theta}\big((\theta-\theta_0)^T (U-\myE_{\tilde\theta}U)\big)^2 \alpha^T (U-\myE_{\tilde\theta}U),
+    \end{aligned}
+    $$
+    where $U$ is a random variable with density $f(x;\theta)$, $\alpha$ is a fixed $p$ dimensional vector.
+\end{proposition}
+
+Let, for $c\geq 0$,
+$$
+\begin{aligned}
+    B_{1n}(c)&=\sup\Big\{\myE_{\theta}|a^T \BJ^{-1}(U-\myE_\theta U)|^3: \|a\|=1, \|\BJ(\theta-\theta_0)\|\leq c\Big\},\\
+    B_{2n}(c)&=\sup\Big\{\myE_{\theta}|a^T \BJ^{-1}(U-\myE_\theta U)|^4: \|a\|=1, \|\BJ(\theta-\theta_0)\|\leq c\Big\},
+\end{aligned}
+$$
+
+Consistency.
+\begin{theorem}
+    Suppose Assumption~\ref{model} holds.
+    Assume that for all $M>0$, $M\sqrt{p/n}B_{1n}(M\sqrt{p/n})\to 0$.
+    Assume that for every $M>0$, we have $\{\theta:\|\BJ(\theta-\theta_0)\|\leq M\sqrt{p/n}\subset \} \Theta$ for large $n$.
+    Then
+    $$\|\BJ(\hat{\theta}-\theta_0)\|=O_P(\sqrt{p/n}).$$
+\end{theorem}
+\begin{proof}
+    The MLE $\hat{\theta}$ is unique and satisfies $\bar{X}-\psi'(\hat{\theta})=0$.
+    By Lemma~\ref{acute}, the inequality 
+    $$\sup_{\|\BJ(\theta-\theta_0)\|=c}(\theta-\theta_0)^T(\bar{X}-\psi'(\theta))\leq 0$$
+    implies $\|\BJ(\hat{\theta}-\theta_0)\|\leq c$.
+    By proposition~\ref{Taylor}, for $\theta$ satisfying $\|\BJ(\theta-\theta_0)\|=c$, we have
+    $$
+    \begin{aligned}
+        (\theta-\theta_0)^T(\bar{X}-\psi'(\theta))&=
+    (\theta-\theta_0)^T(\bar{X}-\psi' (\theta_0))
+    -(\theta-\theta_0)^T \psi''(\theta_0)(\theta-\theta_0)
+        -\frac{1}{2}\myE_{\tilde\theta}\big((\theta-\theta_0)^T (U-\myE_{\tilde\theta}U)\big)^3\\
+        &=
+        (\theta-\theta_0)^T \BJ \BJ^{-1}(\bar{X}-\psi' (\theta_0))
+        -c^2
+        -\frac{1}{2}\myE_{\tilde\theta}\big((\theta-\theta_0)^T (U-\myE_{\tilde\theta}U)\big)^3\\
+        &\leq
+        c \|\BJ^{-1}(\bar{X}-\psi' (\theta_0))\|
+        -c^2
+        -\frac{1}{2}\myE_{\tilde\theta}\big((\theta-\theta_0)^T \BJ \BJ^{-1} (U-\myE_{\tilde\theta}U)\big)^3\\
+        &\leq
+        c \|\BJ^{-1}(\bar{X}-\psi' (\theta_0))\|
+        -c^2
+        +\frac{1}{2} c^3 B_{1n}(c).
+    \end{aligned}
+    $$
+    Since $\myE\|\BJ^{-1}(\bar{X}-\psi' (\theta_0))\|^2=\mytr \myVar (\BJ^{-1}\bar{X})=p/n$, we have $\|\BJ^{-1}(\bar{X}-\psi' (\theta_0))\|=O_P(\sqrt{p/n})$.
+    Hence for every $\delta>0$, there is an $M$ such that $\|\BJ^{-1}(\bar{X}-\psi' (\theta_0))\|\leq M\sqrt{p/n}$ with probability at least $1-\delta$.
+    Taking $c=2M\sqrt{p/n}$ yields that with probability at least $1-\delta$,
+    $$
+        \sup_{\|\BJ(\theta-\theta_0)\|=M\sqrt{p/n}}(\theta-\theta_0)^T(\bar{X}-\psi'(\theta))\leq -2 M^2 \frac{p}{n}+ 2 M^2 \frac{p}{n} \Big(2M\sqrt{p/n}B_{1n}(2M\sqrt{p/n})\Big),
+    $$
+    which is less than $0$ eventually.
+    Hence for large $n$, with probability at least $1-\delta$, $\|\BJ(\theta-\theta_0)\|\leq M\sqrt{p/n}$.
+    This proves $\|\BJ(\theta-\theta_0)\|=O_P(\sqrt{p/n})$.
+
+\end{proof}
+
+
+
+
+
+
+\begin{appendices}
+    \section{haha1}
+    \section{haha2}
+\end{appendices}
+
+
+\section*{References}
+
+\bibliographystyle{apalike}
+\bibliography{mybibfile}
+
+\end{document}

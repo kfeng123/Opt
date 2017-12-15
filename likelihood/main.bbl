@@ -1,0 +1,32 @@
+\begin{thebibliography}{}
+
+\bibitem[Ghosal, 2000]{Ghosal2000Asymptotic}
+Ghosal, S. (2000).
+\newblock Asymptotic normality of posterior distributions for exponential
+  families when the number of parameters tends to infinity.
+\newblock {\em Journal of Multivariate Analysis}, 74(1):49--68.
+
+\bibitem[J.~M.~Ortega, 1987]{book:263774}
+J.~M.~Ortega, W. C.~R. (1987).
+\newblock {\em Iterative Solution of Nonlinear Equations in Several Variables}.
+\newblock Classics in Applied Mathematics, 30. Society for Industrial
+  Mathematics.
+
+\bibitem[{Portnoy}, 1988]{portnoy1988asymptotic}
+{Portnoy}, S. (1988).
+\newblock Asymptotic behavior of likelihood methods for exponential families
+  when the number of parameters tends to infinity.
+\newblock {\em Annals of Statistics}, 16(1):356--366.
+
+\bibitem[{Spokoiny}, 2012]{spokoiny2012parametric}
+{Spokoiny}, V. (2012).
+\newblock Parametric estimation. finite sample theory.
+\newblock {\em Annals of Statistics}, 40(6):2877--2909.
+
+\bibitem[Stadler and Mukherjee, 2017]{stadler2016two}
+Stadler, N. and Mukherjee, S. (2017).
+\newblock Two-sample testing in high dimensions.
+\newblock {\em Journal of The Royal Statistical Society Series B-statistical
+  Methodology}.
+
+\end{thebibliography}

@@ -18,6 +18,7 @@
 \DeclareMathOperator{\mytr}{tr}
 \DeclareMathOperator{\mydiag}{diag}
 \DeclareMathOperator{\myrank}{Rank}
+\DeclareMathOperator{\myP}{P}
 \DeclareMathOperator{\myE}{E}
 \DeclareMathOperator{\myVar}{Var}
 \DeclareMathOperator*{\argmax}{arg\,max}
@@ -72,11 +73,70 @@
 \title{haha}
 \maketitle
 \section{Introduction}
-$\alpha
-\boldsymbol{\alpha}
-$
+\section{bounds for the radius of confidence balls}
+These results are from Cai and Low 2004.
+I adapted it from ``All of Nonparametric Statistics''.
+
+Let $\BZ^n=(Z_1,\ldots,Z_n)$ where $Z_{i}=\theta_i+\sigma_n\epsilon_n$, $i=1,\ldots,n$, $\epsilon_1,\ldots,\epsilon_n$ are independent $N(0,1)$ random variables, $\theta^n=(\theta_1,\ldots,\theta_n)\in\mathbb{R}^n$ is a vector of unknown parameters and $\sigma_n$ is assumed known. 
+\begin{theorem}[Cai and Low 2004]
+    Fix $0<\alpha<1/2$. Let $\mathcal{B}_n=\{\theta:\|\hat{\theta}-\theta\|\leq s_n\}$ be such that
+    $$
+    \inf_{\theta\in \mathbb{R}^n} \myP_{\theta}(\theta\in \mathcal{B}_n)\geq 1-\alpha.
+    $$
+    Then, for every $0<\epsilon<1/2-\alpha$,
+    $$
+    \inf_{\theta\in \mathbb{R}^n}\myE_{\theta}(s_n)\geq \frac{1}{2}\sigma_n(1-2\alpha-\epsilon)n^{1/4}(\log(1+\epsilon^2))^{1/4}.
+    $$
+\end{theorem}
+\begin{proof}
+    Let 
+    $$
+    a=\frac{\sigma_n}{n^{1/4}}(\log(1+\epsilon^2))^{1/4}
+    $$
+    and define
+    $$
+    \Omega=\{\theta=(\theta_1,\ldots,\theta_n):|\theta_i|=a,\,i=1,\ldots,n\}.
+    $$
+    Note that $\Omega$ contains $2^n$ elements. Let $f_{\theta}$ denote the density of a multivariate normal with mean $\theta$ and covariance $\sigma_n^2 I$ where $I$ is the identity matrix.
+    Define the mixture
+    $$
+    q(y)=\frac{1}{2^n}\sum_{\theta\in\Omega}f_{\theta}(y).
+    $$
+    Let $f_0$ denote the density of a multivariate normal with mean $(0,\ldots,0)$ and covariance $\sigma_n^2 I$.
+
+    It can be proved that $\int |f_0(x)-q(x)|dx\leq \epsilon$.
+    
+    Define two events, $A=\{(0,\ldots,0)\in \mathcal{B}_n\}$ and $B=\{\Omega\cap \mathcal{B}_n \neq \emptyset\}$.
+    Every $\theta\in \Omega$ has norm
+    $$
+    \|\theta\|=\sqrt{n a^2}\overset{def}{=}c_n.
+    $$
+    Hence, $A\cap B\subset\{2s_n\geq c_n\}$.
+    For all $\theta\in\Omega$, we have
+    $$
+    \myP_\theta(\Omega\cap\mathcal{B}_n\neq \emptyset)\geq
+    \myP_\theta(\theta\in\mathcal{B}_n)\geq 1-\alpha.
+    $$
+    Hence, $Q(B)\geq 1-\alpha$ and thus $\myP_0(B)\geq 1-\alpha-\epsilon$. Then
+    $$
+    \myP_0(2s_n\geq c_n)\geq 
+    \myP_0(A\cap B)\geq \myP_0(A)+\myP_0(B)-1
+    \geq 1-2\alpha-\epsilon
+    $$
+
+\end{proof}
+\begin{theorem}
+    Fix $0<\alpha<1/2$. Let $\mathcal{B}_n=\{\theta:\|\hat{\theta}-\theta\|\leq s_n\}$ be such that
+    $$
+    \inf_{\theta\in \mathbb{R}^n} \myP_{\theta}(\theta\in \mathcal{B}_n)\geq 1-\alpha.
+    $$
+    Then, for every $0<\epsilon<1/2-\alpha$,
+    $$
+    \sup_{\theta\in \mathbb{R}^n} \myE_{\theta}(s_n)\geq \epsilon \sigma_n z_{\alpha+2\epsilon}\sqrt{n}\sqrt{\frac{\epsilon}{1-\alpha-\epsilon}}.
+    $$
+
+\end{theorem}
 \section*{Acknowledgements}
-This work was supported by the National Natural Science Foundation of China under Grant No.\ xxxxx, xxxx.
 
 
 \section*{References}
