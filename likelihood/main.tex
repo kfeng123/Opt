@@ -120,7 +120,7 @@ We make the following assumptions.
     Sometimes we suppress the subscript $n$.
 
     The true parameter is denoted by $\theta_0$.
-    To prevent $\theta_0$ approaching the boundary as $n\to \infty$, we assume that for a fixed $\epsilon_0>0$ independent of n, $B(\theta_0,\epsilon_0)\subset \Theta$.
+    {\color{red}To prevent $\theta_0$ approaching the boundary as $n\to \infty$, we assume that for a fixed $\epsilon_0>0$ independent of n, $B(\theta_0,\epsilon_0)\subset \Theta$.}
 
 
     It's well known that $\myE X_1=\psi'(\theta_0)$ and $\myVar X_1=\psi''(\theta_0)$. $\psi''(\theta_0)$ is also the Fisher information matrix. We assume that $\psi''(\theta_0)$ is positive definite.
@@ -178,10 +178,10 @@ $$
 $$
 
 Consistency.
-\begin{theorem}
+\begin{theorem}\label{TheoremConsistency}
     Suppose Assumption~\ref{model} holds.
+    Assume that for every $M>0$, we have $\{\theta:\|\BJ(\theta-\theta_0)\|\leq M\sqrt{p/n} \}\subset \Theta$ for large $n$.
     Assume that for all $M>0$, $M\sqrt{p/n}B_{1n}(M\sqrt{p/n})\to 0$.
-    Assume that for every $M>0$, we have $\{\theta:\|\BJ(\theta-\theta_0)\|\leq M\sqrt{p/n}\subset \} \Theta$ for large $n$.
     Then
     $$\|\BJ(\hat{\theta}-\theta_0)\|=O_P(\sqrt{p/n}).$$
 \end{theorem}
@@ -223,9 +223,494 @@ Consistency.
 
 \end{proof}
 
+\begin{proposition}\label{MLEexpansion}
+    Suppose that Assumption~\ref{model} holds. Let $\hat{\theta}$ be the MLE.
+    Then on the event  $\{\hat{\theta}\in \Theta\}$, for any $\alpha\in \mathbb{R}^p$, we have
+    $$
+    \begin{aligned}
+        \alpha^T \BJ (\hat{\theta}-\theta_0)=&\alpha^T \BJ^{-1}(\bar{X}-\psi'(\theta_0))-\frac{1}{2}\myE_{U,\theta_0}\big((\hat{\theta}-\theta_0)^T \BJ \BJ^{-1}(U-\myE_{\theta_0}U)\big)^2 \alpha^T \BJ^{-1}(U-\myE_{\theta_0}U)\\
+        &+O(1)\|\BJ (\hat{\theta}-\theta_0)\|^3 \|\alpha\| B_{2n}(\|\BJ (\hat{\theta}-\theta_0)\|),
+    \end{aligned}
+    $$
+    where $|O(1)|\leq 2/3$.
+\end{proposition}
+\begin{proof}
+    The MLE $\hat{\theta}$ satisfies $\alpha^T \BJ^{-1}\bar{X}=\alpha^T \BJ^{-1}\psi'(\hat{\theta}))$. Applying Proposition~\ref{Taylor} yields
+    $$
+    \begin{aligned}
+        \alpha^T \BJ^{-1}\bar{X}=&\alpha^T \BJ^{-1}\psi'(\hat{\theta}))\\
+        =&\alpha^T \BJ^{-1}\psi'(\theta_0)+\alpha^T \BJ (\hat{\theta}-\theta_0)\\
+        &+\frac{1}{2}\myE_{U,\theta_0}\big((\hat{\theta}-\theta_0)^T \BJ \BJ^{-1}(U-\myE_{\theta_0}U)\big)^2 \alpha^T \BJ^{-1}(U-\myE_{\theta_0}U)\\
+        &+\frac{1}{6}\myE_{U,\tilde{\theta}}\big((\hat{\theta}-\theta_0)^T \BJ \BJ^{-1} (U-\myE_{\tilde{\theta}}U) \big)^3 \alpha^T \BJ^{-1}(U-\myE_{\tilde{\theta}}U)\\
+        &-\frac{1}{2}\myE_{U,\tilde{\theta}}\big((\hat{\theta}-\theta_0)^T \BJ \BJ^{-1}(U-\myE_{\tilde{\theta}}U)\big)^2 \myE_{U,\tilde{\theta}}(\hat{\theta}-\theta_0)^T \BJ \BJ^{-1}(U-\myE_{\tilde{\theta}}U) \alpha^T \BJ^{-1}(U-\myE_{\hat{\theta}}U).
+    \end{aligned}
+    $$
+    For the second last term, we have
+    $$
+    \begin{aligned}
+        &\myE_{U,\tilde{\theta}}\big((\hat{\theta}-\theta_0)^T \BJ \BJ^{-1} (U-\myE_{\tilde{\theta}}U) \big)^3 \alpha^T \BJ^{-1}(U-\myE_{\tilde{\theta}}U)\\
+        \leq & \|\BJ (\hat{\theta}-\theta_0)\|^3 \|\alpha\|\sup_{\|a\|=1,\|b\|=1}\big|a^T \BJ^{-1}(U-\myE_{\tilde{\theta}} U)\big|^3 \big| b^T \BJ^{-1}(U-\myE_{\tilde{\theta}}U)\big|\\
+        \leq & \|\BJ (\hat{\theta}-\theta_0)\|^3 \|\alpha\|\sup_{\|a\|=1}\big|a^T \BJ^{-1}(U-\myE_{\tilde{\theta}} U)\big|^4\\
+        \leq & \|\BJ (\hat{\theta}-\theta_0)\|^3 \|\alpha\| B_{2n}(\|\BJ (\hat{\theta}-\theta_0)\|).
+    \end{aligned}
+    $$
+    The last term satisfies the same bound. This proves the proposition.
 
 
+\end{proof}
 
+\begin{theorem}
+    Suppose that Assumption~\ref{model} holds. Let $\hat{\theta}$ be the MLE.
+    Then on the event  $\{\hat{\theta}\in \Theta\}$, for any $\alpha\in \mathbb{R}^p$, we have 
+    $$
+    \big|\sqrt{n}\alpha^T \BJ (\hat{\theta}-\theta_0)-\sqrt{n}\alpha^T \BJ^{-1}(\bar{X}-\psi'(\theta_0))\big|\leq
+    \frac{\|\alpha\|}{2}\sqrt{n}\|\BJ (\hat{\theta}-\theta_0)\|^2 B_{1n}(0)+
+    \frac{2\|\alpha\|}{3}\sqrt{n}\|\BJ(\hat{\theta}-\theta_0)\|^3 B_{2n}(\|\BJ(\hat{\theta}-\theta_0)\|).
+    $$
+    Furthermore, we have
+    $$
+    \begin{aligned}
+    \big\|\sqrt{n}\BJ(\hat{\theta}-\theta_0)-\sqrt{n}\BJ^{-1}(\bar{X}-\psi'(\theta_0))\big\|^2 \leq
+        &        2 n \|\BJ (\hat{\theta}-\theta_0)\|^3\|\BJ^{-1}(\bar{X}-\psi'(\theta_0))\| B_{2n}(\|\BJ(\hat{\theta}-\theta_0)\|)\\
+        &+ 2 n\|\BJ(\hat{\theta}-\theta_0)\|^4 B_{2n}(\|\BJ (\hat{\theta}-\theta_0)\|).
+    \end{aligned}
+    $$
+\end{theorem}
+\begin{proof}
+    The first assertion follows directly from Proposition~\ref{MLEexpansion}.
+    Next we prove the second assertion.
+    Write
+    $$
+    \begin{aligned}
+        &\big\|\sqrt{n}\BJ(\hat{\theta}-\theta_0)-\sqrt{n}\BJ^{-1}(\bar{X}-\psi'(\theta_0))\big\|^2 \\
+        =& n\|\BJ(\hat{\theta}-\theta_0)\|^2-2n(\hat{\theta}-\theta_0)^T \BJ \BJ^{-1}(\bar{X}-\psi'(\theta_0))+n\|\BJ^{-1}(\bar{X}-\psi'(\theta_0))\|^2.
+    \end{aligned}
+    $$
+    For the first term, using Proposition~\ref{MLEexpansion} with $\alpha=n\BJ(\hat{\theta}-\theta_0)$, we have
+    $$
+    \begin{aligned}
+        n\|\BJ(\hat{\theta}-\theta_0)\|^2=&n (\hat{\theta}-\theta_0)^T \BJ \BJ^{-1}(\bar{X}-\psi'(\theta_0))-\frac{n}{2}\myE_{U,\theta_0}\big((\hat{\theta}-\theta_0)^T \BJ \BJ^{-1}(U-\myE_{\theta_0}U)\big)^3\\
+        &+O(1)n\|\BJ(\hat{\theta}-\theta_0)\|^4 B_{2n}(\|\BJ (\hat{\theta}-\theta_0)\|).
+    \end{aligned}
+    $$
+    Therefore,
+    $$
+    \begin{aligned}
+        &\big\|\sqrt{n}\BJ(\hat{\theta}-\theta_0)-\sqrt{n}\BJ^{-1}(\bar{X}-\psi'(\theta_0))\big\|^2 \\
+        =&-n(\hat{\theta}-\theta_0)^T \BJ \BJ^{-1}(\bar{X}-\psi'(\theta_0))+n\|\BJ^{-1}(\bar{X}-\psi'(\theta_0))\|^2\\
+        &-\frac{n}{2}\myE_{U,\theta_0}\big((\hat{\theta}-\theta_0)^T \BJ \BJ^{-1}(U-\myE_{\theta_0}U)\big)^3
+        +O(1)n\|\BJ(\hat{\theta}-\theta_0)\|^4 B_{2n}(\|\BJ (\hat{\theta}-\theta_0)\|).
+    \end{aligned}
+    $$
+    For the first term, using Proposition~\ref{MLEexpansion} with $\alpha=n\BJ^{-1}(\bar{X}-\psi'(\theta_0))$, we have
+    $$
+    \begin{aligned}
+        &n(\hat{\theta}-\theta_0)^T \BJ \BJ^{-1}(\bar{X}-\psi'(\theta_0))\\
+        =&n\|\BJ^{-1}(\bar{X}-\psi'(\theta_0))\|^2\\
+        &-\frac{n}{2}\myE_{U,\theta_0}\big((\hat{\theta}-\theta_0)^T \BJ \BJ^{-1}(U-\myE_{\theta_0}U)\big)^2 (\bar{X}-\psi'(\theta_0))^T \BJ^{-2}(U-\myE_{\theta_0}U)\\
+        &+O(1) n \|\BJ (\hat{\theta}-\theta_0)\|^3\|\BJ^{-1}(\bar{X}-\psi'(\theta_0))\| B_{2n}(\|\BJ(\hat{\theta}-\theta_0)\|).
+    \end{aligned}
+    $$
+    Thus,
+    $$
+    \begin{aligned}
+        &\big\|\sqrt{n}\BJ(\hat{\theta}-\theta_0)-\sqrt{n}\BJ^{-1}(\bar{X}-\psi'(\theta_0))\big\|^2 \\
+        =&
+        \frac{n}{2}\myE_{U,\theta_0}\big((\hat{\theta}-\theta_0)^T \BJ \BJ^{-1}(U-\myE_{\theta_0}U)\big)^2 (\bar{X}-\psi'(\theta_0))^T \BJ^{-2}(U-\myE_{\theta_0}U)\\
+        &+O(1) n \|\BJ (\hat{\theta}-\theta_0)\|^3\|\BJ^{-1}(\bar{X}-\psi'(\theta_0))\| B_{2n}(\|\BJ(\hat{\theta}-\theta_0)\|)\\
+        &-\frac{n}{2}\myE_{U,\theta_0}\big((\hat{\theta}-\theta_0)^T \BJ \BJ^{-1}(U-\myE_{\theta_0}U)\big)^3
+        +O(1)n\|\BJ(\hat{\theta}-\theta_0)\|^4 B_{2n}(\|\BJ (\hat{\theta}-\theta_0)\|)\\
+        =&
+        \frac{n}{2}\myE_{U,\theta_0}\big((\hat{\theta}-\theta_0)^T \BJ \BJ^{-1}(U-\myE_{\theta_0}U)\big)^2 \big(\BJ^{-1}(\bar{X}-\psi'(\theta_0)) -\BJ (\hat{\theta}-\theta_0) \big)^T \BJ^{-1}(U-\myE_{\theta_0}U)\\ 
+        &+O(1) n \|\BJ (\hat{\theta}-\theta_0)\|^3\|\BJ^{-1}(\bar{X}-\psi'(\theta_0))\| B_{2n}(\|\BJ(\hat{\theta}-\theta_0)\|)\\
+        &+O(1)n\|\BJ(\hat{\theta}-\theta_0)\|^4 B_{2n}(\|\BJ (\hat{\theta}-\theta_0)\|)\\
+        \leq&
+        \frac{n}{2}\Big(\myE_{U,\theta_0}\big((\hat{\theta}-\theta_0)^T \BJ \BJ^{-1}(U-\myE_{\theta_0}U)\big)^4\Big)^{1/2} \Big(\myE_{U,\theta_0}\big(\big(\BJ^{-1}(\bar{X}-\psi'(\theta_0)) -\BJ (\hat{\theta}-\theta_0) \big)^T \BJ^{-1}(U-\myE_{\theta_0}U)\big)^2\Big)^{1/2}\\ 
+        &+\frac{2}{3} n \|\BJ (\hat{\theta}-\theta_0)\|^3\|\BJ^{-1}(\bar{X}-\psi'(\theta_0))\| B_{2n}(\|\BJ(\hat{\theta}-\theta_0)\|)\\
+        &+\frac{2}{3} n\|\BJ(\hat{\theta}-\theta_0)\|^4 B_{2n}(\|\BJ (\hat{\theta}-\theta_0)\|)\\
+        \leq&
+        \frac{1}{2}\Big(n\|\BJ(\hat{\theta}-\theta_0)\|^4 B_{2n}(0)\Big)^{1/2} \Big(n\big\|\big(\BJ^{-1}(\bar{X}-\psi'(\theta_0)) -\BJ (\hat{\theta}-\theta_0) \big\|^2 \Big)^{1/2}\\ 
+        &+\frac{2}{3} n \|\BJ (\hat{\theta}-\theta_0)\|^3\|\BJ^{-1}(\bar{X}-\psi'(\theta_0))\| B_{2n}(\|\BJ(\hat{\theta}-\theta_0)\|)\\
+        &+\frac{2}{3} n\|\BJ(\hat{\theta}-\theta_0)\|^4 B_{2n}(\|\BJ (\hat{\theta}-\theta_0)\|).
+    \end{aligned}
+    $$
+    Let
+    $
+        \epsilon= n \|\BJ (\hat{\theta}-\theta_0)\|^3\|\BJ^{-1}(\bar{X}-\psi'(\theta_0))\| B_{2n}(\|\BJ(\hat{\theta}-\theta_0)\|)
+        + n\|\BJ(\hat{\theta}-\theta_0)\|^4 B_{2n}(\|\BJ (\hat{\theta}-\theta_0)\|)
+    $.
+    Then 
+    $$\big\|\sqrt{n}\BJ(\hat{\theta}-\theta_0)-\sqrt{n}\BJ^{-1}(\bar{X}-\psi'(\theta_0))\big\|^2 \leq \frac{1}{2}\sqrt{\epsilon} \big\|\sqrt{n}\BJ(\hat{\theta}-\theta_0)-\sqrt{n}\BJ^{-1}(\bar{X}-\psi'(\theta_0))\big\|+\frac{2}{3}\epsilon.$$
+    Thus
+    $
+    \big\|\sqrt{n}\BJ(\hat{\theta}-\theta_0)-\sqrt{n}\BJ^{-1}(\bar{X}-\psi'(\theta_0))\big\|^2\leq 2\epsilon.
+    $
+\end{proof}
+
+
+Next we consider the asymptotic normality of posterior distribution.
+Let $\pi(\theta)$ be the prior density with respect to Lebesgue measure.
+Then the posterior density of $\theta$ is given by
+$$
+\frac{
+    f(x;\theta) \pi(\theta)
+}{
+    \int f(x;\theta) \pi(\theta)\, d \theta
+}
+$$
+Put $u=\sqrt{n} \BJ (\theta-\theta_0)$.
+The likelihood ratio, as a function of $u$, is given by
+$$
+Z_n(u)=\frac{f(x;\theta_0+n^{-1/2}\BJ^{-1}u)}{f(x;\theta_0)}.
+$$
+And the posterior density of $u$ is given by
+$$
+\pi^*(u)=\frac{
+Z_n(u) \pi(\theta_0+n^{-1/2} \BJ^{-1}u)
+}{
+    \int Z_n(u) \pi(\theta_0+n^{-1/2} \BJ^{-1}u) \, du
+}.
+$$
+
+Let $\Delta_n=\sqrt{n}\BJ^{-1}(\bar{X}-\mu)$. We have
+$$
+\begin{aligned}
+    \log Z(u)=& \sqrt{n}\bar{X}^T \BJ^{-1}u-n(\psi(\theta_0+n^{-1/2}\BJ^{-1}u)-\psi(\theta_0))\\
+    =&\Delta_n^T u-n\big(\psi(\theta_0+n^{-1/2}\BJ^{-1}u)-\psi(\theta_0)-n^{-1/2}\mu^T \BJ^{-1}u\big)\\
+    =&\Delta_n^T u-\frac{1}{2}\|u\|^2-n\big(\psi(\theta_0+n^{-1/2}\BJ^{-1}u)-\psi(\theta_0)-n^{-1/2}\mu^T \BJ^{-1}u-n^{-1}\frac{1}{2} \|u\|^2\big).
+\end{aligned}
+$$
+If the smaller order terms can be omitted, then the posterior density of $u$ is approximately $\phi_p(u;\Delta_n,\BI_p)$, where $\phi_p(\cdot;\mu,\Sigma)$ stands for the density of $N_p(\mu,\Sigma)$.
+The following theorem makes this assertion rigorous.
+\begin{theorem}[Asymptotic normality of posterior distribution]
+    Suppose Assumption~\ref{model} holds.
+    Let $C$ be a quantity satisfying $C\gg \sqrt{p}$.
+    Suppose that for large $n$, $\{\theta: \|\BJ (\theta-\theta_0)\|\leq n^{-1/2} C\}\subset \Theta$.
+Suppose that $\frac{1}{3}\big(\frac{1}{n^{1/2}}C B_{1n}(0)+\frac{1}{n}C^2 B_{2n}(n^{-1/2}C)\big)\leq 1/2$ for sufficiently large $n$.
+    Then for any $\epsilon>0$, for sufficiently large $n$, with probability larger than $1-\epsilon$, 
+    $$
+    \begin{aligned}
+    &\int | \pi^*(u) -\phi_p(u;\Delta_n,\BI_p)| \, du\\
+    \leq&
+      \Big|
+      \exp\Big\{\frac{1}{6}\big(
+    \frac{1}{n^{1/2}}C^3 B_{1n}(0)+\frac{1}{n}C^4 B_{2n}(n^{-1/2}C)
+      \big)\Big\}
+        -
+        1
+          \Big| 
+      \sup_{\|\BJ(\theta-\theta_0)\|\leq n^{-1/2} C}\frac{\pi(\theta)}{\pi(\theta_0)}\\
+      &+
+      \sup_{\|\BJ(\theta-\theta_0)\|\leq n^{-1/2} C}
+      \Big|\frac{\pi(\theta)}{\pi(\theta_0)}-1\Big|
+        \\
+        +&
+\exp\Big\{
+    \frac{p}{2}\log \frac{n}{2\pi}+\frac{1}{2}\log |\psi''(\theta_0)|
+    \Big\}
+    \int_{\|\BJ(\theta-\theta_0)\|>n^{-1/2} C}
+    \exp\Big\{
+    -\frac{\sqrt{n}}{4} C\|\BJ(\theta-\theta_0)\|
+    \Big\}
+\frac{\pi(\theta)}{\pi(\theta_0)} \, d\theta\\
+        &+
+        \exp \big(-\frac{1}{4}\big(C-(1/\sqrt{\epsilon}+1)\sqrt{p}\big)^2 \big).
+    \end{aligned}
+    $$
+\end{theorem}
+\begin{proof}
+    Let $\tilde{Z}_n(u)=\exp[\Delta_n^T u - \frac{1}{2}\|u\|^2]$.
+    Note that $\phi_p(u;\Delta_n,\BI_p)=\tilde{Z}_n(u)\pi(\theta_0)/\int \tilde{Z}_n(u) \pi(\theta_0)\, du$.
+    We have
+    $$
+    \begin{aligned}
+        &\int | \pi^*(u) -\phi_p(u;\Delta_n,\BI_p)| \, du
+        =
+    \int \Big| \frac{
+Z_n(u) \pi(\theta_0+n^{-1/2} \BJ^{-1}u)
+}{
+    \int Z_n(w) \pi(\theta_0+n^{-1/2} \BJ^{-1}w) \, dw
+}
+        -
+        \frac{\tilde{Z}_n(u)\pi(\theta_0)}{\int \tilde{Z}_n(w) \pi(\theta_0)\, dw}
+        \Big| \, du
+        \\
+        \leq&
+    \int \Big|
+        \frac{
+Z_n(u) \pi(\theta_0+n^{-1/2} \BJ^{-1}u)
+}{
+    \int Z_n(w) \pi(\theta_0+n^{-1/2} \BJ^{-1}w) \, dw
+}
+        -
+        \frac{
+Z_n(u) \pi(\theta_0+n^{-1/2} \BJ^{-1}u)
+}{
+\int \tilde{Z}_n(w) \pi(\theta_0)\, dw
+}
+        \Big| \, du
+        \\
+        &+
+    \int \Big| 
+        \frac{
+Z_n(u) \pi(\theta_0+n^{-1/2} \BJ^{-1}u)
+}{
+\int \tilde{Z}_n(w) \pi(\theta_0)\, dw
+}
+        -
+        \frac{\tilde{Z}_n(u)\pi(\theta_0)}{\int \tilde{Z}_n(w) \pi(\theta_0)\, dw}
+        \Big| \, du\\
+        =&
+\Big| 
+1-
+        \frac{
+    \int Z_n(u) \pi(\theta_0+n^{-1/2} \BJ^{-1}u) \, du
+}{
+       \int \tilde{Z}_n(u)\pi(\theta_0) \, du
+}
+        \Big|
+        +
+        \frac{
+    \int \big|
+Z_n(u) \pi(\theta_0+n^{-1/2} \BJ^{-1}u)
+        -
+            \tilde{Z}_n(u) \pi(\theta_0)
+        \big| \, du
+            }{
+            \int \tilde{Z}_n(u)\pi(\theta_0) \, du
+        }\\
+        \leq&
+\Big| 
+1-
+        \frac{
+    \int Z_n(u) \pi(\theta_0+n^{-1/2} \BJ^{-1}u) \, du
+}{
+       \int \tilde{Z}_n(u)\pi(\theta_0) \, du
+}
+        \Big|
+        +
+        \frac{
+    \int \big|
+Z_n(u) \pi(\theta_0+n^{-1/2} \BJ^{-1}u)
+        -
+            \tilde{Z}_n(u) \pi(\theta_0)
+        \big| \, du
+            }{
+            \int \tilde{Z}_n(u)\pi(\theta_0) \, du
+        }\\
+        \leq&
+        2\frac{
+    \int \big|
+Z_n(u) \pi(\theta_0+n^{-1/2} \BJ^{-1}u)
+        -
+            \tilde{Z}_n(u) \pi(\theta_0)
+        \big| \, du
+            }{
+            \int \tilde{Z}_n(u)\pi(\theta_0) \, du
+        }\\
+        =&
+        2
+    \int \Big|
+\exp\big\{\log Z_n(u) -\frac{p}{2}\log (2\pi)-\frac{1}{2}\|\Delta_n\|^2\big\}
+\frac{\pi(\theta_0+n^{-1/2} \BJ^{-1}u)}{\pi(\theta_0)}
+        -
+        \phi_p(u;\Delta_n,\BI_p)
+        \Big| \, du
+    \end{aligned}
+    $$
+
+We split the integral into the region $\|u\|\leq C$ and $\|u\|>C$, where $C$ will be specified latter.
+Then
+\begin{equation}\label{eq:threeTerms}
+\begin{aligned}
+    &\int \Big|
+\exp\big\{\log Z_n(u) -\frac{p}{2}\log (2\pi)-\frac{1}{2}\|\Delta_n\|^2\big\}
+\frac{\pi(\theta_0+n^{-1/2} \BJ^{-1}u)}{\pi(\theta_0)}
+        -
+        \phi_p(u;\Delta_n,\BI_p)
+        \Big| \, du
+        \\
+        \leq &
+    \int_{\|u\|\leq C} \Big|
+\exp\big\{\log Z_n(u) -\frac{p}{2}\log (2\pi)-\frac{1}{2}\|\Delta_n\|^2\big\}
+\frac{\pi(\theta_0+n^{-1/2} \BJ^{-1}u)}{\pi(\theta_0)}
+        -
+        \phi_p(u;\Delta_n,\BI_p)
+        \Big| \, du
+        \\
+        &+ 
+    \int_{\|u\|> C}
+\exp\big\{\log Z_n(u) -\frac{p}{2}\log (2\pi)-\frac{1}{2}\|\Delta_n\|^2\big\}
+\frac{\pi(\theta_0+n^{-1/2} \BJ^{-1}u)}{\pi(\theta_0)}\, du
+        +\int_{\|u\|>C} \phi_p(u;\Delta_n,\BI_p) \, du
+        \\
+\end{aligned}
+\end{equation}
+
+    We deal the three terms of~\eqref{eq:threeTerms} separately.
+    Consider the first term. For $\|u\|\leq C$, we have
+    $$
+    \begin{aligned}
+        &\log Z_n(u)-\frac{p}{2}\log (2\pi)-\frac{1}{2}\|\Delta_n\|^2
+        =-\frac{p}{2}\log (2\pi)-\frac{1}{2}\|u-\Delta_n\|^2\\
+    &-n\Big(\frac{1}{6 n^{3/2}}\myE_{\theta_0}\big(u^T \BJ^{-1}(U-\myE_{\theta_0}U)\big)^3+O(1)\frac{1}{n^2}\|u\|^4 B_{2n}(n^{-1/2}\|u\|)\Big).
+    \end{aligned}
+    $$
+    Hence
+    \begin{equation}\label{eq:estimateLikelihood}
+        \begin{aligned}
+            &\Big|\Big(\log Z_n(u)-\frac{p}{2}\log (2\pi)-\frac{1}{2}\|\Delta_n\|^2\Big)
+        -\Big(-\frac{p}{2}\log (2\pi)-\frac{1}{2}\|u-\Delta_n\|^2\Big)\Big|\\
+            \leq&
+            \frac{1}{6}\Big(
+    \frac{1}{n^{1/2}}\|u\|^3 B_{1n}(0)+\frac{1}{n}\|u\|^4 B_{2n}(n^{-1/2}\|u\|)
+    \Big)\\
+            \leq&
+            \frac{1}{6}\Big(
+    \frac{1}{n^{1/2}}C^3 B_{1n}(0)+\frac{1}{n}C^4 B_{2n}(n^{-1/2}C)
+    \Big).
+        \end{aligned}
+    \end{equation}
+    It follows that
+    $$
+  \begin{aligned}  
+      &\int_{\|u\|\leq C} \Big|
+\exp\big\{\log Z_n(u) -\frac{p}{2}\log (2\pi)-\frac{1}{2}\|\Delta_n\|^2\big\}
+\frac{\pi(\theta_0+n^{-1/2} \BJ^{-1}u)}{\pi(\theta_0)}
+        -
+        \phi_p(u;\Delta_n,\BI_p)
+        \Big| \, du\\
+      \leq&\int_{\|u\|\leq C} \Big|
+\exp\big\{\log Z_n(u) -\frac{p}{2}\log (2\pi)-\frac{1}{2}\|\Delta_n\|^2\big\}
+        -
+        \phi_p(u;\Delta_n,\BI_p)  \Big| 
+\frac{\pi(\theta_0+n^{-1/2} \BJ^{-1}u)}{\pi(\theta_0)}
+        \, du\\
+      &+
+      \int_{\|u\|\leq C} \Big|
+\frac{\pi(\theta_0+n^{-1/2} \BJ^{-1}u)}{\pi(\theta_0)}-1
+      \Big|
+        \phi_p(u;\Delta_n,\BI_p)
+         \, du\\
+\leq&
+      \Big|
+      \exp\Big\{\frac{1}{6}\big(
+    \frac{1}{n^{1/2}}C^3 B_{1n}(0)+\frac{1}{n}C^4 B_{2n}(n^{-1/2}C)
+      \big)\Big\}
+        -
+        1
+          \Big| 
+      \int_{\|u\|\leq C} 
+\frac{\pi(\theta_0+n^{-1/2} \BJ^{-1}u)}{\pi(\theta_0)}
+\phi_p(u;\Delta_n,\BI_p)
+        \, du\\
+      &+
+      \int_{\|u\|\leq C} \Big|
+\frac{\pi(\theta_0+n^{-1/2} \BJ^{-1}u)}{\pi(\theta_0)}-1
+      \Big|
+        \phi_p(u;\Delta_n,\BI_p)
+         \, du\\
+\leq&
+      \Big|
+      \exp\Big\{\frac{1}{6}\big(
+    \frac{1}{n^{1/2}}C^3 B_{1n}(0)+\frac{1}{n}C^4 B_{2n}(n^{-1/2}C)
+      \big)\Big\}
+        -
+        1
+          \Big| 
+      \sup_{\|\BJ(\theta-\theta_0)\|\leq n^{-1/2} C}\frac{\pi(\theta)}{\pi(\theta_0)}\\
+      &+
+      \sup_{\|\BJ(\theta-\theta_0)\|\leq n^{-1/2} C}
+      \Big|\frac{\pi(\theta)}{\pi(\theta_0)}-1\Big|.
+  \end{aligned}
+    $$
+
+    Next we deal with the last term of~\eqref{eq:threeTerms}.
+Note that $\myE \Delta_n=\textbf{0}_p$ and $\myVar \Delta_n = \BI_p$. By Chebyshev's inequality, for $\epsilon>0$, there is an $M=1/\sqrt{\epsilon}$ such that $$\sup_n\Pr(\|\Delta_n\|\geq M\sqrt{p})<\epsilon.$$
+Denote $\mathcal{A}=\{\|\Delta_n\|\leq M\sqrt{p}\}$.
+On the event $\mathcal{A}$, for $M_1>0$,
+$$
+\int_{\|u\|>(M+1)\sqrt{p}+M_1} \phi_p(u;\Delta_n,\BI_p)\, du\leq \int_{\|u\|>M_1+\sqrt{p}} \phi_p(u;\mathbf{0}_p,\BI_p)\, du\leq \exp \big(-\frac{1}{4}M_1^2 \big).
+$$
+Hence for large $n$ such that $C>(M+1)\sqrt{p}$, we have
+$$
+\int_{\|u\|>C} \phi_p(u;\Delta_n,\BI_p)\, du\leq \exp \big(-\frac{1}{4}\big(C-(M+1)\sqrt{p}\big)^2 \big).
+$$
+
+Now we deal with the second term of~\eqref{eq:threeTerms}.
+For $\|u\|\geq C$, by the concavity of $\log Z_n(u)$, we have that
+$$
+(1-\frac{C}{\|u\|})\log Z_n(0)+\frac{C}{\|u\|}\log Z_n(u)
+\leq 
+\log Z_n\big(\frac{C}{\|u\|}u\big).
+$$
+Hence 
+$$\log Z_n(u)\leq \frac{\|u\|}{C} \log Z_n(\frac{C}{\|u\|} u).$$
+This, combined with~\eqref{eq:estimateLikelihood}, yields
+$$
+\begin{aligned}
+    \log Z_n(u)\leq& 
+    \frac{\|u\|}{C}\Big(
+    -\frac{1}{2}\big\|\frac{C}{\|u\|}u-\Delta_n \big\|^2+\frac{1}{2}\|\Delta_n\|^2+
+    \frac{1}{6}\big(\frac{1}{n^{1/2}}C^3 B_{1n}(0)+\frac{1}{n}C^4 B_{2n}(n^{-1/2}C)\big)
+    \Big)\\
+    =&
+    -\frac{1}{2} C\|u\|+ \Delta_n^T u
+    +\frac{\|u\|}{C}\frac{1}{6}\big(\frac{1}{n^{1/2}}C^3 B_{1n}(0)+\frac{1}{n}C^4 B_{2n}(n^{-1/2}C)\big).
+\end{aligned}
+$$
+Hence on the event $\mathcal{A}$, for sufficiently large $n$, we have
+$$
+\begin{aligned}
+    &\log Z_n(u) -\frac{p}{2}\log (2\pi)-\frac{1}{2}\|\Delta_n\|^2\\
+    \leq&
+-\frac{p}{2}\log (2\pi)
+    -\frac{1}{2} C\|u\|+ M\sqrt{p} \| u\|
+    +\frac{\|u\|}{C}\frac{1}{6}\big(\frac{1}{n^{1/2}}C^3 B_{1n}(0)+\frac{1}{n}C^4 B_{2n}(n^{-1/2}C)\big)\\
+    =&
+-\frac{p}{2}\log (2\pi)
+    -\frac{1}{2} C\|u\|\Big(1- \frac{2M}{C}\sqrt{p} 
+    -\frac{1}{3}\big(\frac{1}{n^{1/2}}C B_{1n}(0)+\frac{1}{n}C^2 B_{2n}(n^{-1/2}C)\big)\Big)\\
+    \leq&
+-\frac{p}{2}\log (2\pi)
+    -\frac{1}{4} C\|u\|.
+\end{aligned}
+$$
+Hence the second term of~\eqref{eq:threeTerms} can be bounded by
+$$
+\begin{aligned}
+    &\int_{\|u\|> C}
+\exp\big\{\log Z_n(u) -\frac{p}{2}\log (2\pi)-\frac{1}{2}\|\Delta_n\|^2\big\}
+\frac{\pi(\theta_0+n^{-1/2} \BJ^{-1}u)}{\pi(\theta_0)}\, du
+\\
+    \leq & 
+    \int_{\|u\|> C}
+\exp\Big\{
+-\frac{p}{2}\log (2\pi)
+    -\frac{1}{4} C\|u\|
+    \Big\}
+\frac{\pi(\theta_0+n^{-1/2} \BJ^{-1}u)}{\pi(\theta_0)}\, du\\
+    = & 
+    \int_{\|\BJ(\theta-\theta_0)\|>n^{-1/2} C}
+\exp\Big\{
+-\frac{p}{2}\log (2\pi)
+    -\frac{\sqrt{n}}{4} C\|\BJ(\theta-\theta_0)\|
+    \Big\}
+\frac{\pi(\theta)}{\pi(\theta_0)} n^{p/2} |\BJ| \, d\theta\\
+    = & 
+\exp\Big\{
+    \frac{p}{2}\log \frac{n}{2\pi}
+    +\frac{1}{2}\log |\psi''(\theta_0)|
+    \Big\}
+    \int_{\|\BJ(\theta-\theta_0)\|>n^{-1/2} C}
+    \exp\Big\{
+    -\frac{\sqrt{n}}{4} C\|\BJ(\theta-\theta_0)\|
+    \Big\}
+\frac{\pi(\theta)}{\pi(\theta_0)} \, d\theta.
+\end{aligned}
+$$
+This proves the theorem.
+\end{proof}
 
 
 \begin{appendices}
