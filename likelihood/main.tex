@@ -86,12 +86,11 @@
 \section{To be done}
 \begin{itemize}
     \item
-        {\color{red} Understand existing theory in exponential family. 
-        Some paper to be read:~\citet{portnoy1988asymptotic,Ghosal2000Asymptotic}.}
-    \item
         Give the theory of posterior Bayes factor under exponential family.
     \item
-        Beyond exponential family.~\citep{berger2003approximatios}.
+        Beyond exponential family.~\citep{berger2003approximations}.
+    \item
+        Neyman-Scott problems.
     \item
         Bartlett correction.
     \item
@@ -711,6 +710,251 @@ $$
 $$
 This proves the theorem.
 \end{proof}
+
+
+\section{Bayes consistency}
+For the models more general than the exponential families, the tail behavior of the likelihood is hard to control.
+As a result, Bayes consistency is not trivial.
+We consider the general case.
+Suppose that we observe a random sample $X_1,\ldots, X_n$ from a distribution $P_0$ with densitu $p$ relative to some reference measure $\mu$ on the sample space $(\mathbb{X},\mathbb{A})$. 
+Let $P_0^n$ denote the expectation with respect to $X_1,\ldots, X_n$. 
+Let $\mu^n$ denote the $n$-fold product measure of $\mu$.
+Let $p^n$ denote the density of $P^n$ with respect to $\mu^n$.
+Let $\BX^n=(X_1,\ldots, X_n)$ be the pooled data.
+Suppose the model space is $\mathcal{P}$.
+Given some prior distribution $\Pi$ on the set $\mathcal{P}$, the posterior distribution is the random measure given by
+\begin{equation}\label{eq:BayesFormula}
+\Pi(B|X_1,\ldots, X_n)=\frac{
+    \int_B \prod_{i=1}^n p(X_i) \, d \Pi_n(P)
+}{
+    \int \prod_{i=1}^n p(X_i) \, d \Pi_n(P)
+}.
+\end{equation}
+
+To prove the consistency result, i.e., the posterior probability of $\{P:d(P_0, P)>\epsilon\}$ ($d(\cdot,\cdot)$ is certain distance) tends to $0$, we need to lower bound the denominator of~\eqref{eq:BayesFormula} and upper bound the numerator of~\eqref{eq:BayesFormula}.
+There is a commonly used method for lower bounding the denominator.
+The following lemma is adapted from~\cite{ghosal2000} and~\cite{Shen2001Rates}.
+Let 
+$$D_{KL}(P||Q)=P\log ({dP}/{dQ}),\quad V(P||Q)=\myVar_P \big(\log(dP/dQ)\big).$$
+\begin{lemma}\label{lemma:denominator}
+    Let $\alpha>0$ and $\epsilon>0$.
+    Let 
+    $$A_\epsilon=\{ P:  D_{KL}(P_0, P)\leq \epsilon,\, V(P_0||P)\leq \epsilon\}.$$
+Then for every prior probability measure $\Pi$ and every $C>0$, we have
+$$
+    P_0^n\Big(
+    \int_{\mathscr{P}} \Big[\frac{p^n}{p^n_0} (\BX^n ) \Big]^\alpha \, d \Pi(P)
+    <
+    \Pi(A_\epsilon)
+    \exp\big(-(1+C)n\epsilon\big)
+    \Big)\leq \frac{\alpha^2}{C^2 n \epsilon}    
+$$
+\end{lemma}
+\begin{proof}
+    Without loss of generality, we assume $\Pi(A_{\epsilon})>0$.
+    Let $\Pi_{\epsilon}$ be the restriction of $\Pi$ on $A_{\epsilon}$.
+    Then
+$$
+    \begin{aligned}
+        &P_0^n\Big(
+        \int_{\mathscr{P}} \Big[\frac{p^n}{p^n_0} (\BX^n)\Big]^\alpha \, d \Pi(P)
+    <
+    \Pi(A_\epsilon)
+    \exp\big(-(1+C)n\epsilon\big)
+    \Big)\\
+        \leq &
+    P_0^n\Big(
+        \log \int_{\mathscr{P}} \Big[\frac{p^n}{p^n_0} (\BX^n)\Big]^\alpha \, d \Pi_\epsilon (P)
+    <
+    -(1+C)n\epsilon\Big)\\
+        \leq &
+    P_0^n\Big(
+     \int \alpha \log \frac{p^n}{p^n_0} (\BX^n) \, d \Pi_\epsilon (P)
+    <
+    -(1+C)n\epsilon\Big)\\
+        = &
+    P_0^n\Big(
+        \sum_{i=1}^n \int \log \frac{p}{p_0} (X_i) \, d \Pi_\epsilon (P)
+    <
+    -(1+C)n\epsilon/\alpha\Big)\\
+        \leq &
+    P_0^n\Big(
+        \sum_{i=1}^n \int \log \frac{p}{p_0} (X_i) +  D_{KL}(P_0||P)\, d \Pi_\epsilon (P)
+    <
+    -Cn\epsilon/\alpha\Big)\\
+        \leq &
+        \frac{\alpha^2}{C^2 n^2 \epsilon^2}
+        {n}
+        P_0 \Big( \int \log \frac{p}{p_0}  +  D_{KL}(P_0 || P)\, d\Pi_\epsilon (P)  \Big)^2\\
+        \leq &
+        \frac{\alpha^2}{C^2 n \epsilon^2}
+        P_0  \int \Big(\log \frac{p}{p_0}  +  D_{KL}(P_0 || P)\Big)^2\, d\Pi_\epsilon (P)  \\
+        = &
+        \frac{\alpha^2}{C^2 n \epsilon^2}
+          \int P_0\Big(\log \frac{p}{p_0}  +  D_{KL}(P_0 || P)\Big)^2\, d\Pi_\epsilon (P)  \\
+        = &
+        \frac{\alpha^2}{C^2 n \epsilon^2}
+          \int V(P_0|| P)\, d\Pi_\epsilon (P)  
+        \leq 
+        \frac{\alpha^2}{C^2 n \epsilon}.
+    \end{aligned}
+$$
+\end{proof}
+The hard part is the numerator.
+\cite{Shen2001Rates} directly upper bound $p^n/p_0^n (X)$ to upper bound the numerator.
+\cite{Ghosal2000Asymptotic} imposed a test condition to upper bound the numerator.
+If no additional assumption is adopted, the numerator can not be bounded.
+In fact, there are counterexamples, see~\cite{diaconis1986consistency}.
+\subsection{The work of~\cite{kar10563}}
+While the numerator of the posterior distribution is hard to control, a variation of posterior distribution is easier to control.
+This work is done by~\cite{kar10563}.
+
+For density $f_1$ and $f_2$, let
+$$H(f_1,f_2)=\Big(\int(\sqrt{f_1}-\sqrt{f_2})^2 \, d \mu\Big)^{1/2}=\Big(2-2\int \sqrt{f_1 f_2}\, d \mu \Big)^{1/2},$$
+the Hellinger distance of $f_1$ and $f_2$.
+For $0<\alpha<1$, Hellinger integral is defined as
+$$
+\rho_{\alpha}(f_1,f_2)=\int_{\mathcal{X}} f_1^{\alpha} f_2^{1-\alpha} \, d \mu.
+$$
+
+For $0<\alpha<1$, define the pseudoposterior distribution $Q$ based on $\Pi$ as
+$$
+Q^n (A)=\frac{\int_{A} \big[p^n(\BX^n)\big]^{\alpha}\, d\Pi_n(P)}{\int_{\mathscr{P}} \big[p^n(\BX^n)\big]^{\alpha}\, d\Pi_n(P)}.
+$$
+\begin{theorem}
+    Suppose $\Pi_n\Big(A_{\epsilon}\Big)>0$ for every $\epsilon>0$, where
+    $$
+    A_{\epsilon}=\{P: D_{KL}(P_0,P)\leq \epsilon, \, V(P_0 || P) \leq \epsilon\}.
+    $$
+    Then for every $\epsilon>0$ and $C>0$
+     $$
+     \begin{aligned}
+         P_0^n \Big\{ Q^n\big( \rho_\alpha (P,P_0)\leq 1-\epsilon\big)\Big\}
+         \leq \frac{1}{\Pi(A_{\frac{\epsilon}{2(1+C)}})}\exp (-\frac{1}{2}\epsilon n) +\frac{2(1+C)\alpha^2}{C^2n\epsilon}.
+     \end{aligned}
+     $$
+\end{theorem}
+\begin{proof}
+Consider the expactation of the numerator,
+    $$
+    \begin{aligned}
+        &P_0^n\int_{\rho_{\alpha}(P,P_0)\leq 1- \epsilon} \Big[ \frac{p^n}{p_0^n} (\BX^n) \Big]^{\alpha} \, d \Pi_n(P)
+        \\
+        =&
+        \int_{\rho_{\alpha}(P,P_0)\leq 1- \epsilon} \int_{\mathcal{X}^n}\Big[ \frac{p^n}{p_0^n} (\BX^n) \Big]^{\alpha} p_0^n (\BX^n)\, d\mu^n \, d \Pi_n(P)\\
+        =&
+        \int_{\rho_{\alpha}(P,P_0)\leq 1- \epsilon} \int_{\mathcal{X}^n}\Big[ {p^n} (\BX^n) \Big]^{\alpha}  \Big[ p_0^n (\BX^n) \Big]^{1-\alpha} \, d\mu^n \, d \Pi_n(P)\\
+        =&
+        \int_{\rho_{\alpha}(P,P_0)\leq 1- \epsilon} \big( \rho_{\alpha}(p,p_0) \big)^n \, d \Pi_n(P)\\
+        \leq&
+        \exp (-\epsilon n).
+    \end{aligned}
+    $$
+    Consider the denominator.
+     From Lemma~\ref{lemma:denominator}, on a set $B$ with $P_0^n(B)>1-\alpha^2/(C^2 n \epsilon')$, we have
+     $$
+     \int_{\mathscr{P}}\Big[\frac{p^n}{p_0^n}(\BX^n)\Big]^{\alpha} \, d\Pi(P)
+     \geq \Pi(A_{\epsilon'}) \exp \big(-(1+C)\epsilon' n\big).
+     $$
+     Hence 
+     $$
+     \begin{aligned}
+         &P_0^n \Big\{ Q^n\big( \rho_\alpha (P,P_0)\leq 1-\epsilon\big)\Big\}\\
+         \leq&P_0^n \Big\{ \mathbf{1}_{B} Q^n\big( \rho_\alpha (P,P_0)\leq 1-\epsilon\big)\Big\}+P_0^n (B^C)\\
+         \leq& \frac{1}{\Pi(A_{\epsilon'})}\exp (-\epsilon n+(1+C)\epsilon' n) +\frac{\alpha^2}{C^2n\epsilon'}.
+     \end{aligned}
+     $$
+     Let $\epsilon'=\frac{\epsilon}{2(1+C)}$, we have
+     $$
+     \begin{aligned}
+         P_0^n \Big\{ Q^n\big( \rho_\alpha (P,P_0)\leq 1-\epsilon\big)\Big\}
+         \leq \frac{1}{\Pi(A_{\frac{\epsilon}{2(1+C)}})}\exp (-\frac{1}{2}\epsilon n) +\frac{2(1+C)\alpha^2}{C^2n\epsilon}.
+     \end{aligned}
+     $$
+\end{proof}
+One deficit of the theorem is that it does not satisfactorily cover finite-dimensional models.
+When applied to such models, it would yield the rate $1/\sqrt{n}$ times a logarithmic factor rather than $1/\sqrt{n}$ itself.
+
+Next we consider finite-dimensional models.
+Let $\{p_{\theta}: \theta\in \Theta\}$ be a family of densities parametrized by a Euclidean parameter $\theta$ running through an open set $\Theta\subset \mathbb{R}^p$. 
+Assume that for every $\theta, \theta_1,\theta_2 \in \Theta$ and some $\alpha>0$,
+there exists positive constants $C_1,C_2,C_3,C_4$, such that
+$$
+\begin{aligned}
+    &D_{KL}(p_{\theta_0} || p_{\theta})\leq C_1 \|\theta-\theta_0\|^{2\alpha}\\
+    &V(p_{\theta_0} || p_{\theta})\leq C_1 \|\theta-\theta_0\|^{2\alpha}\\
+    &C_3 \|\theta_1-\theta_2\|^{2\alpha}\leq 1-\rho_{\alpha}(p_{\theta} , p_{\theta_0})\leq C_4 \|\theta_1-\theta_2\|^{2\alpha}\\
+    &\\
+\end{aligned}
+$$
+The $C_4$ seems useless, and we can assume that the third inequality only holds locally.
+The proof of the following theorem is similar to the corresponding nonparametric one.
+\begin{theorem}
+    Under the conditions listed previously and $\theta_0$ interior to $\Theta$, then for $M_n\to \infty$,
+    $$
+    P_0^n \Big\{ Q^n \big( \|\theta-\theta_0\|\geq \frac{M_n}{n^{\frac{1}{2\alpha}}}\big)\Big\}
+    \leq
+    .
+    $$
+\end{theorem}
+\begin{proof}
+    Without loss of generality, we assume $\frac{M_n}{n^{\frac{1}{2\alpha}}}\to 0$, otherwise we replace $M_n$ by a smaller one.
+Consider the expactation of the numerator,
+    $$
+    \begin{aligned}
+        &P_0^n\int_{\|\theta-\theta_0\|\geq \frac{M_n}{n^{\frac{1}{2\alpha}}} } \Big[ \frac{p_{\theta}^n}{p_0^n} (\BX^n) \Big]^{\alpha} \, d \Pi_n(\theta)
+        \\
+        =&
+        \int_{\|\theta-\theta_0\|\geq \frac{M_n}{n^{\frac{1}{2\alpha}}} } \int_{\mathcal{X}^n}\Big[ \frac{p^n_{\theta}}{p_0^n} (\BX^n) \Big]^{\alpha} p_0^n (\BX^n)\, d\mu^n \, d \Pi_n(\theta)\\
+        =&
+        \int_{\|\theta-\theta_0\|\geq \frac{M_n}{n^{\frac{1}{2\alpha}}} } \int_{\mathcal{X}^n}\Big[ {p^n_{\theta}} (\BX^n) \Big]^{\alpha}  \Big[ p_0^n (\BX^n) \Big]^{1-\alpha} \, d\mu^n \, d \Pi_n(\theta)\\
+        =&
+        \int_{\|\theta-\theta_0\|\geq \frac{M_n}{n^{\frac{1}{2\alpha}}} } \big( \rho_{\alpha}(p_{\theta},p_{\theta_0}) \big)^n \, d \Pi_n(\theta)\\
+        =&
+        \sum_{j=1}^{+\infty} \int_{\frac{j M_n}{n^{\frac{1}{2\alpha}}} \leq \|\theta-\theta_0\|\leq \frac{(j+1)M_n}{n^{\frac{1}{2\alpha}}} } \big( \rho_{\alpha}(p_{\theta},p_{\theta_0}) \big)^n \, d \Pi_n(\theta)
+        \\
+        \leq&
+        \sum_{j=1}^{+\infty} \int_{\frac{j M_n}{n^{\frac{1}{2\alpha}}} \leq \|\theta-\theta_0\|\leq \frac{(j+1)M_n}{n^{\frac{1}{2\alpha}}} } \big( 1- C_3 (\frac{jM_n}{n^{\frac{1}{2\alpha}}})^{2\alpha} \big)^n \, d \Pi_n(\theta)
+        \\
+        \lesssim&
+        \sum_{j=1}^{+\infty}
+        \Big[\frac{(j+1)M_n}{n^{\frac{1}{2\alpha}}}\Big]^p
+        \exp[- C_3 \Big(\frac{jM_n}{n^{\frac{1}{2\alpha}}}\Big)^{2\alpha}n]
+        \\
+        =&
+        \sum_{j=1}^{+\infty}
+        \Big[\frac{(j+1)M_n}{n^{\frac{1}{2\alpha}}}\Big]^p
+        \exp[- C_3 \Big({jM_n}\Big)^{2\alpha}]
+    \end{aligned}
+    $$
+    Consider the denominator.
+     From Lemma~\ref{lemma:denominator}, on a set $B$ with $P_0^n(B)>1-\alpha^2/(C^2 n \epsilon')$, we have
+     $$
+     \int_{\Theta}\Big[\frac{p_{\theta}^n}{p_0^n}(\BX^n)\Big]^{\alpha} \, d\Pi(\theta)
+     \geq \Pi(A_{\epsilon'}) \exp \big(-(1+C)\epsilon' n\big)
+     \geq \Pi\Big(\Big\{\theta: \|\theta-\theta_0\|\leq (\epsilon'/C_1)^{\frac{1}{2\alpha}}\Big\}\Big) \exp \big(-(1+C)\epsilon' n\big).
+     $$
+     Let $\epsilon'=\frac{C_3 M_n^{2\alpha}}{2(1+C)n}$, we have
+     $$
+     \int_{\Theta}\Big[\frac{p_{\theta}^n}{p_0^n}(\BX^n)\Big]^{\alpha} \, d\Pi(\theta)
+     \gtrsim \Big[\frac{M_n}{n^{\frac{1}{2\alpha}}}\Big]^p \exp \big(-\frac{1}{2} C_3 M_n^{2\alpha}\big).
+     $$
+     Hence 
+     $$
+     \begin{aligned}
+         &P_0^n \Big\{ Q^n\big(\|\theta-\theta_0\|\geq \frac{M_n}{n^{\frac{1}{2\alpha}}}\big)\Big\}\\
+         \leq&P_0^n \Big\{ \mathbf{1}_{B} Q^n\big( \|\theta-\theta_0\|\geq \frac{M_n}{n^{\frac{1}{2\alpha}}}\big)\Big\}+P_0^n (B^C)\\
+         \leq& 
+        \sum_{j=1}^{+\infty}
+        (j+1)^p
+         \exp[- \frac{1}{2}C_3 \Big({jM_n}\Big)^{2\alpha}]
+         +
+         \frac{2(1+C)\alpha^2}{C^2 C_3 M_n^{2\alpha}}\to 0.
+     \end{aligned}
+     $$
+\end{proof}
+
+
 
 
 \begin{appendices}

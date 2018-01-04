@@ -3,46 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: main.aux
 The style file: apalike.bst
 Database file #1: mybibfile.bib
-Warning--I didn't find a database entry for "berger2003approximatios"
-You've used 5 entries,
+You've used 10 entries,
             1935 wiz_defined-function locations,
-            505 strings with 4539 characters,
-and the built_in function-call counts, 1694 in all, are:
-= -- 170
-> -- 41
-< -- 5
-+ -- 12
-- -- 12
-* -- 133
-:= -- 304
-add.period$ -- 16
-call.type$ -- 5
-change.case$ -- 30
-chr.to.int$ -- 5
-cite$ -- 5
-duplicate$ -- 69
-empty$ -- 134
-format.name$ -- 19
-if$ -- 331
+            538 strings with 5359 characters,
+and the built_in function-call counts, 3722 in all, are:
+= -- 376
+> -- 116
+< -- 8
++ -- 36
+- -- 36
+* -- 319
+:= -- 652
+add.period$ -- 31
+call.type$ -- 10
+change.case$ -- 67
+chr.to.int$ -- 10
+cite$ -- 10
+duplicate$ -- 139
+empty$ -- 280
+format.name$ -- 54
+if$ -- 725
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 6
-newline$ -- 28
-num.names$ -- 15
-pop$ -- 21
+missing$ -- 11
+newline$ -- 53
+num.names$ -- 30
+pop$ -- 45
 preamble$ -- 1
-purify$ -- 31
+purify$ -- 68
 quote$ -- 0
-skip$ -- 55
+skip$ -- 108
 stack$ -- 0
-substring$ -- 131
-swap$ -- 5
+substring$ -- 303
+swap$ -- 10
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 28
+type$ -- 58
 warning$ -- 0
-while$ -- 15
+while$ -- 34
 width$ -- 0
-write$ -- 66
-(There was 1 warning)
+write$ -- 131

@@ -1,10 +1,26 @@
 \begin{thebibliography}{}
 
+\bibitem[{Berger} et~al., 2003]{berger2003approximations}
+{Berger}, J.~O., {Ghosh}, J.~K., and {Mukhopadhyay}, N. (2003).
+\newblock Approximations and consistency of bayes factors as model dimension
+  grows.
+\newblock {\em Journal of Statistical Planning and Inference}, 112:241--258.
+
+\bibitem[{Diaconis} and {Freedman}, 1986]{diaconis1986consistency}
+{Diaconis}, P. and {Freedman}, D. (1986).
+\newblock On the consistency of bayes estimates.
+\newblock {\em Annals of Statistics}, 14(1):1--26.
+
 \bibitem[Ghosal, 2000]{Ghosal2000Asymptotic}
 Ghosal, S. (2000).
 \newblock Asymptotic normality of posterior distributions for exponential
   families when the number of parameters tends to infinity.
 \newblock {\em Journal of Multivariate Analysis}, 74(1):49--68.
+
+\bibitem[Ghosal et~al., 2000]{ghosal2000}
+Ghosal, S., Ghosh, J.~K., and van~der Vaart, A.~W. (2000).
+\newblock Convergence rates of posterior distributions.
+\newblock {\em Ann. Statist.}, 28(2):500--531.
 
 \bibitem[J.~M.~Ortega, 1987]{book:263774}
 J.~M.~Ortega, W. C.~R. (1987).
@@ -18,6 +34,11 @@ J.~M.~Ortega, W. C.~R. (1987).
   when the number of parameters tends to infinity.
 \newblock {\em Annals of Statistics}, 16(1):356--366.
 
+\bibitem[Shen and Wasserman, 2001]{Shen2001Rates}
+Shen, X. and Wasserman, L. (2001).
+\newblock Rates of convergence of posterior distributions.
+\newblock {\em Annals of Statistics}, 29(3):687--714.
+
 \bibitem[{Spokoiny}, 2012]{spokoiny2012parametric}
 {Spokoiny}, V. (2012).
 \newblock Parametric estimation. finite sample theory.
@@ -28,5 +49,11 @@ Stadler, N. and Mukherjee, S. (2017).
 \newblock Two-sample testing in high dimensions.
 \newblock {\em Journal of The Royal Statistical Society Series B-statistical
   Methodology}.
+
+\bibitem[Walker and Hjort, 2001]{kar10563}
+Walker, S.~G. and Hjort, N.~L. (2001).
+\newblock On bayesian consistency.
+\newblock {\em Journal of the Royal Statistical Society: Series B (Statistical
+  Methodology)}, 63(4):811--821.
 
 \end{thebibliography}
