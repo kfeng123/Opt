@@ -821,57 +821,82 @@ For $0<\alpha<1$, define the pseudoposterior distribution $Q$ based on $\Pi$ as
 $$
 Q^n (A)=\frac{\int_{A} \big[p^n(\BX^n)\big]^{\alpha}\, d\Pi_n(P)}{\int_{\mathscr{P}} \big[p^n(\BX^n)\big]^{\alpha}\, d\Pi_n(P)}.
 $$
+
+
+For $0<t<1$, define
+$
+\rho_{t}(\theta_1,\theta_2)=\int_{\mathcal{X}} p(X|\theta_1)^{t} p(X|\theta_2)^{1-t} \, d \mu
+$.
+Define
+$$
+Z_t (A)=\int_{A} \Big[ {p_n(\BX^{(n)}|\theta)} \Big]^{t} \pi(\theta) \, d \theta.
+$$
+
 \begin{theorem}
-    Suppose $\Pi_n\Big(A_{\epsilon}\Big)>0$ for every $\epsilon>0$, where
-    $$
-    A_{\epsilon}=\{P: D_{KL}(P_0,P)\leq \epsilon, \, V(P_0 || P) \leq \epsilon\}.
-    $$
-    Then for every $\epsilon>0$ and $C>0$
+    Suppose $\Pi(A_{\epsilon})>0$ for every $\epsilon>0$.
+    Then for every $\epsilon>0$ and $C>0$,
      $$
      \begin{aligned}
-         P_0^n \Big\{ Q^n\big( \rho_\alpha (P,P_0)\leq 1-\epsilon\big)\Big\}
-         \leq \frac{1}{\Pi(A_{\frac{\epsilon}{2(1+C)}})}\exp (-\frac{1}{2}\epsilon n) +\frac{2(1+C)\alpha^2}{C^2n\epsilon}.
+         P_0^n \left\{ \frac{Z_t ( \{\theta:\rho_{t}(\theta,\theta_0)\leq 1- \epsilon\} )}{Z_t(\Theta)}
+         \right\}
+         \leq {\Pi(A_{\frac{\epsilon}{2(1+C)}})}^{-1}\exp (-\frac{1}{2}\epsilon n) +\frac{2(1+C)\alpha^2}{C^2 n\epsilon}.
      \end{aligned}
      $$
 \end{theorem}
 \begin{proof}
-Consider the expactation of the numerator,
+    Note that
+       $$
+       \frac{Z_t ( \{\theta:\rho_{t}(\theta,\theta_0)\leq 1- \epsilon\} )}{Z_t(\Theta)}
+=
+    \frac{
+        \int_{\{\theta:\rho_{t}(\theta,\theta_0)\leq 1- \epsilon\}} \Big[ \frac{p_n(\BX^{(n)}|\theta)}{p_n(\BX^{(n)}|\theta_0)} \Big]^{t} \pi(\theta) \, d \theta
+    }{
+        \int_{\Theta} \Big[ \frac{p_n(\BX^{(n)}|\theta)}{p_n(\BX^{(n)}|\theta_0)} \Big]^{t} \pi(\theta) \, d \theta
+    }.
+       $$ 
+Consider the expactation of the numerator. It follows from Fubini's theorem that
     $$
     \begin{aligned}
-        &P_0^n\int_{\rho_{\alpha}(P,P_0)\leq 1- \epsilon} \Big[ \frac{p^n}{p_0^n} (\BX^n) \Big]^{\alpha} \, d \Pi_n(P)
+        &P_0^n\int_{\{\theta:\rho_{t}(\theta,\theta_0)\leq 1- \epsilon\}} \Big[ \frac{p_n(\BX^{(n)}|\theta)}{p_n(\BX^{(n)}|\theta_0)}  \Big]^{t} \pi(\theta) \, d \theta
         \\
         =&
-        \int_{\rho_{\alpha}(P,P_0)\leq 1- \epsilon} \int_{\mathcal{X}^n}\Big[ \frac{p^n}{p_0^n} (\BX^n) \Big]^{\alpha} p_0^n (\BX^n)\, d\mu^n \, d \Pi_n(P)\\
+        \int_{\{\theta:\rho_{t}(\theta,\theta_0)\leq 1- \epsilon\}} \left\{\int_{\mathcal{X}^n}\Big[ {p_n} (\BX^{(n)}|\theta) \Big]^{t}  \Big[ p_n (\BX^{(n)}|\theta_0) \Big]^{1-t} \, d\mu^n \right\} \pi(\theta) \, d \theta\\
         =&
-        \int_{\rho_{\alpha}(P,P_0)\leq 1- \epsilon} \int_{\mathcal{X}^n}\Big[ {p^n} (\BX^n) \Big]^{\alpha}  \Big[ p_0^n (\BX^n) \Big]^{1-\alpha} \, d\mu^n \, d \Pi_n(P)\\
-        =&
-        \int_{\rho_{\alpha}(P,P_0)\leq 1- \epsilon} \big( \rho_{\alpha}(p,p_0) \big)^n \, d \Pi_n(P)\\
+        \int_{\{\theta:\rho_{t}(\theta,\theta_0)\leq 1- \epsilon\}} \big[ \rho_{t}(\theta,\theta_0) \big]^n \pi(\theta) \, d \theta\\
         \leq&
         \exp (-\epsilon n).
     \end{aligned}
     $$
     Consider the denominator.
-     From Lemma~\ref{lemma:denominator}, on a set $B$ with $P_0^n(B)>1-\alpha^2/(C^2 n \epsilon')$, we have
+     From Lemma~\ref{lemma:denominator}, for every $\epsilon'>0$, there exists a set $B_{\epsilon'}$ with $P_0^n(B_{\epsilon'})>1-\alpha^2/(C^2 n \epsilon')$ on which
      $$
-     \int_{\mathscr{P}}\Big[\frac{p^n}{p_0^n}(\BX^n)\Big]^{\alpha} \, d\Pi(P)
+     \int_{\Theta}\Big[\frac{p_n(\BX^{(n)}|\theta)}{p_n(\BX^{(n)}|\theta_0)}\Big]^{t} \pi(\theta)\, d\theta
      \geq \Pi(A_{\epsilon'}) \exp \big(-(1+C)\epsilon' n\big).
      $$
-     Hence 
+     Thus,
      $$
      \begin{aligned}
-         &P_0^n \Big\{ Q^n\big( \rho_\alpha (P,P_0)\leq 1-\epsilon\big)\Big\}\\
-         \leq&P_0^n \Big\{ \mathbf{1}_{B} Q^n\big( \rho_\alpha (P,P_0)\leq 1-\epsilon\big)\Big\}+P_0^n (B^C)\\
-         \leq& \frac{1}{\Pi(A_{\epsilon'})}\exp (-\epsilon n+(1+C)\epsilon' n) +\frac{\alpha^2}{C^2n\epsilon'}.
+         &P_0^n \Big\{
+             \frac{Z_t ( \{\theta:\rho_{t}(\theta,\theta_0)\leq 1- \epsilon\} )}{Z_t(\Theta)}
+\Big\}\\
+         \leq&P_0^n \Big\{ \mathbf{1}_{B_{\epsilon'}}
+             \frac{Z_t ( \{\theta:\rho_{t}(\theta,\theta_0)\leq 1- \epsilon\} )}{Z_t(\Theta)}
+         \Big\}+P_0^n (B_{\epsilon'}^C)\\
+         \leq& {\Pi(A_{\epsilon'})}^{-1}\exp \big[-\epsilon n+(1+C)\epsilon' n\big] +\frac{\alpha^2}{C^2n\epsilon'}.
      \end{aligned}
      $$
-     Let $\epsilon'=\frac{\epsilon}{2(1+C)}$, we have
+     Now taking $\epsilon'=\frac{\epsilon}{2(1+C)}$ yields
      $$
      \begin{aligned}
-         P_0^n \Big\{ Q^n\big( \rho_\alpha (P,P_0)\leq 1-\epsilon\big)\Big\}
-         \leq \frac{1}{\Pi(A_{\frac{\epsilon}{2(1+C)}})}\exp (-\frac{1}{2}\epsilon n) +\frac{2(1+C)\alpha^2}{C^2n\epsilon}.
+         &P_0^n \Big\{
+             \frac{Z_t ( \{\theta:\rho_{t}(\theta,\theta_0)\leq 1- \epsilon\} )}{Z_t(\Theta)}
+\Big\}
+         \leq {\Pi(A_{\frac{\epsilon}{2(1+C)}})}^{-1}\exp \big[-\frac{1}{2}\epsilon n\big] +\frac{2(1+C)\alpha^2}{C^2n\epsilon}.
      \end{aligned}
      $$
 \end{proof}
+
+
 One deficit of the theorem is that it does not satisfactorily cover finite-dimensional models.
 When applied to such models, it would yield the rate $1/\sqrt{n}$ times a logarithmic factor rather than $1/\sqrt{n}$ itself.
 
@@ -890,10 +915,10 @@ $$
 The $C_4$ seems useless, and we can assume that the third inequality only holds locally.
 The proof of the following theorem is similar to the corresponding nonparametric one.
 \begin{theorem}
-    Under the conditions listed previously and $\theta_0$ interior to $\Theta$, then for $M_n\to \infty$,
+    Under the conditions listed previously and $\theta_0$ interior to $\Theta$, then for any $M_n\to \infty$,
     $$
     P_0^n \Big\{ Q^n \big( \|\theta-\theta_0\|\geq \frac{M_n}{n^{\frac{1}{2\alpha}}}\big)\Big\}
-    \leq
+    \to  0
     .
     $$
 \end{theorem}
