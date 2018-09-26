@@ -1,0 +1,52 @@
+\begin{thebibliography}{}
+
+\bibitem[Amini, 2013]{Amini2013High}
+Amini, A.~A. (2013).
+\newblock High-dimensional principal component analysis.
+\newblock {\em Dissertations \& Theses - Gradworks}, 61(3):464--473.
+
+\bibitem[Andreas~Christmann, 2008]{book:274797}
+Andreas~Christmann, I. S.~a. (2008).
+\newblock {\em Support Vector Machines}.
+\newblock Information science and statistics. Springer-Verlag New York, 1
+  edition.
+
+\bibitem[Gu, 2013]{book:982265}
+Gu, C. (2013).
+\newblock {\em Smoothing Spline ANOVA Models}.
+\newblock Springer Series in Statistics 297. Springer-Verlag New York, 2
+  edition.
+
+\bibitem[Hofmann et~al., 2008]{hofmann2008}
+Hofmann, T., Sch\"olkopf, B., and Smola, A.~J. (2008).
+\newblock Kernel methods in machine learning.
+\newblock {\em Ann. Statist.}, 36(3):1171--1220.
+
+\bibitem[Hsing and Eubank, 2015]{book:1323324}
+Hsing, T. and Eubank, R. (2015).
+\newblock {\em Theoretical Foundations of Functional Data Analysis, with an
+  Introduction to Linear Operators}.
+\newblock Wiley Series in Probability and Statistics. Wiley, 1 edition.
+
+\bibitem[Muller et~al., 2001]{914517}
+Muller, K.~., Mika, S., Ratsch, G., Tsuda, K., and Sch\"olkopf, B. (2001).
+\newblock An introduction to kernel-based learning algorithms.
+\newblock {\em IEEE Transactions on Neural Networks}, 12(2):181--201.
+
+\bibitem[Sch\"olkopf et~al., 1998]{6790375}
+Sch\"olkopf, B., Smola, A., and Müller, K. (1998).
+\newblock Nonlinear component analysis as a kernel eigenvalue problem.
+\newblock {\em Neural Computation}, 10(5):1299--1319.
+
+\bibitem[Vershynin, 2010]{Roman2010Functional}
+Vershynin, R. (2010).
+\newblock Lectures in functional analysis.
+\newblock Technical report, Department of Mathematics, University of Michigan.
+
+\bibitem[Wahba, 1990]{book:1273182}
+Wahba, G. (1990).
+\newblock {\em Spline Models for Observational Data (CBMS-NSF Regional
+  Conference Series in Applied Mathematics)}.
+\newblock SIAM: Society for Industrial and Applied Mathematics.
+
+\end{thebibliography}

@@ -1,0 +1,630 @@
+\documentclass[11pt]{article}
+ 
+\newcommand\CG[1]{\textcolor{red}{#1}}
+
+\usepackage{lineno,hyperref}
+
+\usepackage[margin=1 in]{geometry}
+\renewcommand{\baselinestretch}{1.25}
+
+
+%\usepackage{refcheck}
+\usepackage{authblk}
+\usepackage{galois} % composition function \comp
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{booktabs}
+\usepackage[page,title]{appendix}
+%\renewcommand\appendixname{haha}
+\usepackage{enumerate}
+\usepackage{changepage}
+\usepackage{datetime}
+\newdate{date}{9}{1}{2017}
+
+%%%%%%%%%%%%%%  Notations %%%%%%%%%%
+\DeclareMathOperator{\mytr}{tr}
+\DeclareMathOperator{\mydiag}{diag}
+\DeclareMathOperator{\myrank}{Rank}
+\DeclareMathOperator{\myP}{P}
+\DeclareMathOperator{\myE}{E}
+\DeclareMathOperator{\myVar}{Var}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+
+\newcommand{\Ba}{\mathbf{a}}    \newcommand{\Bb}{\mathbf{b}}    \newcommand{\Bc}{\mathbf{c}}    \newcommand{\Bd}{\mathbf{d}}    \newcommand{\Be}{\mathbf{e}}    \newcommand{\Bf}{\mathbf{f}}    \newcommand{\Bg}{\mathbf{g}}    \newcommand{\Bh}{\mathbf{h}}    \newcommand{\Bi}{\mathbf{i}}    \newcommand{\Bj}{\mathbf{j}}    \newcommand{\Bk}{\mathbf{k}}    \newcommand{\Bl}{\mathbf{l}}
+\newcommand{\Bm}{\mathbf{m}}    \newcommand{\Bn}{\mathbf{n}}    \newcommand{\Bo}{\mathbf{o}}    \newcommand{\Bp}{\mathbf{p}}    \newcommand{\Bq}{\mathbf{q}}    \newcommand{\Br}{\mathbf{r}}    \newcommand{\Bs}{\mathbf{s}}    \newcommand{\Bt}{\mathbf{t}}    \newcommand{\Bu}{\mathbf{u}}    \newcommand{\Bv}{\mathbf{v}}    \newcommand{\Bw}{\mathbf{w}}    \newcommand{\Bx}{\mathbf{x}}
+\newcommand{\By}{\mathbf{y}}    \newcommand{\Bz}{\mathbf{z}}    
+\newcommand{\BA}{\mathbf{A}}    \newcommand{\BB}{\mathbf{B}}    \newcommand{\BC}{\mathbf{C}}    \newcommand{\BD}{\mathbf{D}}    \newcommand{\BE}{\mathbf{E}}    \newcommand{\BF}{\mathbf{F}}    \newcommand{\BG}{\mathbf{G}}    \newcommand{\BH}{\mathbf{H}}    \newcommand{\BI}{\mathbf{I}}    \newcommand{\BJ}{\mathbf{J}}    \newcommand{\BK}{\mathbf{K}}    \newcommand{\BL}{\mathbf{L}}
+\newcommand{\BM}{\mathbf{M}}    \newcommand{\BN}{\mathbf{N}}    \newcommand{\BO}{\mathbf{O}}    \newcommand{\BP}{\mathbf{P}}    \newcommand{\BQ}{\mathbf{Q}}    \newcommand{\BR}{\mathbf{R}}    \newcommand{\BS}{\mathbf{S}}    \newcommand{\BT}{\mathbf{T}}    \newcommand{\BU}{\mathbf{U}}    \newcommand{\BV}{\mathbf{V}}    \newcommand{\BW}{\mathbf{W}}    \newcommand{\BX}{\mathbf{X}}
+\newcommand{\BY}{\mathbf{Y}}    \newcommand{\BZ}{\mathbf{Z}}    
+
+\newcommand{\bfsym}[1]{\ensuremath{\boldsymbol{#1}}}
+
+ \def\balpha{\bfsym \alpha}
+ \def\bbeta{\bfsym \beta}
+ \def\bgamma{\bfsym \gamma}             \def\bGamma{\bfsym \Gamma}
+ \def\bdelta{\bfsym {\delta}}           \def\bDelta {\bfsym {\Delta}}
+ \def\bfeta{\bfsym {\eta}}              \def\bfEta {\bfsym {\Eta}}
+ \def\bmu{\bfsym {\mu}}                 \def\bMu {\bfsym {\Mu}}
+ \def\bnu{\bfsym {\nu}}
+ \def\btheta{\bfsym {\theta}}           \def\bTheta {\bfsym {\Theta}}
+ \def\beps{\bfsym \varepsilon}          \def\bepsilon{\bfsym \varepsilon}
+ \def\bsigma{\bfsym \sigma}             \def\bSigma{\bfsym \Sigma}
+ \def\blambda {\bfsym {\lambda}}        \def\bLambda {\bfsym {\Lambda}}
+ \def\bomega {\bfsym {\omega}}          \def\bOmega {\bfsym {\Omega}}
+ \def\brho   {\bfsym {\rho}}
+ \def\btau{\bfsym {\tau}}
+ \def\bxi{\bfsym {\xi}}
+ \def\bzeta{\bfsym {\zeta}}
+% May add more in future.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\theoremstyle{plain}
+\newtheorem{theorem}{\quad\quad Theorem}
+\newtheorem{proposition}{\quad\quad Proposition}
+\newtheorem{corollary}{\quad\quad Corollary}
+\newtheorem{lemma}{\quad\quad Lemma}
+\newtheorem{example}{Example}
+\newtheorem{assumption}{\quad\quad Assumption}
+\newtheorem{condition}{\quad\quad Condition}
+
+\theoremstyle{definition}
+\newtheorem{definition}{\quad\quad Definition}
+\newtheorem{remark}{\quad\quad Remark}
+\theoremstyle{remark}
+
+
+
+\title{Notes on RKHS}
+
+
+
+
+
+
+\begin{document}
+\maketitle
+\section{Introduction}
+Good references include \cite{book:1273182}, \cite{book:982265},  \cite{book:274797}.
+
+Functional analysis: \cite{Roman2010Functional}.
+Functional principal component analysis: Phd dissertation \cite{Amini2013High}.
+
+\section{Positive semi-definite kernel}
+This section is adapted from \cite{hofmann2008}.
+
+We consider a general index set $\mathcal{T}$.
+A \emph {kernel} is a function $R(\cdot,\cdot)$ from $\mathcal{T}\times \mathcal{T}$ to $\mathbb{R}$ which is symmetric: $R(s,t)=R(t,s)$.
+A kernel $R(\cdot,\cdot)$ is said to be \emph{positive semi-definite} (PSD) if, for any real $a_1,\ldots,a_n$ and $t_1,\ldots, t_n \in \mathcal{T}$,
+\begin{equation*}
+    \sum_{i,j=1}^n a_i a_j R(t_i,t_j)\geq 0.
+\end{equation*}
+In other words, for any $t_1,\ldots,t_n \in \mathcal{T}$ the matrix
+\begin{equation*}
+    \begin{pmatrix}
+        R(t_1,t_1) & \ldots & R(t_1,t_n)\\
+        \ldots& \ldots & \ldots\\
+        R(t_n,t_1) & \ldots & R(t_n,t_n)
+    \end{pmatrix}
+\end{equation*}
+is PSD.
+
+Let $(\mathbb H, (\cdot,\cdot))$ be an inner product space.
+It is clear that for any function $\phi:\mathcal T \to \mathbb H$, $R(s,t):=(\phi(s),  \phi(t))$ is a PSD kernel.
+If $R(\cdot,\cdot)$ is so defined, $\phi(\cdot)$ is called its \emph{feature map} and  $\mathbb H$ is called the \emph{feature space}.
+We note that the feature map of a kernel is not unique.
+We shall return to this point later.
+
+The following proposition gives other ways to construct PSD kernels.
+
+
+
+
+\begin{proposition}\label{prop1}
+    Suppose $R_i(\cdot,\cdot)$, $i=1,2,\ldots$, are PSD kernels on $\mathcal{T} \times \mathcal{T}$. Then
+    \begin{enumerate}[(i)]
+        \item If $\alpha_1,\alpha_2 \geq 0 $, then $\alpha_1 R_1(\cdot,\cdot)+\alpha_2 R_2(\cdot,\cdot)$ is a PSD kernel.
+        \item If $R(s,t):=\lim_{n\to \infty} R_n(s,t)$ exists for all $s,t\in \mathcal{T}$, then $R(\cdot,\cdot)$ is a PSD kernel.
+        \item The pointwise product $R_1\comp R_2 (s,t):=R_1(s,t)R_2(s,t)$ is a PSD kernel.
+        \item 
+            Assume that for $i=1,2$, $R_i(\cdot,\cdot)$ is a PSD kernel on $\mathcal{T}_1 \times \mathcal{T}_2$.
+        Then the tensor product, which is a function defined on $(\mathcal{T}_1\times \mathcal{T}_2)\times (\mathcal{T}_1\times \mathcal{T}_2)$ as 
+            \begin{equation*}
+                R_1 \otimes R_2 \left((s_1,s_2),(t_1,t_2)\right)
+                := R_1 (s_1,t_1) R_2(s_2,t_2)
+            \end{equation*}
+            is a PSD kernel.
+            The direct sum
+            \begin{equation*}
+                R_1 \oplus R_2 \left((s_1,s_2),(t_1,t_2)\right)
+                :=
+                R_1 (s_1,t_1) + R_2(s_2,t_2)
+            \end{equation*}
+            is a PSD kernel.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    These results follows directly from the analogous results in matrix theory.
+    For example, (iii) follows from that the Hadamard product of two PSD matrix is PSD.
+    As for (iv), for any real $a_1,\ldots, a_n$ and $(t_{11},t_{12}),\ldots, (t_{n1},t_{n2})\in \mathcal{T}_1\times \mathcal{T}_2$,
+\begin{equation*}
+    \begin{split}
+        \sum_{i,j=1}^n a_i a_j R_1\oplus R_2 ((t_{i1},t_{i2}),(t_{j1},t_{j2}))
+    =&
+    \sum_{i,j=1}^n a_i a_j 
+    \left(R_1 (t_{i1},t_{j1}) + R_2(t_{i2},t_{j2})\right)
+    \\
+    =&
+    \sum_{i,j=1}^n a_i a_j 
+    R_1 (t_{i1},t_{j1}) +
+    \sum_{i,j=1}^n a_i a_j 
+    R_2(t_{i2},t_{j2})
+    \geq 0.
+    \end{split}
+\end{equation*}
+On the other hand
+\begin{equation*}
+    \begin{split}
+        \sum_{i,j=1}^n a_i a_j R_1\otimes R_2 ((t_{i1},t_{i2}),(t_{j1},t_{j2}))
+    =&
+    \sum_{i,j=1}^n a_i a_j 
+    R_1 (t_{i1},t_{j1}) R_2(t_{i2},t_{j2})\geq 0
+    \end{split}
+\end{equation*}
+since it corresponds to the Hadamard product of
+\begin{equation*}
+    \begin{pmatrix}
+        R_1(t_{11},t_{11}) & \ldots & R_1(t_{11},t_{n1})\\
+        \ldots & \ldots & \ldots\\
+        R_1(t_{n1},t_{11}) & \ldots & R_1(t_{n1},t_{n1})
+    \end{pmatrix}
+\end{equation*}
+and 
+\begin{equation*}
+    \begin{pmatrix}
+        R_2(t_{12},t_{12}) & \ldots & R_2(t_{12},t_{n2})\\
+        \ldots & \ldots & \ldots\\
+        R_2(t_{n2},t_{12}) & \ldots & R_1(s_{n2},t_{n2})
+    \end{pmatrix}.
+\end{equation*}
+\end{proof}
+
+\begin{example}[Gaussian kernel]
+    Let $\mathcal{T}=\mathbb{R}^p$.
+    Then $R(s,t)=s^\top t$ is a PSD kernel.
+    By (i) and (iii) of Proposition \ref{prop1}, 
+    \begin{equation*}
+        R_n(s,t):=\sum_{i=0}^n \frac{R(s,t)^n}{n!}
+    \end{equation*}
+    is a PSD kernel.
+    Then by (ii) of Proposition \ref{prop1},
+    $\exp (R(s,t)):=\exp(s^\top t)$ is a PSD kernel.
+    By (v) of Proposition \ref{prop1}, $\exp(-\|s\|^2-\|t\|^2)$ is a PSD kernel.
+    Thus, again by (iii) of Proposition \ref{prop1}, $\exp(-\|t-s\|^2)$ is a PSD kernel.
+
+    A PSD kernel $R(\cdot,\cdot)$ is call \emph{radial} if $R(x,y)=g(\|x-y\|)$ for some function $g: [0,+\infty) \to \mathbb R$.
+\end{example}
+
+\begin{example}[Polynomial kernels]
+    Let $\mathcal{T}=\mathbb{R}^p$. 
+    From (iii) of Proposition \ref{prop1} it is clear that homogeneous polynomial kernels $R(s,t)= (s^\top t)^n$ are PSD for $n\in \mathbb N$.
+    We can also explicitly give the corresponding feature map:
+    \begin{equation*}
+        R(s,t)=(s^\top t)^n
+        =(\sum_{i=1}^p s_i t_i)^n
+        =\sum_{i_1=1}^p \sum_{i_2=1}^p \cdots \sum_{i_n=1}^p (s_{i_1}\cdots s_{i_n}) \cdot (t_{i_1}\cdots t_{i_n})
+        =(C_{n,p}(s),C_{n,p}(t)),
+    \end{equation*}
+    where $C_{n,p}(\cdot)$ maps $t\in \mathbb R^p$ to a $p^n$ dimensional vector whose entries are all possible $n$th degree ordered products of the entries of $t$.
+    Other useful kernels include the inhomogeneous polynomial $R(s,t)=(s^\top t +c)^n$ where $n\in\mathbb N$ and $c\geq 0$.
+\end{example}
+
+
+
+
+\section{Reproducing kernel Hilbert space}
+This section is adapted from \cite{book:1273182}, \cite{book:274797}, \cite{book:1323324}.
+A \emph{Hilbert space} $(\mathbb{H},(\cdot,\cdot))$ is a complete vector space with an inner product.
+An important example of Hilbert space is the class of all square integrable measurable functions $L^2(\mathbb{X},\mathcal{B},\mu)$ on a measurable space $(\mathbb{X},\mathcal{B},\mu)$.
+A continuous linear functional (or bounded linear functional) $L$ is a linear map from $\mathbb{H}$ into $\mathbb{R}$ such that
+\begin{equation*}
+    |Lf|\leq M \|f\| \text{ for all $f\in \mathcal{H}$}.
+\end{equation*}
+For each $y\in \mathbb{H}$, the map $x\mapsto (x,y)$ is a continuous linear functional, denoted as $(\cdot,y)$.
+A fundamental result in real analysis says all continuous linear functional can be represented by $(\cdot,y)$ for some $y\in \mathbb{H}$.
+\begin{theorem}[Riesz-Fr\'echet]\label{RFTheorem}
+    A map $L$ from a Hilbert space $\mathbb{H}$ into $\mathbb{R}$ is a continuous linear functional if and only if for some $y\in \mathbb{H}$, $Lx=(x,y)$ for all $x\in \mathbb{H}$. If so, then $y$ is unique.
+\end{theorem}
+
+Let $\mathbb{R}^{\mathcal{T}}$ denote the space of all real functions from $\mathcal{T}$ to $\mathbb{R}$.
+    Suppose $\mathbb{H}$ is a subset of $\mathbb{R}^{\mathcal{T}}$ and $(\mathbb{H},(\cdot,\cdot)_{\mathbb H})$ is a Hilbert space.
+    Then it can be seen that the for each $t\in \mathcal{T}$, the coordinate projection $L_t$, defined as $L_t f(\cdot) :=f(t)$, is a linear functional.
+    Note that $L_t$ is not necessarily continuous.
+    In fact, if $\mathbb H = L^2(\mathbb{R},\mathcal B, \mu)$, then $L_t$ is not continuous since $f(t)$ can be arbitrarily defined.
+\begin{definition}
+    Suppose $\mathbb{H}$ is a subset of $\mathbb{R}^{\mathcal{T}}$ and $(\mathbb{H},(\cdot,\cdot)_{\mathbb H})$ is a Hilbert space.
+    Then $\mathbb H$ is called a reproducing kernel Hilber space (RKHS) if for each $t\in \mathcal{T}$, the coordinate projection $L_t$ is a continuous linear functional.
+\end{definition}
+
+Every RKHS has a unique reproducing kernel, as stated by the following theorem.
+\begin{theorem}
+    Let $\mathbb H \subset \mathbb R^\mathcal T$ be an RKHS. Then there is a unique function $R(\cdot,\cdot): \mathcal T \times \mathcal T \to \mathbb R$, such that 
+    \begin{enumerate}
+        \item 
+            for every $t\in \mathcal T$, $R(\cdot,t)\in \mathbb H$ and
+        \item
+            $R$ satisfies the reproducing property that for every $f(\cdot) \in \mathbb H$ and $t\in \mathcal T$
+            \begin{equation*}
+                f(t)=(f(\cdot), R(\cdot, t))_{\mathbb H}.
+            \end{equation*}
+    \end{enumerate}
+    Furthermore, the function $R(\cdot,\cdot)$ is a PSD kernel.
+    $R(\cdot,\cdot)$ is called the \emph{reproducing kernel} of $\mathbb H$.
+\end{theorem}
+
+\begin{proof}
+For each $t\in \mathcal T$ there exists, by Theorem \ref{RFTheorem}, a unique element $R_t (\cdot) \in \mathbb{H}$ with the property
+\begin{equation*}
+    L_t f(\cdot) = (f(\cdot), R_t(\cdot) )_{\mathbb{H}}= f(t), \quad \forall f\in \mathbb{H}.
+\end{equation*}
+Let $f(\cdot)=R_s(\cdot)$ in the above equality, we have
+\begin{equation*}
+    (R_s(\cdot), R_t(\cdot) )_{\mathbb{H}}=R_s(t),\quad \forall s,t \in \mathcal{T}.
+\end{equation*}
+Since the inner product is symmetric, $(R_s(\cdot), R_t(\cdot) )_{\mathbb{H}}=(R_t(\cdot), R_s(\cdot) )_{\mathbb{H}}$. 
+Hence
+\begin{equation*}
+    (R_s(\cdot), R_t(\cdot) )_{\mathbb{H}}=R_t(s),\quad \forall s,t \in \mathcal{T}.
+\end{equation*}
+Thus, $R_s(t)=R_t(s)$.
+For any real $a_1,\ldots, a_n$ and $t_1,\ldots, t_n \in \mathcal{T}$,
+\begin{equation*}
+    \sum_{i,j=1}^n a_i a_j R_{t_i}(t_j) =
+    \sum_{i,j=1}^n a_i a_j \left(R_{t_i}(\cdot), R_{t_j}(\cdot) \right)_{\mathbb{H}}
+    =
+      \left(\sum_{i}^n a_i R_{t_i}(\cdot), \sum_{i}^n a_j R_{t_j}(\cdot) \right)_{\mathbb{H}}
+      \geq 0.
+\end{equation*}
+It follows that $R_{\cdot}(\cdot)$ is a positive semi-definite kernel.
+Since $R_{\cdot}(\cdot)$ is symmetric, it can be written as $R(\cdot,\cdot)$.
+\end{proof}
+
+Conversely, given a positive-definite kernel $R(\cdot,\cdot)$, there is a unique RKHS with $R$ as its reproducing kernel.
+\begin{theorem}[Moore-Aronszajn]
+    Suppose that $R(\cdot,\cdot):\mathcal{T}\times \mathcal{T} \to \mathbb R$ is a PSD kernel.
+    Then there is a unique RKHS $\mathbb H \subset \mathbb R^\mathcal T$ with $R(\cdot,\cdot)$ as its reproducing kernel.
+\end{theorem}
+\begin{proof}
+    Set
+\begin{equation*}
+    \mathbb{H}_0:=\text{span} \{R(\cdot,t): t\in \mathcal T\}=\left\{\sum_{i=1}^n a_i R(\cdot, t_i)\Big| n=1,2,\ldots, a_i\in \mathbb R, t_i \in \mathcal T\right\}.
+\end{equation*}
+Clearly $\mathbb H_0$ is a linear space.
+Define inner product $(\cdot,\cdot)_{\mathbb H_0}$ on $\mathbb H_0$ as
+\begin{equation}\label{eq:1}
+    \left(
+        \sum_{i=1}^{n_1} a_i R( \cdot,s_i),\sum_{j=1}^{n_2} b_{j} R(\cdot,t_j) 
+    \right)_{\mathbb H_0}=
+    \sum_{i=1}^{n_1}\sum_{j=1}^{n_2} a_i b_j R(s_i,t_j).
+\end{equation}
+This definition is indeed feasible since if
+$
+\sum_{i=1}^{n_1} a_i R(\cdot, s_i)
+=
+\sum_{i=1}^{n_1'} a_i' R( \cdot, s_i')
+$
+and 
+$
+\sum_{j=1}^{n_2} b_{j} R(\cdot, t_j) 
+=
+\sum_{j=1}^{n_2'} b_{j}' R(\cdot , t_j') 
+$,
+then
+\begin{equation*}
+    \begin{split}
+    \left(
+        \sum_{i=1}^{n_1'} a_i R(\cdot, s_i'),\sum_{j=1}^{n_2'} b_{j}' R(\cdot, t_j') 
+    \right)_{\mathbb H_0}=&
+    \sum_{i=1}^{n_1'}\sum_{j=1}^{n_2'} a_i' b_j' R(s_i',t_j')
+    =
+    \sum_{j=1}^{n_2'} b_j' \left(\sum_{i=1}^{n_1'} a_i'  R(s_i',t_j')\right)
+    \\
+    =&
+    \sum_{j=1}^{n_2'} b_j' \left(\sum_{i=1}^{n_1} a_i  R(s_i,t_j')\right)
+    =
+      \sum_{i=1}^{n_1} a_i\left(\sum_{j=1}^{n_2'}   b_j' R(s_i,t_j')\right)
+    \\
+    =&
+      \sum_{i=1}^{n_1} a_i\left(\sum_{j=1}^{n_2}   b_j R(s_i,t_j)\right)
+    =
+      \sum_{i=1}^{n_1} \sum_{j=1}^{n_2}   a_i b_j R(s_i,t_j)
+    .
+    \end{split}
+\end{equation*}
+Now we check that $(\cdot,\cdot)_{\mathbb H_0}$ so defined is indeed an inner product.
+Clearly, $(\cdot,\cdot)_{\mathbb H_0}$ is bilinear and symmetric.
+The assumption that $R(\cdot,\cdot)$ is PSD ensures that $(f,f)_{\mathbb H_0}\geq 0$ for $f\in \mathbb H_0$.
+Hence $(\cdot,\cdot)_{\mathbb H_0}$ is a semi inner product.
+So it suffices to verify that $(f,f)_{\mathbb H_0}=0$ implies $f=0$.
+Note that the definition \eqref{eq:1} implies that $(f,R(\cdot, t))_{\mathbb H_0}=f(t)$ for every $t\in \mathcal T$.
+Then for every $t\in \mathcal T$,
+\begin{equation*}
+    |f(t)| = | (f,R(\cdot,t))_{\mathbb H_0}|
+    \leq \sqrt{ (f,f)_{\mathbb H_0}(R(\cdot,t),R(\cdot,t))_{\mathbb H_0}}
+=0.
+\end{equation*}
+
+Thus, $(\mathbb H_0, (\cdot,\cdot)_{\mathbb H_0})$ is an inner product space with reproducing kernel $R(\cdot,\cdot)$.
+However, $\mathbb H_0$ itself may not be complete and hence may not be a Hilbert space.
+
+Now we proceed to complete $\mathbb H_0$.
+Suppose $\{f_n(\cdot)\}_{n=1}^\infty$ is a Cauchy sequence in $\mathbb H_0$. Since
+\begin{equation*}
+    |f_{n}(t)-f_m(t)| =|(f_n-f_m, R(\cdot, t))_{\mathbb H_0}|
+    \leq \|f_n-f_m\|_{\mathbb H_0} \|R(\cdot, t)\|_{\mathbb H_0},
+\end{equation*}
+$\{f_{n}(t)\}$ is a Cauchy sequence in $\mathbb R$.
+Therefore, $\{f_n\}_{n=1}^\infty$ has a pointwise limit.
+Define
+\begin{equation*}
+    \mathbb H =\{f(\cdot)| \text{  $f$ is the pointwise limit of some Cauchy sequence in $\mathbb H_0$}\}.
+\end{equation*}
+Clearly $\mathbb H$ is a linear space.
+Let $f(\cdot),g(\cdot) \in \mathbb H$, then there exist Cauchy sequences $\{f_n(\cdot)\}$ and $\{g_n(\cdot)\}$ such that $f(t)=\lim f_n(t)$, $g(t)=\lim g_n(t)$, for all $t \in \mathcal T$.
+Define $(f(\cdot),g(\cdot))_{\mathbb H}=\lim_{n\to\infty} (f_n(\cdot),g_n(\cdot))_{\mathbb H_0}$.
+This limit exists since $(f_n(\cdot),g_n(\cdot))_{\mathbb H_0}$ is a Cauchy sequence in $\mathbb R$:
+\begin{equation*}
+    \begin{split}
+    \big|
+     &(f_n(\cdot),g_n(\cdot))_{\mathbb H_0}
+     -
+     (f_m(\cdot),g_m(\cdot))_{\mathbb H_0}
+     \big|
+     \\
+     =&
+    \big|
+     (f_n(\cdot),g_n(\cdot))_{\mathbb H_0}
+     -
+     (f_n(\cdot),g_m(\cdot))_{\mathbb H_0}
+     \big|
+     +
+    \big|
+     (f_n(\cdot),g_m(\cdot))_{\mathbb H_0}
+     -
+     (f_m(\cdot),g_m(\cdot))_{\mathbb H_0}
+     \big|
+     \\
+     \leq& \|f_n(\cdot)\|_{\mathbb H_0} \|g_n-g_m\|_{\mathbb H_0}
+     +
+     \|g_m(\cdot)\|_{\mathbb H_0} \|f_n-f_m\|_{\mathbb H_0}.
+    \end{split}
+\end{equation*}
+Also, this limit only depends on the limits $f(\cdot)$ and $g(\cdot)$.
+To see this, suppose there exist other Cauchy sequences $\{f_n'(\cdot)\}$ and $\{g_n'(\cdot)\}$ such that $f(t)=\lim f_n'(t)$, $g(t)=\lim g_n'(t)$, for all $t \in \mathcal T$.
+Let $f^{(d)}_n(t)=f_n(t)-f_n'(t)$.
+Then $\{f^{(d)}_n(\cdot)\}_{n=1}^\infty$ is also a Cauchy sequence in $\mathbb H_0$ and $f^{(d)}_n(t)\to 0$ for all $t\in \mathcal T$.
+We would like to show that $\|f^{(d)}_n(\cdot)\|_{\mathbb H_0} \to 0$.
+In fact,
+\begin{equation*}
+    \limsup_{n\to \infty}
+    \limsup_{m\to \infty}
+\|f^{(d)}_n(\cdot)-f^{(d)}_m(\cdot)\|_{\mathbb H_0}^2\to 0.
+\end{equation*}
+But
+\begin{equation}\label{eq:2}
+    \begin{split}
+    \limsup_{m\to \infty}
+    \|f^{(d)}_n(\cdot)-f^{(d)}_m(\cdot)\|_{\mathbb H_0}^2
+    &=
+    \limsup_{m\to \infty}
+    \left(\|f^{(d)}_n(\cdot)\|_{\mathbb H_0}^2
+    +
+    \|f^{(d)}_m(\cdot)\|_{\mathbb H_0}^2
+    -
+    2(f^{(d)}_n(\cdot), f^{(d)}_m(\cdot))_{\mathbb H_0}
+\right)
+\\
+&= 
+    \|f^{(d)}_n(\cdot)\|_{\mathbb H_0}^2
+    +
+    \limsup_{m\to \infty}
+    \|f^{(d)}_m(\cdot)\|_{\mathbb H_0}^2
+    \\
+    &\geq
+    \|f^{(d)}_n(\cdot)\|_{\mathbb H_0}^2
+    ,
+    \end{split}
+\end{equation}
+where the second last equality holds since
+for fixed $f^{(d)}_n(\cdot):=\sum_{i=1}^k a_i R(\cdot, t_i)\in \mathbb H_0$,
+\begin{equation*}
+    \limsup_{m\to \infty}
+    (f^{(d)}_n(\cdot), f^{(d)}_m(\cdot))_{\mathbb H_0}
+    =
+    \limsup_{m\to \infty}
+    \sum_{i=1}^k a_i (R(\cdot, t_i), f^{(d)}_m(\cdot))_{\mathbb H_0}
+    =
+    \limsup_{m\to \infty}
+    \sum_{i=1}^k a_i f^{(d)}_m(t_i)
+    =
+    0.
+\end{equation*}
+Let $n$ tends to infinity in \eqref{eq:2}, we have $\|f^{(d)}_n(\cdot)\|_{\mathbb H_0}=\|f_n-f_n'\|_{\mathbb H_0} \to 0$.
+Similarly, we have
+$\|g_n-g_n'\|_{\mathbb H_0} \to 0$.
+Thus,
+\begin{equation*}
+    | (f_n(\cdot), g_n(\cdot))_{\mathbb H_0}
+    -
+     (f_n'(\cdot), g_n'(\cdot))_{\mathbb H_0}|
+     \leq \|f_n(\cdot)\|_{\mathbb H_0} \|g_n-g_n'\|_{\mathbb H_0}
+     +
+     \|g_n'(\cdot)\|_{\mathbb H_0} \|f_n-f_n'\|_{\mathbb H_0}\to 0.
+\end{equation*}
+Hence 
+\begin{equation*}
+    \lim_{n\to \infty} (f_n(\cdot), g_n(\cdot))_{\mathbb H_0}
+    =\lim_{n\to \infty}
+     (f_n'(\cdot), g_n'(\cdot))_{\mathbb H_0}
+\end{equation*}
+and $(f(\cdot),g(\cdot))_{\mathbb H}$ is well defined.
+
+Its not hard to verify that $(\cdot, \cdot)_{\mathbb H}$ is an inner product in $\mathbb H$.
+By definition, for any $f(\cdot)\in \mathbb H$, there exsits a Cauchy sequence $\{f_n(\cdot)\}_{i=1}^\infty$ in $\mathbb H_0$ such that $f_n(t)\to f(t)$ for all $t\in\mathcal T$.
+We would like to show that $\|f_n-f\|_{\mathbb H}\to 0$.
+In fact
+\begin{equation*}
+    \begin{split}
+    \|f_n-f\|^2_{\mathbb H}
+    =&
+    \|f_n\|^2_{\mathbb H_0}
+    +
+    \|f\|^2_{\mathbb H}
+    -
+    2(f_n(\cdot),f(\cdot))_{\mathbb H}
+    \\
+    =&
+    \|f_n\|^2_{\mathbb H_0}
+    +
+    \lim_{m\to \infty}\|f_m\|^2_{\mathbb H_0}
+    -
+    2\lim_{m\to \infty}(f_n(\cdot),f_m(\cdot))_{\mathbb H_0}
+    \\
+    =&
+    \lim_{m\to \infty}
+    \|f_n-f_m\|^2_{\mathbb H_0}.
+    \end{split}
+\end{equation*}
+Let $n$ tends to infty, we have
+$
+\lim_{n\to \infty}\|f_n-f\|^2_{\mathbb H}
+=0
+$.
+
+For each Cauchy sequence $\{f_n(\cdot)\}_{i=1}^\infty$ in $\mathbb H$, there exists, by the above argument, $\{f_n'(\cdot)\}_{i=1}^\infty$ in $\mathbb H_0$ such that $\|f_n'-f_n\|\leq n^{-1}$.
+Hence $\{f_n'(\cdot)\}_{i=1}^\infty$ is also Cauchy, and thus converges to some $f(\cdot)$ in $\|\cdot\|_{\mathbb H}$.
+And thus $\{f_n(\cdot)\}_{i=1}^\infty$ also converges to $f(\cdot)$ in $\|\cdot\|_{\mathbb H}$.
+
+We have proved that $(\mathbb H,(\cdot,\cdot)_{\mathbb H})$ is complete.
+Its easy to verify that for every $f(\cdot) \in \mathbb H$, $(f(\cdot),R(\cdot, t))=f(t)$ for $t\in \mathcal T$.
+Thus $R(\cdot,\cdot)$ is the reproducing kernel of $\mathbb H$.
+
+We turn to the uniqueness of $\mathbb H$.
+Any RKHS $\tilde{\mathbb H}$ must contain $R(\cdot, t)$, hence contain $\mathbb H_0$.
+$\mathbb H$ is the closure of $\mathbb H_0$ in $\tilde{\mathbb H}$. Hence also
+$\mathbb H\subset \tilde{\mathbb H}$.
+We have $\tilde{\mathbb H}=\mathbb H \oplus \mathbb H^{\perp}$.
+If $\mathbb H^{\perp}\neq \emptyset$, let $f\in \mathbb H^{\perp}$.
+Then $f(t)=(f,R(\cdot,t))_{\mathbb H}=0$ for every $t\in \mathbb T$, a contradiction.
+This completes the proof.
+\end{proof}
+
+
+We have shown that there is a one-to-one correspondence between kernels and RKHSs.
+For any kernel $R(\cdot,\cdot):\mathcal T \times \mathcal T \to \mathbb R$, let $\mathbb H$ be its RKHS.
+Define $\phi(\cdot):\mathcal T \to \mathbb R$ as $\phi(t)=R(\cdot,t)$. Then by reproducing property, $(\phi(s),\phi(t))_{\mathbb H}=R(s,t)$.
+That is, $\phi(\cdot)$ is a feature map of kernel $R(\cdot,\cdot)$.
+We call $\phi(\cdot)$ the \emph{cononical feature map} \cite{book:274797}.
+
+\section{Kernel methods in machine learning}
+The earliest application of kernels and RKHS in machine learning is \emph{kernel support vector machine}.
+A rich and comprehensive reference book of this topic is \cite{book:274797}.
+Since the introduction of kernel support vector machine, many kernels for specific learning tasks have been developed.
+See \cite{hofmann2008} for a review.
+\subsection{Kernel principal component analysis}
+Principal component analysis (PCA) is a powerful technique for extracting structure from possibly high-dimensional data sets.
+Let $X_1,\ldots,X_n \in \mathbb R^p$ be a sample drawn from distribution $P$ with zero mean and covariance matrix $\Sigma$.
+Then $\BS=n^{-1}\sum_{i=1}^n X_i X_i^\top$ is an estimator of $\Sigma$.
+Denote by $\lambda_i$ ($i=1,\ldots, p$) the $i$th largest eigenvalue of $\BS$, and by $v_i$ the corresponding eigenvector.
+We have
+\begin{equation*}
+    \BS v_i= \lambda_i v_i\quad i=1,\ldots, p.
+\end{equation*}
+Then the first few eigenvectors $v_1,\ldots,v_k$ ($k< p$) capture the most variation.
+For a new data $X_{\text {new}}$, its principal component is $( v_1^\top X_{\text {new}},\ldots, v_k^\top X_{\text {new}})^\top \in \mathbb R^k$.
+
+
+
+The kernel PCA algorithm is proposed by \cite{6790375}.
+It compute principal components in feature spaces.
+Consider the (measurable) feature map $\phi: \mathbb R^p \to \mathbb H$ where $\mathbb H$ is a (possibly infinite-dimensional) Hilbert space.
+The sample covariance function of $\phi(X_1),\ldots, \phi(X_n)$ is defined as $\BS=n^{-1}\sum_{i=1}^n \phi(X_i) \otimes \phi(X_i)$.
+By definition,
+the tensor product $\phi(X_i) \otimes \phi(X_i)$ is an operator from $\mathbb H$ to $\mathbb H$ and $\phi(X_i) \otimes \phi(X_i) (x)=(\phi(X_i), x)_{\mathbb H} \phi(X_i)$ for every $x\in \mathbb H$.
+The image of $\BS$ is finite dimensional and hence $\BS$ is a self-adjoint compact operator \cite{book:1323324}.
+It follows that $\BS$ has an eigen decomposition
+\begin{equation*}
+    \BS=\sum_{i=1}^p \lambda_i v_i \otimes v_i,
+\end{equation*}
+where $\lambda_1\geq \cdots \geq \lambda_p$ and $v_i$'s are orthonormal: $( v_i, v_j)_{\mathbb H}=0$ if $i\neq j$ and $1$ if $i=j$.
+For a new data $X_{\text{new}}$, its principal component is $( v_1^\top \phi(X_{\text {new}}),\ldots, v_k^\top \phi(X_{\text {new}}))^\top \in \mathbb R^k$.
+
+
+Since $\BS$ is infinite dimensional, it is hard to directly compute its eigen decomposition.
+Note that for $i=1,\ldots, p$,
+\begin{equation}\label{eq:eigen}
+    (\BS, v_i)_{\mathbb H}=\lambda_i v_i.
+\end{equation}
+The left hand of \eqref{eq:eigen} is
+\begin{equation*}
+n^{-1}\sum_{k=1}^n
+(
+     \phi(X_k) \otimes \phi(X_k)
+    , v_i)_{\mathbb H}
+    =
+n^{-1}\sum_{k=1}^n
+     (\phi(X_k)
+    , v_i)_{\mathbb H}\phi(X_k) 
+\end{equation*}
+which is a linear combinition of $\phi(X_k)$.
+Hence we can write $v_i=\sum_{j=1}^n a_{ij}\phi(X_j)$.
+Then
+\begin{equation*}
+    (\phi(X_j),(\BS, v_i)_{\mathbb H})_{\mathbb H}=\lambda_i (\phi(X_j), v_i)_{\mathbb H}  \quad j=1,\ldots, p.
+\end{equation*}
+
+
+
+
+
+%However, it lacks a mathematically rigorous treatment.
+
+
+\subsection{Kernel Fisher discriminent analysis}
+\cite{914517}
+
+
+\section{Mercer's thoerem}
+
+
+\section{Functional data analysis}
+\cite{book:1323324}
+
+\section{Gaussian processes}
+\begin{example}[RKHS of gaussian processes]
+\end{example}
+
+
+
+
+\CG{Mercer's theorem}.
+
+\section{Infinite dimensional exponential model}
+
+
+
+
+
+\bibliographystyle{apalike}
+\bibliography{mybibfile}
+
+\end{document}
