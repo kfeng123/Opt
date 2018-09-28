@@ -85,6 +85,7 @@
 
 
 \title{Notes on RKHS}
+\author{Rui Wang}
 
 
 
@@ -94,10 +95,11 @@
 \begin{document}
 \maketitle
 \section{Introduction}
-Good references include \cite{book:1273182}, \cite{book:982265},  \cite{book:274797}.
+This is a (hopefully) self-contained note on RKHS and its application.
+Good references include \cite{book:1273182}, \cite{book:982265}, \cite{hofmann2008}, \cite{book:274797}, \cite{book:274797}, \cite{914517}, \cite{vandervaart}, \cite{Amini2013High} and \cite{book:1323324}.
+Compared with the materials in these documents, there's nothing new in this note except for some possible errors.
 
-Functional analysis: \cite{Roman2010Functional}.
-Functional principal component analysis: Phd dissertation \cite{Amini2013High}.
+
 
 \section{Positive semi-definite kernel}
 This section is adapted from \cite{hofmann2008}.
@@ -257,7 +259,7 @@ Let $\mathbb{R}^{\mathcal{T}}$ denote the space of all real functions from $\mat
 
 Every RKHS has a unique reproducing kernel, as stated by the following theorem.
 \begin{theorem}
-    Let $\mathbb H \subset \mathbb R^\mathcal T$ be an RKHS. Then there is a unique function $R(\cdot,\cdot): \mathcal T \times \mathcal T \to \mathbb R$, such that 
+    Let $\mathbb H \subset \mathbb R^\mathcal T$ be an RKHS. Then there is a unique PSD kernel $R(\cdot,\cdot): \mathcal T \times \mathcal T \to \mathbb R$, such that 
     \begin{enumerate}
         \item 
             for every $t\in \mathcal T$, $R(\cdot,t)\in \mathbb H$ and
@@ -267,9 +269,12 @@ Every RKHS has a unique reproducing kernel, as stated by the following theorem.
                 f(t)=(f(\cdot), R(\cdot, t))_{\mathbb H}.
             \end{equation*}
     \end{enumerate}
-    Furthermore, the function $R(\cdot,\cdot)$ is a PSD kernel.
-    $R(\cdot,\cdot)$ is called the \emph{reproducing kernel} of $\mathbb H$.
 \end{theorem}
+
+\begin{remark}
+A PSD kernel satisfying $R(\cdot,\cdot)$ satisfying 1 and 2 is called the \emph{reproducing kernel} of $\mathbb H$.
+Hence the last theorem says that every RKHS has a unique reproducing kernel.
+\end{remark}
 
 \begin{proof}
 For each $t\in \mathcal T$ there exists, by Theorem \ref{RFTheorem}, a unique element $R_t (\cdot) \in \mathbb{H}$ with the property
@@ -557,6 +562,8 @@ For a new data $X_{\text {new}}$, its principal component is $( v_1^\top X_{\tex
 The kernel PCA algorithm is proposed by \cite{6790375}.
 It compute principal components in feature spaces.
 Consider the (measurable) feature map $\phi: \mathbb R^p \to \mathbb H$ where $\mathbb H$ is a (possibly infinite-dimensional) Hilbert space.
+Then $R(s,t):=(\phi(s),\phi(t))_{\mathbb H}$ is a PSD kernel.
+To simplify the problem, we assume that $\myE \phi(X)=0$.
 The sample covariance function of $\phi(X_1),\ldots, \phi(X_n)$ is defined as $\BS=n^{-1}\sum_{i=1}^n \phi(X_i) \otimes \phi(X_i)$.
 By definition,
 the tensor product $\phi(X_i) \otimes \phi(X_i)$ is an operator from $\mathbb H$ to $\mathbb H$ and $\phi(X_i) \otimes \phi(X_i) (x)=(\phi(X_i), x)_{\mathbb H} \phi(X_i)$ for every $x\in \mathbb H$.
@@ -587,38 +594,393 @@ n^{-1}\sum_{k=1}^n
 \end{equation*}
 which is a linear combinition of $\phi(X_k)$.
 Hence we can write $v_i=\sum_{j=1}^n a_{ij}\phi(X_j)$.
-Then
+Then \eqref{eq:eigen} becomes
 \begin{equation*}
-    (\phi(X_j),(\BS, v_i)_{\mathbb H})_{\mathbb H}=\lambda_i (\phi(X_j), v_i)_{\mathbb H}  \quad j=1,\ldots, p.
+n^{-1}
+\sum_{j=1}^n a_{ij}
+\sum_{k=1}^n
+R(X_{k},X_{j})\phi(X_k) 
+=\lambda_i \sum_{j=1}^n  a_{ij}\phi(X_j).
+\end{equation*}
+Taking the inner product with $\phi(X_l)$ ($l=1,\ldots , n$) on both sides yields
+\begin{equation*}
+n^{-1}
+\sum_{j=1}^n a_{ij}
+\sum_{k=1}^n
+     R(X_k
+    ,
+X_j
+)
+R(X_k , X_l)
+= \lambda_i \sum_{j=1}^n  a_{ij} R(X_j, X_l).
+\end{equation*}
+Define the $n\times n$ \emph{Gram matrix} $G$ as $G_{ij}= R(X_i,X_j)$.
+Let $\Ba_i =(a_{i1},\ldots, a_{i n})^\top$.
+Then the last equality can be written as
+\begin{equation*}
+    n^{-1} G^2 \Ba_i= \lambda_i G \Ba_i.
+\end{equation*}
+So we only need to calculate the first $k$ eigenvalues and eigenvectors of $G$.
+Then $v_i$ is $\sum_{j=1}^n a_{ij}\phi(X_j)$ divided by its norm.
+
+For a new data $X_{\text{new}}$, its $i$th ($i\leq k$) principal component is
+\begin{equation*}
+    v_i^\top \phi(X_{\text{new}})
+    =\sum_{j=1}^n a_{ij} R(X_j, X_{\text{new}}).
 \end{equation*}
 
-
-
-
+Note that the algorithm of kernel PCA only depends on the kernel $R(\cdot,\cdot)$ and the feature map $\phi(\cdot)$ is not directly need. 
+This makes the algorithm feasible and is called \emph{kernel trick}.
 
 %However, it lacks a mathematically rigorous treatment.
 
 
 \subsection{Kernel Fisher discriminent analysis}
-\cite{914517}
+Suppose $\{(X_{1},Y_1),\ldots, (X_{n},Y_n)\}$ are a sample of training data, where $X_{i}\in \mathbb R^p$ is predictor and $Y_i \in \{1,2\}$ is the corresponding label.
+Fisher's linear discriminant aims at finding a linear projections such that two classes are well separated.
+This is achieved by maximizing the Rayleigh quotient
+\begin{equation*}
+    J(w)= \frac{w^\top S_{B} w}{w^\top S_{W} w}
+\end{equation*}
+of between and within class variance with respect to $w\neq 0$ where
+\begin{equation*}
+    S_{B}= (\bar X_2 -\bar X_1) (\bar X_2 -\bar X_1)^\top
+    ,
+    \quad
+    S_{W}= \sum_{k=1}^2 \sum_{\{i: Y_i=k\}}(X_{i} -\bar X_k) ( X_{i} -\bar X_k)^\top
+    .
+\end{equation*}
+Let $w^*$ be the solution of this optimization problem (which in fact can be solved analytically).
+Suppose a new data $X_{\text{new}}$ is given.
+If $|w^{*\top} (X_{\text{new}}-\bar X_{\text{1}})|>|w^{*\top} (X_{\text{new}}-\bar X_{\text{2}})|$, then we predict that it is from class $1$. Otherwise, we predict that it is from class $2$.
 
 
-\section{Mercer's thoerem}
+
+The idea Kernel Fisher discriminent analysis is to solve the problem of Fisher's linear discriminant in a feature space \cite{914517}.
+Suppose $\phi(\cdot)$ is a feature map from $\mathbb R^p$ to some inner product space $\mathbb H$ and $R(s,t)=(\phi(s),\phi(t))$.
+Suppose the linear span of $\{X_{i}\}$ is exactly $\mathbb H$.
+So for any $w\in \mathbb H$, there exists $a_i$, $i=1,\ldots,n$, such that $w=\sum_{i=1}^{n} a_{i} \phi(X_{i})$.
+We would like to maximize the Rayleigh quetiont
+\begin{equation*}
+    \begin{split}
+    J(\omega)=
+    &
+    \frac{
+        \displaystyle
+        \left(\omega , n_2^{-1} \sum_{\{i:Y_i=2\}}\phi (X_{i}) -n_1^{-1}\sum_{\{i: Y_i = 1\}}\phi (X_{i})\right)^2
+    }
+    {
+        \displaystyle
+        \sum_{k=1}^2 \sum_{\{i:Y_i=k\}} \left(
+            \omega, \phi(X_{i})
+            -n_k^{-1}\sum_{\sum_{\{l:Y_l=k\}}} \phi(X_{kl})
+        \right)^2
+    }
+    .
+    \end{split}
+\end{equation*}
+Let $\mathbf 1_{1}$ be an $n$ dimensional vector whose $i$th element equals $1$ if $Y_{i}=1$ and $0$ otherwise.
+Let $\mathbf 1_{2}$ be an $n$ dimensional vector whose $i$th element equals $1$ if $Y_{i}=2$ and $0$ otherwise.
+Let $G$ be the Gram matrix with elements $G_{ij}=R(X_i,X_j)$.
+Then
+\begin{equation}\label{eq:LDAhehe}
+    \begin{split}
+    J(\omega)=&
+    \frac{
+        \displaystyle
+        \left(
+            \Ba^\top G
+            \left(n_2^{-1}\mathbf 1_2 -n_1^{-1}\mathbf 1_1\right)
+        \right)^2
+    }
+    {
+        \displaystyle
+    \Ba^\top \left(G^2   - \sum_{k=1}^2 n_k^{-1}G \mathbf 1_k \mathbf 1_k^\top G \right) \Ba 
+    }
+    .
+    \end{split}
+\end{equation}
+
+Note that the matrix in the denominator is not full-rank.
+The reson is because that in the representation $w=\sum_{i=1}^{n} a_{i} \phi(X_{i})$, there exists nonzero $\Ba$ corresponds to zero $w$.
+Hence \eqref{eq:LDAhehe} should be maximized for $\Ba$ such that $w\neq 0$.
+Some researchers proposed to regularize \eqref{eq:LDAhehe} by, e.g., adding a positive matrix in the denominator. See \cite{914517} and the references therein.
 
 
-\section{Functional data analysis}
-\cite{book:1323324}
+
+\section{Further theoretical results}
+
+\subsection{Mercer's theorem}
+This subsection is mainly adapted from \cite{book:1323324}, Section 4.6.
+
+Let $(\mathcal T, \mathcal B, \mu)$ be a measure space where $\mathcal T$ is a compact metric space, $\mathcal B$ is the Borel $\sigma$-field and $\mu$ is a finite measure.
+Suppose that $K(\cdot,\cdot)$ is a continuous function on $\mathcal T \times \mathcal T$ such that $\iint_{\mathcal T \times \mathcal T} K^2(s,t) d\mu (s) d\mu(t)$ is finite and define the integral operator $\mathcal K$ by
+\begin{equation*}
+    (\mathcal K f ) (\cdot) := \int_{\mathcal T} K(s, \cdot) f(s) d\mu(s)
+\end{equation*}
+for $f\in \mathcal L^2(\mathcal T, \mathcal B, \mu)$.
+The function $K$ si referred to as the \emph{kernel} of $\mathcal K$.
+By Fubini's theorem, for $f\in \mathcal L^2(\mathcal T, \mathcal B, \mu)$, $(\mathcal K f)(\cdot)$ is measurable and satisfies
+\begin{equation*}
+    \int_{\mathcal T} (\mathcal K f)^2 (t) d\mu(t)
+    \leq
+    \iint_{\mathcal T \times \mathcal T} K^2(s,t) d\mu(s) d\mu(t)
+    \int_{\mathcal T} f^2(s) d\mu(s).
+\end{equation*}
+That is, 
+\begin{equation*}
+\|\mathcal K f\|\leq 
+\left( 
+\iint_{\mathcal T \times \mathcal T} K^2(s,t) d\mu(s) d\mu(t)
+\right)^{1/2}
+\|f\|.
+\end{equation*}
+Hence $\mathcal K$ is a continuous operator on $\mathcal L^2(\mathcal T, \mathcal B, \mu)$.
+\begin{lemma}\label{M:lemma}
+    For each $f\in \mathcal L^2(\mathcal T, \mathcal B, \mu)$, $(\mathcal K f)(\cdot)$ is uniformly continuous.
+\end{lemma}
+\begin{proof}
+    As $K$ is uniformly continuous, for any given $\epsilon >0$, there exists $\delta >0$ such that $|K(s,t_2)- K(s,t_1)|< \epsilon$ for all $s,t_2,t_1\in \mathcal T$ with $d(s_2,s_1)< \delta$.
+    Thus,
+    \begin{equation*}
+        |
+        \int_{\mathcal T} K(s,t_2)  f(s) d\mu(s)-\int_{\mathcal T} K(s,t_1) f(s) d\mu(s)
+        |
+        \leq \epsilon \sqrt{\mu (\mathcal T)} \|f\|
+    \end{equation*}
+\end{proof}
+
+\begin{theorem}
+    $\mathcal K$ is a compact operator.
+\end{theorem}
+Assume that $K$ is symmetric.
+Then it can be seen that $\mathcal K$ is self-adjoint.
+A compact self-adjoint operator admits an eigenvalue-eigenvector decomposition $\mathcal K= \sum_{j=1}^\infty \lambda_j e_j \otimes e_j$.
+Since $e_j(t)=\lambda_j^{-1} \int_{\mathcal T} K(s,t) e_j(s) d\mu(s)$ for almost all $t$, Lemma \ref{M:lemma} implies that $e_j(t)$ can be chosen to be continuous in $t$.
+
+\begin{theorem}
+    An integral operator is nonnegative definite if and only if its kernel is nonnegative definite.
+\end{theorem}
+
+The following result is the celebrated Mercer's theorem.
+\begin{theorem}
+
+Let $(\mathcal T, \mathcal B, \mu)$ be a measure space where $\mathcal T$ is a compact metric space, $\mathcal B$ is the Borel $\sigma$-field and $\mu$ is a finite measure.
+Suppose that the support of $\mu$ is the entire space $\mathcal T$.
+    Let the continuous kernel $K$ be symmetric and nonnegative definite and $\mathcal K$ the corresponding integral operator.
+    If $(\lambda_j, e_j)$ are the eigenvalue and eigenfunction pairs of $\mathcal K$, then $K$ has the representation
+    \begin{equation*}
+        K(s,t)=\sum_{j=1}^\infty \lambda_j e_j(s) e_j(t), 
+    \end{equation*}
+    for all $s,t$, with the sum converging absolutely and uniformly.
+\end{theorem}
+
+Mercer's theorem gives conditions under which a PSD kernel has a series representation.
+This representation is very useful for many purposes.
+In particular, if a PSD kernel has such representation, its RKHS has a corresponding representation, as we shall see.
+
+\subsection{A representation of RKHS}
+The following result is adapted from \cite{vandervaart}, Theorem 4.1.
+
+Suppose $R(\cdot,\cdot):\mathcal T \times \mathcal T \to \mathbb R$ is a PSD kernel and can be written in the form
+\begin{equation}\label{eq:Mex}
+    R(s, t)=\sum_{j=1}^\infty \lambda_j f_j(s) f_j (t) 
+\end{equation}
+for positive numbers $\lambda_1,\lambda_2,\ldots$ and \textbf{arbitrary} functions $f_j: \mathcal T \to \mathbb R$, where the series is assumed to converge pointwise on $\mathcal T \times \mathcal T$.
+The convergence on the diagonal implies that $\sum_{j}\lambda_j f_j^2 (t) <\infty$ for all $t\in \mathcal T$.
+Then by the Cauchy-Schwarz inequality the series $\sum_{j=1}^\infty w_j f_j(t)$
+converges absolutely for every sequence $\{w_j\}$ of numbers with $\sum_{j} w_j^2/\lambda_j <\infty$, for every $t$, and hence defines a function from $\mathcal T$ to $\mathbb R$.
+We assume that the functions $\{f_j\}$ are linearly independent in the sense that $\sum_{j}w_j f_j(t)=0$ for every $t\in \mathcal T$ for some sequence $\{w_j\}$ with $\sum_{j}w_j^2/\lambda_j <\infty$ implying that $w_j =0$ for every $j\in \mathbb N$.
+
+\begin{theorem}\label{RKHSrepre}
+    If the PSD kernel $R(\cdot,\cdot)$  can be represented as in \eqref{eq:Mex} for linearly independent $\{f_j(\cdot)\}$.
+    Then the RKHS of $R(\cdot,\cdot)$ is
+    \begin{equation*}
+        \mathbb H = \left\{   \sum_{j=1}^\infty w_j f_j(\cdot) \,\Big| \sum_{j=1}^\infty w_j^2/\lambda_j <\infty  \right\},
+    \end{equation*}
+    and the inner product is given by
+    \begin{equation}\label{eq:Minner}
+    \left(\sum_{i=1}^\infty v_i f_i, \sum_{j=1}^\infty w_j f_j \right)_{\mathbb H}
+    =\sum_{j=1}^\infty \frac{v_j w_j}{\lambda_j}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+    Note that the functions in $\mathbb H$ are all well defined since 
+    $
+    \sum_{j=1}^\infty w_j f_j(t)
+    $ converges for every $t\in \mathcal T$.
+    Also, by the assumed linear independence of the functions $\{f_i(\cdot)\}$, the coefficients $\{w_j\}$ are identifiable from the corresponding functions $\sum_{j=1}^\infty w_j f_j(\cdot) \in \mathbb H$.
+    Therefore we can define a bijection $\imath: \mathbb H \to \ell_2$ by $\imath: \sum_{j=1}^\infty w_j f_j(\cdot) \mapsto \{w_j/\sqrt{\lambda_j}\}_{j=1}^\infty$.
+    The set $\mathbb H$ becomes a Hilbert space under the inner product induced from $\ell_2$, which is given on the right side of \eqref{eq:Minner}, and which we denote by $(\cdot,\cdot)_{\mathbb H}$.
+
+    To prove that $\mathbb H$ is the RKHS of $R(\cdot,\cdot)$, we need to show that (i) $R(\cdot, t)\in \mathbb H$ for every $t\in \mathcal T$ and (ii) for every $\sum_{j=1}^\infty w_j f_j(\cdot)\in \mathbb H$,
+    \begin{equation*}
+        \left(\sum_{j=1}^\infty w_j f_j(\cdot), R(\cdot,t)\right)_{\mathbb H} =\sum_{j=1}^\infty w_j f_j(t).
+    \end{equation*}
+    For (i), note that the function $R(\cdot, t)$ has a representation $\sum_{j=1}^\infty w_j f_j(\cdot)$ for $w_j=\lambda_j f_j(t)$, and hence is contained in $\mathbb H$.
+    For (ii), we have
+    \begin{equation*}
+        \left(\sum_{j=1}^\infty w_j f_j(\cdot), R(\cdot,t)\right)_{\mathbb H} 
+        =
+        \sum_{j=1}^\infty \frac{ w_j \lambda_j f_j(t)}{\lambda_j}
+        =\sum_{j=1}^\infty w_j f_j(t).
+    \end{equation*}
+    This completes the proof.
+\end{proof}
+
+\subsection{Regularization and RKHS}
+This subsection is adapted from \cite{book:25295}, Section 5.8.1.
+See \cite{book:1273182} for more thorough treatment.
+
+
+Consider a general (nonparametric) supervised learning problem with data $\{(X_i,Y_i)\}_{i=1}^n$, where $X_i \in \mathcal T$.
+We would like to learn some function of $X$.
+For example, if $Y_i = f(X_i)+\epsilon_i$ with $f(\cdot)$ unknown, we would like to estimate $f(\cdot)$.
+
+A general learning strategy is to minimize the objective function
+\begin{equation*}
+    \sum_{i=1}^n L(Y_i, f(X_i)) + \lambda J(f),
+\end{equation*}
+where $L(\cdot,\cdot)$ is some Loss function, e.g., negative log likelihood, $J(\cdot)$ is a penalty function to regularize the solution and $\lambda$ ia a tuning parameter.
+
+Now we consider the following specific strategy.
+Let $R(\cdot,\cdot)$ be a PSD kernel which can be represented as in \eqref{eq:Mex} for linearly independent $\{f_j(\cdot)\}$.
+Then its RKHS $\mathbb H$ is given by Theorem \ref{RKHSrepre}.
+Define the penalty function $J(\cdot)$ as $J(f)=\|f\|_{\mathbb H}^2$.
+Then we would like to solve the optimization problem
+\begin{equation}\label{eq:opt}
+    \min_{f\in \mathbb H} \left[
+        \sum_{i=1}^n L(Y_i, f(X_i)) + \lambda \|f\|_{\mathbb H}^2
+    \right] .
+\end{equation}
+By theorem \ref{RKHSrepre}, the last display can be written as
+\begin{equation*}
+    \min_{\{w_j\}_{j=1}^\infty} \left[
+        \sum_{i=1}^n L(Y_i, \sum_{j=1}^\infty w_j f_j(X_i)) + \lambda 
+\sum_{j=1}^\infty w_j^2/\lambda_j 
+    \right] 
+    \quad \text{such that}
+    \quad 
+    \sum_{j=1}^\infty w_j^2/\lambda_j < \infty.
+\end{equation*}
+This is an optimization over an infinite dimensional space.
+It turns out the solution will always be finite dimensional.
+\begin{theorem}
+    The solution of \eqref{eq:opt} takes the form
+    \begin{equation*}
+        f(x)=\sum_{i=1}^n \alpha_i R(x,x_i). 
+    \end{equation*}
+\end{theorem}
+\begin{proof}
+    Let $\mathbb H_0= \text{span} \{R(\cdot,x_i)\}_{i=1}^n$.
+    Then $\mathbb H_0$ is a finite dimensional subspace of $\mathbb H$, and hence is also a Hilbert space.
+    We need to show that the solution of \eqref{eq:opt} falls in $\mathbb H_0$.
+    Let $f(\cdot)$ be any element of $\mathbb H$.
+    By orthogonal decomposition theorem, we can write $f(\cdot)=g(\cdot)+h(\cdot)$ where $g(\cdot)\in \mathbb H_0$ and $h(\cdot)\in \mathbb H_0^\bot$.
+    Hence we have
+    $(h(\cdot), K(\cdot,x_i))_{\mathbb H}=0$, $i=1,\ldots, n$.
+    Then reproducing property implies that
+    $h(x_i)=0$, $i=1,\ldots, n$.
+    It follows that $f(x_i)=g(x_i)$, $i=1,\ldots, n$.
+    On the other hand, $\|f\|^2_{\mathbb H}=\|g\|^2_{\mathbb H}+\|h\|^2_{\mathbb H}\geq \|g\|^2_{\mathbb H}$.
+    Thus,
+    \begin{equation*}
+        \sum_{i=1}^n L(Y_i, f(X_i)) + \lambda \|f\|_{\mathbb H}^2
+        \geq
+        \sum_{i=1}^n L(Y_i, g(X_i)) + \lambda \|g\|_{\mathbb H}^2.
+    \end{equation*}
+    This completes the proof.
+
+     
+\end{proof}
+
+
+
+
+
+
 
 \section{Gaussian processes}
-\begin{example}[RKHS of gaussian processes]
-\end{example}
+A zero-mean Gaussian stochastic process $W=\{W_t: t\in \mathcal T\}$ is a set of random variables $W_t$ indexed by an arbitrary set $\mathbb T$ and defined on a common probability space $(\Omega, \mathcal U, P)$ such that each finite subset possess a zero-mean multivariate normal distribution.
+The finite-dimensional distributions of such a process are determined by the covariance function $\Sigma(\cdot,\cdot): \mathcal T \times \mathcal T \to \mathbb R$, defined by
+\begin{equation*}
+    \Sigma(s,t)=\myE W_s W_t.
+\end{equation*}
+Clearly, for any Gaussian process, the associated covariance function is a PSD kernel.
+It follows from Kolmogorov's extension theorem that every PSD kernel is the covariance function of some Gaussian process.
+By Moore-Aronszajn theorem, there is a unique RKHS $(\mathbb H,(\cdot, \cdot)_{\mathbb H})$ with $\Sigma(\cdot,\cdot)$ being its reproducing kernel.
+We also call $\mathbb H$ the RKHS of Gaussian process $\{W_t\}$.
+Define a map $U:\mathbb H \to \mathcal L^2 (\Omega, \mathcal U , P)$ by
+\begin{equation*}
+    U \Sigma (\cdot,t)= W_t,
+\end{equation*}
+and extending linearly and continuously.
+This map is an Hilbert space isometry of $\mathbb H$ and a closed subspace of $\mathcal L^2 (\Omega ,\mathcal U, P)$ since
+\begin{equation*}
+    \myE U\Sigma(\cdot,s) U \Sigma (\cdot,t)= \myE W_s W_t =\Sigma(s,t)= (\Sigma(\cdot,s),\Sigma(\cdot,t))_{\mathbb H}.
+\end{equation*}
+
+
+
+    If $\mathcal T$ is finite dimensional, then $\{W_t\}$ is the familiar normal distribution. 
+    Suppose $\mathcal T =\{1,\ldots, p\}$.
+    Then $W\sim N(0,\Sigma)$ for some $n\times n$ PSD matrix $\Sigma$.
+    Then $\mathbb H $ is generated by the columns of $\Sigma$. That is $\mathbb H = \{\Sigma a : a\in \mathbb R^p\}$.
+    The RKHS norm $(\cdot,\cdot)_{\mathbb H}$ is 
+    \begin{equation*}
+        (\Sigma a,\Sigma b)_{\mathbb H}=
+        a^\top \Sigma b.
+    \end{equation*}
+    The map $U$ is $U(\Sigma a)= a^\top W$.
+
+    If $\Sigma $ is positive definite, then $\mathbb H =\mathbb R^p$, $(a,b)_{\mathbb H}= a^\top \Sigma^{-1} b$ and $Ua=a^\top \Sigma^{-1} W $.
+    Let $f=\{f_i\}_{i=1}^p$ be a nonrandom $p$ dimensional vector.
+    Then $W+f\sim N(f,\Sigma)$. The likelihood ratio between $W+f$ and $W$ is
+    \begin{equation*}
+        \frac{dP^{W+f}}{dP^W} (W)=
+        \exp\left(
+            f^\top \Sigma^{-1} W -\frac{1}{2} f^\top \Sigma^{-1} f
+        \right)
+        =
+        \exp\left(
+            Uf -\frac{1}{2} \|f\|_{\mathbb H}^2
+        \right).
+    \end{equation*}
+    This expression is also true not only for finite $\mathbb T$, but also for arbitrary $\mathbb T$. 
+    See Section 3 of \cite{vandervaart}.
+
+
+    Such phenomenon may give a (loose) Bayes explanation of \eqref{eq:opt}.
 
 
 
 
-\CG{Mercer's theorem}.
 
-\section{Infinite dimensional exponential model}
+
+
+
+
+\section{Other topics}
+
+\begin{itemize}
+    \item 
+        Karhunen-Lo\`eve theorem.
+\item
+    Infinite dimensional exponential model \cite{Bharath2017}:
+    \begin{equation*}
+        p_f(x)= \exp [f(x)-A(f)]  q_0 (x),
+    \end{equation*}
+    where $f(\cdot)$ is the unknown parameter in a RKHS.
+
+\item 
+    Functional data analysis: Functional regression, Functional PCA.
+\item
+     Bayesian nonparametrics.
+ \item
+     Consistency of Bayes factor: $H_0$ is a parametric model, $H_1$ is a semi-parametric model.
+
+\end{itemize}
+
 
 
 

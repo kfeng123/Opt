@@ -38,10 +38,22 @@ Sch\"olkopf, B., Smola, A., and Müller, K. (1998).
 \newblock Nonlinear component analysis as a kernel eigenvalue problem.
 \newblock {\em Neural Computation}, 10(5):1299--1319.
 
-\bibitem[Vershynin, 2010]{Roman2010Functional}
-Vershynin, R. (2010).
-\newblock Lectures in functional analysis.
-\newblock Technical report, Department of Mathematics, University of Michigan.
+\bibitem[Sriperumbudur et~al., 2017]{Bharath2017}
+Sriperumbudur, B., Fukumizu, K., Gretton, A., Hyv\"{a}rinen, A., and Kumar, R.
+  (2017).
+\newblock Density estimation in infinite dimensional exponential families.
+\newblock {\em Journal of Machine Learning Research}, 18(57):1--59.
+
+\bibitem[T.~Hastie, 2003]{book:25295}
+T.~Hastie, R.~Tibshirani, J. H.~F. (2003).
+\newblock {\em The Elements of Statistical Learning}.
+\newblock Springer, corrected edition.
+
+\bibitem[van~der Vaart and van Zanten, 2008]{vandervaart}
+van~der Vaart, A.~W. and van Zanten, J.~H. (2008).
+\newblock {\em Reproducing kernel Hilbert spaces of Gaussian priors}, volume
+  Volume 3 of {\em Collections}, pages 200--222.
+\newblock Institute of Mathematical Statistics, Beachwood, Ohio, USA.
 
 \bibitem[Wahba, 1990]{book:1273182}
 Wahba, G. (1990).

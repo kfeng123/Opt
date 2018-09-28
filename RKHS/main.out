@@ -4,7 +4,9 @@
 \BOOKMARK [1][-]{section.4}{Kernel methods in machine learning}{}% 4
 \BOOKMARK [2][-]{subsection.4.1}{Kernel principal component analysis}{section.4}% 5
 \BOOKMARK [2][-]{subsection.4.2}{Kernel Fisher discriminent analysis}{section.4}% 6
-\BOOKMARK [1][-]{section.5}{Mercer's thoerem}{}% 7
-\BOOKMARK [1][-]{section.6}{Functional data analysis}{}% 8
-\BOOKMARK [1][-]{section.7}{Gaussian processes}{}% 9
-\BOOKMARK [1][-]{section.8}{Infinite dimensional exponential model}{}% 10
+\BOOKMARK [1][-]{section.5}{Further theoretical results}{}% 7
+\BOOKMARK [2][-]{subsection.5.1}{Mercer's theorem}{section.5}% 8
+\BOOKMARK [2][-]{subsection.5.2}{A representation of RKHS}{section.5}% 9
+\BOOKMARK [2][-]{subsection.5.3}{Regularization and RKHS}{section.5}% 10
+\BOOKMARK [1][-]{section.6}{Gaussian processes}{}% 11
+\BOOKMARK [1][-]{section.7}{Other topics}{}% 12
