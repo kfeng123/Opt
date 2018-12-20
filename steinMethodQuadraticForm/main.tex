@@ -1,0 +1,323 @@
+\documentclass[11pt]{article}
+ 
+\newcommand\CG[1]{\textcolor{red}{#1}}
+
+\usepackage{lineno,hyperref}
+
+\usepackage[margin=1 in]{geometry}
+\renewcommand{\baselinestretch}{1.25}
+
+
+%\usepackage{refcheck}
+\usepackage{authblk}
+\usepackage{galois} % composition function \comp
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{booktabs}
+\usepackage[page,title]{appendix}
+%\renewcommand\appendixname{haha}
+\usepackage{enumerate}
+\usepackage{changepage}
+\usepackage{datetime}
+\newdate{date}{9}{1}{2017}
+
+%%%%%%%%%%%%%%  Notations %%%%%%%%%%
+\DeclareMathOperator{\mytr}{tr}
+\DeclareMathOperator{\mydiag}{diag}
+\DeclareMathOperator{\myrank}{Rank}
+\DeclareMathOperator{\myP}{P}
+\DeclareMathOperator{\myE}{E}
+\DeclareMathOperator{\myVar}{Var}
+\DeclareMathOperator{\myCov}{Cov}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+
+\newcommand{\Ba}{\mathbf{a}}    \newcommand{\Bb}{\mathbf{b}}    \newcommand{\Bc}{\mathbf{c}}    \newcommand{\Bd}{\mathbf{d}}    \newcommand{\Be}{\mathbf{e}}    \newcommand{\Bf}{\mathbf{f}}    \newcommand{\Bg}{\mathbf{g}}    \newcommand{\Bh}{\mathbf{h}}    \newcommand{\Bi}{\mathbf{i}}    \newcommand{\Bj}{\mathbf{j}}    \newcommand{\Bk}{\mathbf{k}}    \newcommand{\Bl}{\mathbf{l}}
+\newcommand{\Bm}{\mathbf{m}}    \newcommand{\Bn}{\mathbf{n}}    \newcommand{\Bo}{\mathbf{o}}    \newcommand{\Bp}{\mathbf{p}}    \newcommand{\Bq}{\mathbf{q}}    \newcommand{\Br}{\mathbf{r}}    \newcommand{\Bs}{\mathbf{s}}    \newcommand{\Bt}{\mathbf{t}}    \newcommand{\Bu}{\mathbf{u}}    \newcommand{\Bv}{\mathbf{v}}    \newcommand{\Bw}{\mathbf{w}}    \newcommand{\Bx}{\mathbf{x}}
+\newcommand{\By}{\mathbf{y}}    \newcommand{\Bz}{\mathbf{z}}    
+\newcommand{\BA}{\mathbf{A}}    \newcommand{\BB}{\mathbf{B}}    \newcommand{\BC}{\mathbf{C}}    \newcommand{\BD}{\mathbf{D}}    \newcommand{\BE}{\mathbf{E}}    \newcommand{\BF}{\mathbf{F}}    \newcommand{\BG}{\mathbf{G}}    \newcommand{\BH}{\mathbf{H}}    \newcommand{\BI}{\mathbf{I}}    \newcommand{\BJ}{\mathbf{J}}    \newcommand{\BK}{\mathbf{K}}    \newcommand{\BL}{\mathbf{L}}
+\newcommand{\BM}{\mathbf{M}}    \newcommand{\BN}{\mathbf{N}}    \newcommand{\BO}{\mathbf{O}}    \newcommand{\BP}{\mathbf{P}}    \newcommand{\BQ}{\mathbf{Q}}    \newcommand{\BR}{\mathbf{R}}    \newcommand{\BS}{\mathbf{S}}    \newcommand{\BT}{\mathbf{T}}    \newcommand{\BU}{\mathbf{U}}    \newcommand{\BV}{\mathbf{V}}    \newcommand{\BW}{\mathbf{W}}    \newcommand{\BX}{\mathbf{X}}
+\newcommand{\BY}{\mathbf{Y}}    \newcommand{\BZ}{\mathbf{Z}}    
+
+\newcommand{\bfsym}[1]{\ensuremath{\boldsymbol{#1}}}
+
+ \def\balpha{\bfsym \alpha}
+ \def\bbeta{\bfsym \beta}
+ \def\bgamma{\bfsym \gamma}             \def\bGamma{\bfsym \Gamma}
+ \def\bdelta{\bfsym {\delta}}           \def\bDelta {\bfsym {\Delta}}
+ \def\bfeta{\bfsym {\eta}}              \def\bfEta {\bfsym {\Eta}}
+ \def\bmu{\bfsym {\mu}}                 \def\bMu {\bfsym {\Mu}}
+ \def\bnu{\bfsym {\nu}}
+ \def\btheta{\bfsym {\theta}}           \def\bTheta {\bfsym {\Theta}}
+ \def\beps{\bfsym \varepsilon}          \def\bepsilon{\bfsym \varepsilon}
+ \def\bsigma{\bfsym \sigma}             \def\bSigma{\bfsym \Sigma}
+ \def\blambda {\bfsym {\lambda}}        \def\bLambda {\bfsym {\Lambda}}
+ \def\bomega {\bfsym {\omega}}          \def\bOmega {\bfsym {\Omega}}
+ \def\brho   {\bfsym {\rho}}
+ \def\btau{\bfsym {\tau}}
+ \def\bxi{\bfsym {\xi}}
+ \def\bzeta{\bfsym {\zeta}}
+% May add more in future.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\theoremstyle{plain}
+\newtheorem{theorem}{\quad\quad Theorem}
+\newtheorem{proposition}{\quad\quad Proposition}
+\newtheorem{corollary}{\quad\quad Corollary}
+\newtheorem{lemma}{\quad\quad Lemma}
+\newtheorem{example}{Example}
+\newtheorem{assumption}{\quad\quad Assumption}
+\newtheorem{condition}{\quad\quad Condition}
+
+\theoremstyle{definition}
+\newtheorem{definition}{\quad\quad Definition}
+\newtheorem{remark}{\quad\quad Remark}
+\theoremstyle{remark}
+
+
+
+\title{
+    Stein method for quadratic forms
+}
+
+
+
+\author[1]{Rui Wang}
+%\author[2]{xx}
+%\author[1,3]{Xingzhong Xu\thanks{Corresponding author\\Email address: xuxz@bit.edu.cn}}
+%\affil[1]{
+%School of Mathematics and Statistics, Beijing Institute of Technology, Beijing 
+    %100081,China
+%}
+%\affil[2]{
+    %xx
+%}
+%\affil[3]{
+%Beijing Key Laboratory on MCAACI, Beijing Institute of Technology, Beijing 100081,China
+%}
+
+
+
+\begin{document}
+\maketitle
+    \section{haha2}
+\begin{theorem}
+    Let $\zeta_1,\ldots,\zeta_d$ be iid random variables with mean $0$ and variance $1$, and assume $\mu_k:= \myE (\zeta_1^k)$ is finite for $k\leq 8$.
+    Let $\bzeta=(\zeta_1,\ldots,\zeta_d)^\top\in \mathbb R^d$.
+    For $k=1,\ldots, K$, let $\BQ_k=(q_{i_j}^{(k)})$ be a $d\times d$ symmetric matrix and let $\check\BQ_k=\mydiag(q_{11}^{(k)},\ldots, q_{dd}^{(k)})$, $\hat\BQ_k=\BI_d-\check\BQ_k$.
+    Define $\hat{w}_k= \bzeta^\top \hat\BQ_k \bzeta$, $\check w_k = \bzeta^\top \check \BQ_k \bzeta -\mytr(\BQ_k)$, and
+\begin{equation*}
+W=
+    \begin{pmatrix}
+   \hat w_1\\
+   \check w_1\\
+   \vdots\\
+   \hat w_K\\
+   \check w_K
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        \bzeta^\top \hat \BQ_1 \bzeta
+        \\
+        \bzeta^\top \check \BQ_1 \bzeta -\mytr (\BQ_1)
+        \\
+        \vdots\\
+        \bzeta^\top \hat \BQ_1 \bzeta
+        \\
+        \bzeta^\top \check \BQ_1 \bzeta -\mytr (\BQ_1)
+        \\
+    \end{pmatrix}
+    \in \mathbb R^{2K}.
+\end{equation*}
+Finally, let $Z\sim \mathcal N_{2K} (0,\BI_{2K})$ and $\BV = \myCov (W)$. 
+There is an absolute constant $0<C<\infty$ such that
+\begin{equation*}
+    haha
+\end{equation*}
+\end{theorem}
+\begin{proof}
+    Let $f:\mathbb R^{2K} \to \mathbb R$ be a four-times differentiable function.
+    From xxx, there is a $4-times$ differentiable function $g : \mathbb R^{2K}\to \mathbb R$ satisfying the Stein identity
+\begin{equation*}
+    \myE [f(W)]    - \myE [f(\BV^{1/2} W)]=
+    \myE [\nabla^\top  \BV \nabla g(W) - W^\top \nabla g(W)]
+\end{equation*}
+and 
+\begin{equation*}
+    \left| \frac{\partial^k g(\Bx)}{\prod_{j=1}^k \partial x_{i_j}} \right| 
+    \leq
+    \frac{1}{k}
+    \left| \frac{\partial^k f(\Bx)}{\prod_{j=1}^k \partial x_{i_j}} \right|
+    \quad
+    \text{for all $\Bx=(x_1,\ldots, x_{2K})^\top \in \mathbb R^{2K}$,
+    $k=1,2,3$, and $i_j \in \{1,\ldots, 2K\}$.}
+\end{equation*}
+To prove the theorem, we bound
+\begin{equation*}
+    S=\myE [\nabla^\top \BV \nabla g(W) -W^\top \nabla g(W)].
+\end{equation*}
+
+Next, we use exchangeability.
+Let $\bzeta' = (\zeta_1',\ldots, \zeta_d')^\top$ be an independent copy of $\zeta$, and let $\underline i \in \{1,\ldots, d\}$ be an independent and uniformly distributed random index.
+Define the vector $W' \in \mathbb R^{2K}$ exactly as we defined $W$, except that $\bzeta_{\underline i}$ is replaced with $\bzeta_{\underline i}'$ throughout.
+More precisely, let $e_i \in \mathbb R^d$ be the $i$th standard basis vector in $\mathcal R^d$ and define
+\begin{equation*}
+\begin{split}
+    \hat w_k'=& (\bzeta + (\zeta_{\underline i}' - \zeta_{\underline i}) e_{\underline i})^\top 
+    \hat \BQ_k
+    (\bzeta + (\zeta_{\underline i}' - \zeta_{\underline i}) e_{\underline i})
+\\
+=& \hat w_k + 2 (\zeta_{\underline i}' - \zeta_{\underline i}) e_{\underline i}^\top \hat \BQ_k \bzeta,
+\end{split}
+\end{equation*}
+\begin{equation*}
+\begin{split}
+    \check w_k'=& (\bzeta + (\zeta_{\underline i}' - \zeta_{\underline i}) e_{\underline i})^\top 
+    \check \BQ_k
+    (\bzeta + (\zeta_{\underline i}' - \zeta_{\underline i}) e_{\underline i})
+    -\mytr(\BQ_k)
+\\
+=& \check w_k +  e_{\underline i}^\top \check \BQ_k e_{\underline i} ((\zeta_{\underline i}')^2 - \zeta_{\underline i}^2) ,
+\end{split}
+\end{equation*}
+for $k=1,\ldots, K$.
+Then $W'= (\hat w_1',\check w_1', \ldots, \hat w_K', \check w_K')^\top \in \mathbb R^{2K}$.
+Its straightforward to verify that
+\begin{equation*}
+    \myE (\hat w_k' - \hat w_k|\bzeta)=-\frac{2}{d} \hat w_k,
+    \quad
+    \myE (\check w_k' - \check w_k|\bzeta)=-\frac{1}{d} \check w_k.
+\end{equation*}
+Then
+\begin{equation*}
+    \myE ( W' - W |\bzeta) = - \Lambda_K W,
+\end{equation*}
+where
+\begin{equation*}
+    \Lambda_1=
+    \begin{pmatrix}
+       \frac 2 d & 0\\
+       0 & \frac 1 d
+    \end{pmatrix}
+    ,
+    \quad
+    \Lambda_K =
+    \begin{pmatrix}
+        \Lambda_1 & 0 & \cdots & 0\\
+         0 &\Lambda_1  & \cdots & 0\\
+         \vdots & \vdots && \vdots\\
+         0 & 0 & \cdots & \Lambda_1
+    \end{pmatrix}
+    \in \mathbb R^{2K\times 2K}.
+\end{equation*}
+
+By exchangeability, we have
+\begin{equation*}
+    \begin{split}
+        0=&\frac 1 2 \myE [(W'-W)^\top \Lambda_K^{-\top} (\nabla g(W') +\nabla g(W))]
+        \\
+        =& \myE [(W'-W)^\top \Lambda_K^{-\top} \nabla g(W)]
+        +\frac{1}{2} \myE [(W'-W)^\top \Lambda_K^{-\top} (\nabla g(W') -\nabla g(W))]
+        \\
+        =&
+        - \myE [W^\top  \nabla g(W)]
+        +\frac{1}{2} \myE [(W'-W)^\top \Lambda_K^{-\top} (\nabla g(W') -\nabla g(W))].
+    \end{split}
+\end{equation*}
+That is,
+\begin{equation*}
+         \myE [W^\top  \nabla g(W)]
+         =
+        \frac{1}{2} \myE [(W'-W)^\top \Lambda_K^{-\top} (\nabla g(W') -\nabla g(W))].
+\end{equation*}
+Apply Taylor's theorem,
+\begin{equation}
+    \begin{split}
+         &W^\top  \nabla g(W)
+         \\
+         =&
+         \frac 1 2 \sum_{i,j=1}^{2K}
+         \Lambda_{K,ii}^{-1} D^{ij} g(W) (w_i'-w_i) (w_j'-w_j)
+         +
+         \frac 1 4 \sum_{i,j,k=1}^{2K}
+         \Lambda_{K,ii}^{-1} D^{ijk} g(W) (w_i'-w_i) (w_j'-w_j)(w_k'-w_k)
+         \\
+         &+
+         \frac{1}{12} \sum_{i,j,k,l=1}^{2K}
+         \Lambda_{K,ii}^{-1} D^{ijkl} g(t^*(W'-W)+W) (w_i'-w_i) (w_j'-w_j)(w_k'-w_k) (w_l'-w_l)
+         \\
+         =&
+         \frac 1 2 
+         \mytr
+         [
+         (W'-W)
+         (W'-W)^\top \Lambda_K^{-\top} \nabla^2 g(W)
+     ]
+         +
+         \frac 1 4 \sum_{i,j,k=1}^{2K}
+         \Lambda_{K,ii}^{-1} D^{ijk} g(W) (w_i'-w_i) (w_j'-w_j)(w_k'-w_k)
+         \\
+         &+
+         \frac{1}{12} \sum_{i,j,k,l=1}^{2K}
+         \Lambda_{K,ii}^{-1} D^{ijkl} g(t^*(W'-W)+W) (w_i'-w_i) (w_j'-w_j)(w_k'-w_k) (w_l'-w_l),
+    \end{split}
+\end{equation}
+where $t^*\in [0,1]$.
+Also by exchangeability,
+\begin{equation*}
+    \myE[(W'-W) (W'-W)^\top] 
+    =
+    2\myE[ W(W-W')^\top] 
+    =
+    2\myE[ W W^\top \Lambda_K^\top] 
+    =2\BV \Lambda_K^\top.
+\end{equation*}
+It follows that
+\begin{equation*}
+    \myE [\nabla^\top \BV \nabla g(W)] 
+    =
+    \myE \mytr [\BV \nabla^2 g(W)] 
+    =
+    \frac 1 2 \myE \mytr [ \myE [(W'-W)(W'-W)^\top] \Lambda_K^{-\top} \nabla^2 g(W)] 
+\end{equation*}
+Thus,
+\begin{equation*}
+    \begin{split}
+    S=&\myE [\nabla^\top \BV \nabla g(W) -W^\top \nabla g(W)]\\
+    =
+&
+    \frac 1 2 \myE \mytr [ \myE [(W'-W)(W'-W)^\top] \Lambda_K^{-\top} \nabla^2 g(W)] 
+         -\frac 1 2 
+\myE
+         \mytr
+         [
+         (W'-W)
+         (W'-W)^\top \Lambda_K^{-\top} \nabla^2 g(W)
+     ]
+     \\
+         &-
+         \frac 1 4 \myE
+         \sum_{i,j,k=1}^{2K}
+         \Lambda_{K,ii}^{-1} D^{ijk} g(W) (w_i'-w_i) (w_j'-w_j)(w_k'-w_k)
+         \\
+         &-
+         \frac{1}{12} \myE
+         \sum_{i,j,k,l=1}^{2K}
+         \Lambda_{K,ii}^{-1} D^{ijkl} g(t^*(W'-W)+W) (w_i'-w_i) (w_j'-w_j)(w_k'-w_k) (w_l'-w_l).
+    \end{split}
+\end{equation*}
+
+
+\end{proof}
+
+
+\end{document}

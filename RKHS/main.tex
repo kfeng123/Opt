@@ -900,6 +900,7 @@ It turns out the solution will always be finite dimensional.
 
 
 
+
 \section{Gaussian processes}
 A zero-mean Gaussian stochastic process $W=\{W_t: t\in \mathcal T\}$ is a set of random variables $W_t$ indexed by an arbitrary set $\mathbb T$ and defined on a common probability space $(\Omega, \mathcal U, P)$ such that each finite subset possess a zero-mean multivariate normal distribution.
 The finite-dimensional distributions of such a process are determined by the covariance function $\Sigma(\cdot,\cdot): \mathcal T \times \mathcal T \to \mathbb R$, defined by
@@ -978,6 +979,24 @@ This map is an Hilbert space isometry of $\mathbb H$ and a closed subspace of $\
      Bayesian nonparametrics.
  \item
      Consistency of Bayes factor: $H_0$ is a parametric model, $H_1$ is a semi-parametric model.
+
+
+\subsection{Results from Wahba's book}
+Sobolev space.
+
+Product of RKHS.
+
+One of the useful properties of RKHS is that from them one can obtain the representer of any bounded linear functional.
+Let $\eta_i$ be the representer for bounded linear functional $L  $, that is,
+\begin{equation*}
+    (\eta, f)= L f,\quad \text{ for all $f\in \mathbb H_R$}.
+\end{equation*}
+Then 
+\begin{equation*}
+    \eta(s)=(\eta, R(s,\cdot))=L R(s,\cdot) .
+\end{equation*}
+
+
 
 \end{itemize}
 

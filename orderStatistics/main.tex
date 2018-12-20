@@ -1,0 +1,223 @@
+\documentclass[11pt]{article}
+ 
+\newcommand\CG[1]{\textcolor{red}{#1}}
+
+\usepackage{lineno,hyperref}
+
+\usepackage[margin=1 in]{geometry}
+\renewcommand{\baselinestretch}{1.25}
+
+
+%\usepackage{refcheck}
+\usepackage{authblk}
+\usepackage{galois} % composition function \comp
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{booktabs}
+\usepackage[page,title]{appendix}
+%\renewcommand\appendixname{haha}
+\usepackage{enumerate}
+\usepackage{changepage}
+\usepackage{datetime}
+\newdate{date}{9}{1}{2017}
+
+%%%%%%%%%%%%%%  Notations %%%%%%%%%%
+\DeclareMathOperator{\mytr}{tr}
+\DeclareMathOperator{\mydiag}{diag}
+\DeclareMathOperator{\myrank}{Rank}
+\DeclareMathOperator{\myP}{P}
+\DeclareMathOperator{\myE}{E}
+\DeclareMathOperator{\myVar}{Var}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+
+\newcommand{\Ba}{\mathbf{a}}    \newcommand{\Bb}{\mathbf{b}}    \newcommand{\Bc}{\mathbf{c}}    \newcommand{\Bd}{\mathbf{d}}    \newcommand{\Be}{\mathbf{e}}    \newcommand{\Bf}{\mathbf{f}}    \newcommand{\Bg}{\mathbf{g}}    \newcommand{\Bh}{\mathbf{h}}    \newcommand{\Bi}{\mathbf{i}}    \newcommand{\Bj}{\mathbf{j}}    \newcommand{\Bk}{\mathbf{k}}    \newcommand{\Bl}{\mathbf{l}}
+\newcommand{\Bm}{\mathbf{m}}    \newcommand{\Bn}{\mathbf{n}}    \newcommand{\Bo}{\mathbf{o}}    \newcommand{\Bp}{\mathbf{p}}    \newcommand{\Bq}{\mathbf{q}}    \newcommand{\Br}{\mathbf{r}}    \newcommand{\Bs}{\mathbf{s}}    \newcommand{\Bt}{\mathbf{t}}    \newcommand{\Bu}{\mathbf{u}}    \newcommand{\Bv}{\mathbf{v}}    \newcommand{\Bw}{\mathbf{w}}    \newcommand{\Bx}{\mathbf{x}}
+\newcommand{\By}{\mathbf{y}}    \newcommand{\Bz}{\mathbf{z}}    
+\newcommand{\BA}{\mathbf{A}}    \newcommand{\BB}{\mathbf{B}}    \newcommand{\BC}{\mathbf{C}}    \newcommand{\BD}{\mathbf{D}}    \newcommand{\BE}{\mathbf{E}}    \newcommand{\BF}{\mathbf{F}}    \newcommand{\BG}{\mathbf{G}}    \newcommand{\BH}{\mathbf{H}}    \newcommand{\BI}{\mathbf{I}}    \newcommand{\BJ}{\mathbf{J}}    \newcommand{\BK}{\mathbf{K}}    \newcommand{\BL}{\mathbf{L}}
+\newcommand{\BM}{\mathbf{M}}    \newcommand{\BN}{\mathbf{N}}    \newcommand{\BO}{\mathbf{O}}    \newcommand{\BP}{\mathbf{P}}    \newcommand{\BQ}{\mathbf{Q}}    \newcommand{\BR}{\mathbf{R}}    \newcommand{\BS}{\mathbf{S}}    \newcommand{\BT}{\mathbf{T}}    \newcommand{\BU}{\mathbf{U}}    \newcommand{\BV}{\mathbf{V}}    \newcommand{\BW}{\mathbf{W}}    \newcommand{\BX}{\mathbf{X}}
+\newcommand{\BY}{\mathbf{Y}}    \newcommand{\BZ}{\mathbf{Z}}    
+
+\newcommand{\bfsym}[1]{\ensuremath{\boldsymbol{#1}}}
+
+ \def\balpha{\bfsym \alpha}
+ \def\bbeta{\bfsym \beta}
+ \def\bgamma{\bfsym \gamma}             \def\bGamma{\bfsym \Gamma}
+ \def\bdelta{\bfsym {\delta}}           \def\bDelta {\bfsym {\Delta}}
+ \def\bfeta{\bfsym {\eta}}              \def\bfEta {\bfsym {\Eta}}
+ \def\bmu{\bfsym {\mu}}                 \def\bMu {\bfsym {\Mu}}
+ \def\bnu{\bfsym {\nu}}
+ \def\btheta{\bfsym {\theta}}           \def\bTheta {\bfsym {\Theta}}
+ \def\beps{\bfsym \varepsilon}          \def\bepsilon{\bfsym \varepsilon}
+ \def\bsigma{\bfsym \sigma}             \def\bSigma{\bfsym \Sigma}
+ \def\blambda {\bfsym {\lambda}}        \def\bLambda {\bfsym {\Lambda}}
+ \def\bomega {\bfsym {\omega}}          \def\bOmega {\bfsym {\Omega}}
+ \def\brho   {\bfsym {\rho}}
+ \def\btau{\bfsym {\tau}}
+ \def\bxi{\bfsym {\xi}}
+ \def\bzeta{\bfsym {\zeta}}
+% May add more in future.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\theoremstyle{plain}
+\newtheorem{theorem}{\quad\quad Theorem}
+\newtheorem{proposition}{\quad\quad Proposition}
+\newtheorem{corollary}{\quad\quad Corollary}
+\newtheorem{lemma}{\quad\quad Lemma}
+\newtheorem{example}{Example}
+\newtheorem{assumption}{\quad\quad Assumption}
+\newtheorem{condition}{\quad\quad Condition}
+
+\theoremstyle{definition}
+\newtheorem{definition}{\quad\quad Definition}
+\newtheorem{remark}{\quad\quad Remark}
+\theoremstyle{remark}
+
+
+
+\title{Notes on order statistics}
+
+
+
+\author[1]{Rui Wang}
+
+\begin{document}
+\maketitle
+\section{Introduction}
+There are several books on order statistics.
+This notes only consists very basic facts.
+
+
+
+\section{Basic properties}
+
+Let $\BX=(X_1,\ldots,X_n)$ be a sample where $X_i\in\mathbb R$.
+The order statistics is defined as
+\begin{equation*}
+    T(\BX)= (X_{(1)}, \ldots, X_{(n)}), 
+\end{equation*}
+where $X_{(1)}\leq \cdots \leq X_{(n)}$ are the ordered $X_i$'s.
+It can be seen that $T(\BX)$ is a measurable map from $(\mathbb R,\mathcal B (\mathbb R))$ to $\mathbb T, \mathcal B (\mathbb T)$, where $\mathbb T$ is the set of all ordered $n$-tuples.
+
+If $X_1,\ldots, X_n$ are iid random variables with \textbf{continuous distribution function}, it can be proved that with probability $1$, $X_{(1)}< \cdots < X_{(n)}$.
+
+
+The following statistics are equivalent:
+\begin{itemize}
+    \item 
+ order statistics
+ \item
+     Empirical measure
+\item
+ \(U(x)=(\sum x_i, \sum x_i^2,\ldots,\sum x_i^n)\)
+\item
+ \(V(x)=(\sum_i x_i,\sum_{i<j} x_i x_j, \sum_{i<j<k} x_i x_j x_k, \ldots, x_1 x_2 \cdots x_n)\)
+\end{itemize}
+See TSH Example 2.4.1.
+
+A useful property is:
+
+\begin{proposition}
+A statistic \(\phi\) is a function of order statistic iff it is a symmetric function (coordinates can be exchanged).
+\end{proposition}
+
+\section{completeness}
+
+\begin{definition}
+ A statistic \(T\) is said to be **complete** if \(E_\theta [f(T)]=0\) for all \(\theta\in \Omega\) implies \(f(t)=0(a.e.\mathcal{P})\).
+\end{definition}
+
+\begin{itemize}
+    \item 
+        if \(\mathcal{P}_0\), \(\mathcal{P}_1\) are two families of distributions such that \(\mathcal{P}_0\subset \mathcal{P}_1\) and \textbf{every null set of \(\mathcal{P}_0\) is also a null set of \(\mathcal{P}_1\)}, then a sufficient statistic \(T\) that is complete for \(\mathcal{P}_0\) is also complete for \(\mathcal{P}_1\).
+    \item
+ Let \(\mathcal{P}_0\) be the class of binomial distributions \(b(p,n)\), \(0<p<1\), n=fixed, and let \(\mathcal{P}_1=\mathcal{P}_0\cup \{Q\}\) where \(Q\) is the Poisson distribution with expectation 1. Then \(\mathcal{P}_0\) is complete but \(\mathcal{P}_1\) is not.
+\end{itemize}
+See TPE Problem 6.32.
+
+
+\subsection{completeness of order statistic}
+
+\begin{theorem}[TSH Example 4.3.4]
+    Let \(X_1,\ldots,X_N\) be i.i.d. with cdf \(F\in\mathcal{F}\), where \(\mathcal{F}\) is the family of all \textbf{absolutely continuous distributions}.
+    Then the set of order statistics \(T(X)=(X_{(1)},\ldots,X_{(N)})\) was complete.
+\end{theorem}
+
+\begin{proof}
+    
+ Denote \(T(X)=(X_{(1)},\ldots,X_{(N)})\) and \(T'(X)=(\sum X_i,\sum X_i^2,\ldots,\sum X_i^N)\). They are equivalent. So it's enough to proof the completeness of \(T'(X)\). Consider the family of densities \(\mathcal{F}_0\subset \mathcal{F}\) as
+
+\[f(X)=C(\theta_1,\ldots,\theta_N) \exp (-x^{2N}+\theta_1 x +\cdots +\theta_N x^N)\]
+
+It's well defined for all \(\theta\)'s. The density of a sample of size \(N\) is
+
+\[C^N \exp (-\sum x_i^{2N}+\theta_1 \sum x_i +\cdots +\theta_N \sum x_i^N)\]
+
+which constitutes an exponential family. So \(T'(X)\) is complete for \(\mathcal{F}_0\). Becuase the null set of \(\mathcal{F}_0\) is the null set of Lebesgue measure, hence the null set of \(\mathcal{F}\).
+\end{proof}
+
+\begin{theorem}[TSH Problem 4.13]
+ The order statistic is complete for the family of all continuous distributions.
+\end{theorem}
+
+\begin{proof}
+Suppose \(\phi\) is an **integrable symmetric function**, that is
+
+\[\int \phi (x_1,\ldots, x_n) dF(x_1)\ldots dF(x_n)=0\].
+Replace \(F\) by \(\alpha_1 F_1+\cdots+\alpha_n F_n\), where \(0\leq \alpha_i\leq 1\), \(\sum \alpha_i =1\).
+In fact, it's not necessary to impose \(\sum \alpha_i =1\) (just multiply a constant to the equation).
+It can be deduced that \[\int \phi (x_1,\ldots, x_n) dF_1(x_1)\ldots dF_n(x_n)=0\] for all continuous \(F_i\).
+This last equation remains valid if the \(F_i\) are replaced by \(I_{a_i}(x) F(x)+(1-I_{a_i}(x)) F(a_i)\), where \(I_{a_i}(x)=1\) if \(\leq a_i\) and =1 otherwise.
+This implies that \(\phi=0\) except on a set which has measure 0 under \(F\times F \ldots \times F\) for all continuous \(F\).
+\end{proof}
+
+
+\subsection{\(c_j\)-order statistics}
+\begin{definition}
+The \(c_j\)-order statistics of a sample of vectors are the vectors arranged in increasing order according to their \(j\)th components. (See TPE Problem 3.4.17)
+\end{definition}
+
+The following property still holds:
+
+A statistic \(\phi\) is a function of \(c_j\)-order statistics iff it is a symmetric function (exchangable for observations).
+
+
+\begin{theorem}
+The \(c_j\)-order statistic is complete for the family of all continuous distributions.
+\end{theorem}
+
+The proof is essetially the same as previous theorem once replacing \(I_a(x)\) by \(I_{a_1,\ldots,a_p}(x_1,\ldots,x_p)\).
+
+\begin{theorem}[adapted from TSH Example 4.3.4]
+    suppose \(X_1,\ldots, X_n\) are i.i.d., \(T\) is order statistic. Then for a statistic \(\delta\), we have 
+\[E[\delta| T]=\frac{1}{n!}\sum \delta(X_{i_1},\ldots,X_{i_n}) \],
+that is, the symmetrization of \(\delta\).
+\end{theorem}
+
+\begin{proof}
+ Use the definition of conditional expectation.
+\end{proof}
+
+
+\begin{appendices}
+    \section{haha1}
+    \section{haha2}
+\end{appendices}
+\section*{Acknowledgements}
+This work was supported by the National Natural Science Foundation of China under Grant Nos.\ xxxxx, xxxx.
+
+
+
+\bibliographystyle{apalike}
+\bibliography{mybibfile}
+
+\end{document}
