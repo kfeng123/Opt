@@ -1,0 +1,20 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Bayes factor}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{How it works}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Difficulties}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Objective Bayesian model selection}{section.2}% 5
+\BOOKMARK [3][-]{subsubsection.2.3.1}{Conventional prior approach}{subsection.2.3}% 6
+\BOOKMARK [3][-]{subsubsection.2.3.2}{Intrinsic prior}{subsection.2.3}% 7
+\BOOKMARK [2][-]{subsection.2.4}{Linear model}{section.2}% 8
+\BOOKMARK [1][-]{section.3}{Mixture of g prior}{}% 9
+\BOOKMARK [1][-]{section.4}{Fractional Bayes factor}{}% 10
+\BOOKMARK [1][-]{section.5}{Expected-posterior priors}{}% 11
+\BOOKMARK [1][-]{section.6}{Normal-inverse-gamma \(NIG\) prior}{}% 12
+\BOOKMARK [1][-]{section.7}{Nonnested linear models}{}% 13
+\BOOKMARK [1][-]{section.8}{High-dimensional setting}{}% 14
+\BOOKMARK [2][-]{subsection.8.1}{Nonlocal priors}{section.8}% 15
+\BOOKMARK [2][-]{subsection.8.2}{Intrinsic priors}{section.8}% 16
+\BOOKMARK [2][-]{subsection.8.3}{p>n case}{section.8}% 17
+\BOOKMARK [1][-]{section.9}{A fractional intrinsic Bayes factor for linear model in high-dimensional setting}{}% 18
+\BOOKMARK [2][-]{subsection.9.1}{Fractional intrinsic priors}{section.9}% 19
+\BOOKMARK [1][-]{section.10}{A Bayesian-motivated:}{}% 20

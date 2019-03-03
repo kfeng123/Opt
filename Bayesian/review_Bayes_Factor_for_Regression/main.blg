@@ -1,0 +1,57 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: main.aux
+The style file: apalike.bst
+Database file #1: mybibfile.bib
+Repeated entry---line 9801 of file mybibfile.bib
+ : @article{Wang2016
+ :                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 12095 of file mybibfile.bib
+ : @article{Wang2017
+ :                  ,
+I'm skipping whatever remains of this entry
+Warning--can't use both author and editor fields in berger2001Obj
+Warning--empty journal in Fractional1995
+You've used 39 entries,
+            1935 wiz_defined-function locations,
+            762 strings with 10593 characters,
+and the built_in function-call counts, 16388 in all, are:
+= -- 1630
+> -- 599
+< -- 32
++ -- 200
+- -- 192
+* -- 1473
+:= -- 2780
+add.period$ -- 119
+call.type$ -- 39
+change.case$ -- 286
+chr.to.int$ -- 39
+cite$ -- 41
+duplicate$ -- 584
+empty$ -- 1203
+format.name$ -- 271
+if$ -- 3243
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 41
+newline$ -- 198
+num.names$ -- 121
+pop$ -- 206
+preamble$ -- 1
+purify$ -- 287
+quote$ -- 0
+skip$ -- 449
+stack$ -- 0
+substring$ -- 1390
+swap$ -- 71
+text.length$ -- 6
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 230
+warning$ -- 2
+while$ -- 142
+width$ -- 0
+write$ -- 512
+(There were 2 error messages)
