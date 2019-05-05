@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.15)  6 MAR 2019 20:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.15)  5 MAY 2019 19:38
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -357,17 +357,37 @@ Package: appendix 2009/09/02 v1.2b extra appendix facilities
 Package: enumerate 2015/07/23 v3.00 enumerate extensions (DPC)
 \@enLab=\toks28
 )
+(/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.sty
+Package: subfigure 2002/03/15 v2.1.5 subfigure package
+\subfigtopskip=\skip66
+\subfigcapskip=\skip67
+\subfigcaptopadj=\dimen144
+\subfigbottomskip=\skip68
+\subfigcapmargin=\dimen145
+\subfiglabelskip=\skip69
+\c@subfigure=\count131
+\c@lofdepth=\count132
+\c@subtable=\count133
+\c@lotdepth=\count134
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.cfg)
+\subfig@top=\skip70
+\subfig@bottom=\skip71
+)
 (/usr/share/texlive/texmf-dist/tex/latex/changepage/changepage.sty
 Package: changepage 2009/10/20 v1.0c check page and change page layout
-\c@cp@cntr=\count131
-\cp@tempcnt=\count132
+\c@cp@cntr=\count135
+\cp@tempcnt=\count136
 )
 (/usr/share/texlive/texmf-dist/tex/latex/datetime/datetime.sty
 Package: datetime 2015/03/20 v2.60 Date Time Package
 
 (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2015/08/02 v2.2a e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count133
+\etb@tempcnta=\count137
 )
 (/usr/share/texlive/texmf-dist/tex/latex/fmtcount/fmtcount.sty
 Package: fmtcount 2015/05/05 v3.01
@@ -383,7 +403,7 @@ Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 \XKV@toks=\toks29
 \XKV@tempa@toks=\toks30
 )
-\XKV@depth=\count134
+\XKV@depth=\count138
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/fmtcount/fcprefix.sty
@@ -391,17 +411,17 @@ Package: fcprefix 2012/09/28
 
 (/usr/share/texlive/texmf-dist/tex/latex/fmtcount/fcnumparser.sty
 Package: fcnumparser 2012/09/28
-\fc@digit@counter=\count135
+\fc@digit@counter=\count139
 ))
-\c@padzeroesN=\count136
-\fc@tmpcatcode=\count137
-\@DT@modctr=\count138
-\@ordinalctr=\count139
-\@orgargctr=\count140
-\@strctr=\count141
-\@tmpstrctr=\count142
-\@DT@loopN=\count143
-\@DT@X=\count144
+\c@padzeroesN=\count140
+\fc@tmpcatcode=\count141
+\@DT@modctr=\count142
+\@ordinalctr=\count143
+\@orgargctr=\count144
+\@strctr=\count145
+\@tmpstrctr=\count146
+\@DT@loopN=\count147
+\@DT@X=\count148
 
 (/usr/share/texlive/texmf-dist/tex/latex/fmtcount/fc-english.def
 File: fc-english.def 2013/08/17
@@ -409,67 +429,68 @@ File: fc-english.def 2013/08/17
 (/usr/share/texlive/texmf-dist/tex/latex/datetime/datetime-defaults.sty
 Package: datetime-defaults 2013/09/10
 )
-\@day=\count145
-\@month=\count146
-\@year=\count147
-\c@HOUR=\count148
-\c@HOURXII=\count149
-\c@MINUTE=\count150
-\c@TOHOUR=\count151
-\c@TOMINUTE=\count152
-\c@SECOND=\count153
-\currenthour=\count154
-\currentminute=\count155
-\currentsecond=\count156
+\@day=\count149
+\@month=\count150
+\@year=\count151
+\c@HOUR=\count152
+\c@HOURXII=\count153
+\c@MINUTE=\count154
+\c@TOHOUR=\count155
+\c@TOMINUTE=\count156
+\c@SECOND=\count157
+\currenthour=\count158
+\currentminute=\count159
+\currentsecond=\count160
 Package datetime Info: No datetime.cfg file found, using default settings on in
 put line 308.
-\@dtctr=\count157
-\dayofyear=\count158
-\dayofweek=\count159
+\@dtctr=\count161
+\dayofyear=\count162
+\dayofweek=\count163
 LaTeX Info: Redefining \today on input line 736.
 \dt@a=\toks31
 \dt@b=\toks32
 )
-\c@theorem=\count160
-\c@proposition=\count161
-\c@corollary=\count162
-\c@lemma=\count163
-\c@example=\count164
-\c@assumption=\count165
-\c@condition=\count166
-\c@definition=\count167
-\c@remark=\count168
+\c@theorem=\count164
+\c@exercise=\count165
+\c@proposition=\count166
+\c@corollary=\count167
+\c@lemma=\count168
+\c@example=\count169
+\c@assumption=\count170
+\c@condition=\count171
+\c@definition=\count172
+\c@remark=\count173
 
 (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 107.
-LaTeX Font Info:    ... okay on input line 107.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 92.
+LaTeX Font Info:    ... okay on input line 92.
 \AtBeginShipoutBox=\box29
-Package hyperref Info: Link coloring OFF on input line 107.
+Package hyperref Info: Link coloring OFF on input line 92.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count169
+\c@section@level=\count174
 )
-LaTeX Info: Redefining \ref on input line 107.
-LaTeX Info: Redefining \pageref on input line 107.
-LaTeX Info: Redefining \nameref on input line 107.
+LaTeX Info: Redefining \ref on input line 92.
+LaTeX Info: Redefining \pageref on input line 92.
+LaTeX Info: Redefining \nameref on input line 92.
 
 (./main.out) (./main.out)
 \@outlinefile=\write3
@@ -512,16 +533,16 @@ LaTeX Info: Redefining \nameref on input line 107.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count170
-\scratchdimen=\dimen144
+\scratchcounter=\count175
+\scratchdimen=\dimen146
 \scratchbox=\box30
-\nofMPsegments=\count171
-\nofMParguments=\count172
+\nofMPsegments=\count176
+\nofMParguments=\count177
 \everyMPshowfont=\toks33
-\MPscratchCnt=\count173
-\MPscratchDim=\dimen145
-\MPnumerator=\count174
-\makeMPintoPDFobject=\count175
+\MPscratchCnt=\count178
+\MPscratchDim=\dimen147
+\MPnumerator=\count179
+\makeMPintoPDFobject=\count180
 \everyMPtoPDFconversion=\toks34
 ) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
@@ -538,155 +559,66 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Try loading font information for U+msa on input line 108.
+LaTeX Font Info:    Try loading font information for U+msa on input line 96.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 108.
+LaTeX Font Info:    Try loading font information for U+msb on input line 96.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 108.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 96.
 
 (/usr/share/texlive/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6] [7] [8
-]
-Overfull \hbox (41.00615pt too wide) in paragraph at lines 685--685
-[] 
- []
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    Try loading font information for U+euf on input line 151.
 
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueuf.fd
+File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
+) (./main.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 183.
 
-Overfull \hbox (26.08093pt too wide) detected at line 695
-[][] [] \OML/cmm/m/it/10.95 d\OT1/cmr/bx/n/10.95 y \OT1/cmr/m/n/10.95 = []\OMS/
-cmsy/m/n/10.95 N[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ^^R[]\OMS/cmsy/m/n/10
-.95 j\OML/cmm/m/it/10.95 ^^R[]; \OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 ^^[[] \
-OT1/cmr/m/n/10.95 + \OML/cmm/m/it/10.95 ^^[[]\OT1/cmr/m/n/10.95 )(\OT1/cmr/bx/n
-/10.95 X[]X\OT1/cmr/m/n/10.95 )[])\OML/cmm/m/it/10.95 ;
- []
-
-
-Overfull \hbox (60.0313pt too wide) in paragraph at lines 835--835
-[] 
- []
-
-[9] [10]
-Overfull \hbox (37.96448pt too wide) in paragraph at lines 874--874
-[] 
- []
-
-[11] [12]
-Overfull \hbox (52.82608pt too wide) in paragraph at lines 1132--1132
-[] 
- []
-
-[13]
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1282.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1282.
-
-Missing character: There is no √ in font cmr10!
-Missing character: There is no ≠ in font cmr10!
-[14] [15]
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1391.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1391.
-
-[16]
-Overfull \hbox (59.22816pt too wide) detected at line 1479
-[] \OT1/cmr/m/n/10.95 = [] \OMS/cmsy/m/n/10.95 ^^Y []\OML/cmm/m/it/10.95 :
- []
-
-
-Overfull \hbox (57.33405pt too wide) in paragraph at lines 1503--1503
-[] 
- []
-
-
-Overfull \hbox (134.14078pt too wide) in paragraph at lines 1653--1653
-[] 
- []
-
-[17]
-Overfull \hbox (230.46968pt too wide) in paragraph at lines 1828--1828
-[] 
- []
-
-[18]
-Overfull \vbox (24.25534pt too high) has occurred while \output is active []
-
-
-[19] (./main.bbl
-Missing character: There is no √ in font cmr10!
-Missing character: There is no ≠ in font cmr10!
-Missing character: There is no √ in font cmr10!
-Missing character: There is no ≠ in font cmr10!
- [20]
-Missing character: There is no ‚ in font cmr10!
-Missing character: There is no Ä in font cmr10!
-Missing character: There is no ê in font cmr10!
-Missing character: There is no √ in font cmr10!
-Missing character: There is no ≥ in font cmr10!
-Missing character: There is no √ in font cmr10!
-Missing character: There is no ≥ in font cmr10!
- [21])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1860.
- [22]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1860.
+[2]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 183.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1860.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1860.
-
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 183.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 183.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: A0093DD302BB749D80A905AC54F50587;1322.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1860.
+(rerunfilecheck)             Checksum: 295777199FEEBB65F347F6885C7B931A;94.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 183.
  ) 
 Here is how much of TeX's memory you used:
- 9067 strings out of 493029
- 127547 string characters out of 6136233
- 256785 words of memory out of 5000000
- 12351 multiletter control sequences out of 15000+600000
- 23468 words of font info for 89 fonts, out of 8000000 for 9000
+ 8978 strings out of 493029
+ 125835 string characters out of 6136233
+ 241399 words of memory out of 5000000
+ 12346 multiletter control sequences out of 15000+600000
+ 16140 words of font info for 61 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 35i,25n,35p,1008b,476s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 35i,5n,35p,1008b,386s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cmextra/cmmib6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cmextra/cmmib8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmti8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/symbols/msbm10.pfb>
-Output written on main.pdf (22 pages, 342439 bytes).
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb>
+Output written on main.pdf (2 pages, 151746 bytes).
 PDF statistics:
- 462 PDF objects out of 1000 (max. 8388607)
- 410 compressed objects within 5 object streams
- 95 named destinations out of 1000 (max. 500000)
- 161 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 114 PDF objects out of 1000 (max. 8388607)
+ 93 compressed objects within 1 object stream
+ 12 named destinations out of 1000 (max. 500000)
+ 17 words of extra memory for PDF output out of 10000 (max. 10000000)
 

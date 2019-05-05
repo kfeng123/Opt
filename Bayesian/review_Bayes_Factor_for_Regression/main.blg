@@ -13,45 +13,45 @@ Repeated entry---line 12095 of file mybibfile.bib
 I'm skipping whatever remains of this entry
 Warning--can't use both author and editor fields in berger2001Obj
 Warning--empty journal in Fractional1995
-You've used 39 entries,
+You've used 40 entries,
             1935 wiz_defined-function locations,
-            762 strings with 10593 characters,
-and the built_in function-call counts, 16388 in all, are:
-= -- 1630
-> -- 599
-< -- 32
-+ -- 200
-- -- 192
-* -- 1473
-:= -- 2780
-add.period$ -- 119
-call.type$ -- 39
-change.case$ -- 286
-chr.to.int$ -- 39
-cite$ -- 41
-duplicate$ -- 584
-empty$ -- 1203
-format.name$ -- 271
-if$ -- 3243
+            768 strings with 10713 characters,
+and the built_in function-call counts, 16810 in all, are:
+= -- 1674
+> -- 612
+< -- 33
++ -- 204
+- -- 196
+* -- 1512
+:= -- 2850
+add.period$ -- 122
+call.type$ -- 40
+change.case$ -- 293
+chr.to.int$ -- 40
+cite$ -- 42
+duplicate$ -- 598
+empty$ -- 1235
+format.name$ -- 278
+if$ -- 3326
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 41
-newline$ -- 198
-num.names$ -- 121
-pop$ -- 206
+missing$ -- 42
+newline$ -- 203
+num.names$ -- 124
+pop$ -- 210
 preamble$ -- 1
-purify$ -- 287
+purify$ -- 294
 quote$ -- 0
-skip$ -- 449
+skip$ -- 460
 stack$ -- 0
-substring$ -- 1390
-swap$ -- 71
+substring$ -- 1433
+swap$ -- 72
 text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 230
+type$ -- 236
 warning$ -- 2
-while$ -- 142
+while$ -- 146
 width$ -- 0
-write$ -- 512
+write$ -- 525
 (There were 2 error messages)

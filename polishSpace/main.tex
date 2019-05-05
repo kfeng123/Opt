@@ -1,0 +1,183 @@
+\documentclass[11pt]{article}
+ 
+\newcommand\CG[1]{\textcolor{red}{#1}}
+
+\usepackage{lineno,hyperref}
+
+\usepackage[margin=1 in]{geometry}
+\renewcommand{\baselinestretch}{1.25}
+
+
+%\usepackage{refcheck}
+\usepackage{authblk}
+\usepackage{galois} % composition function \comp
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{booktabs}
+\usepackage[page,title]{appendix}
+%\renewcommand\appendixname{haha}
+\usepackage{enumerate}
+\usepackage[FIGTOPCAP]{subfigure}
+\usepackage{changepage}
+\usepackage{datetime}
+\newdate{date}{9}{1}{2017}
+
+%%%%%%%%%%%%%%  Notations %%%%%%%%%%
+\DeclareMathOperator{\mytr}{tr}
+\DeclareMathOperator{\mydiag}{diag}
+\DeclareMathOperator{\myrank}{Rank}
+\DeclareMathOperator{\myP}{P}
+\DeclareMathOperator{\myE}{E}
+\DeclareMathOperator{\myVar}{Var}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+
+\newcommand{\Ba}{\mathbf{a}}    \newcommand{\Bb}{\mathbf{b}}    \newcommand{\Bc}{\mathbf{c}}    \newcommand{\Bd}{\mathbf{d}}    \newcommand{\Be}{\mathbf{e}}    \newcommand{\Bf}{\mathbf{f}}    \newcommand{\Bg}{\mathbf{g}}    \newcommand{\Bh}{\mathbf{h}}    \newcommand{\Bi}{\mathbf{i}}    \newcommand{\Bj}{\mathbf{j}}    \newcommand{\Bk}{\mathbf{k}}    \newcommand{\Bl}{\mathbf{l}}
+\newcommand{\Bm}{\mathbf{m}}    \newcommand{\Bn}{\mathbf{n}}    \newcommand{\Bo}{\mathbf{o}}    \newcommand{\Bp}{\mathbf{p}}    \newcommand{\Bq}{\mathbf{q}}    \newcommand{\Br}{\mathbf{r}}    \newcommand{\Bs}{\mathbf{s}}    \newcommand{\Bt}{\mathbf{t}}    \newcommand{\Bu}{\mathbf{u}}    \newcommand{\Bv}{\mathbf{v}}    \newcommand{\Bw}{\mathbf{w}}    \newcommand{\Bx}{\mathbf{x}}
+\newcommand{\By}{\mathbf{y}}    \newcommand{\Bz}{\mathbf{z}}    
+\newcommand{\BA}{\mathbf{A}}    \newcommand{\BB}{\mathbf{B}}    \newcommand{\BC}{\mathbf{C}}    \newcommand{\BD}{\mathbf{D}}    \newcommand{\BE}{\mathbf{E}}    \newcommand{\BF}{\mathbf{F}}    \newcommand{\BG}{\mathbf{G}}    \newcommand{\BH}{\mathbf{H}}    \newcommand{\BI}{\mathbf{I}}    \newcommand{\BJ}{\mathbf{J}}    \newcommand{\BK}{\mathbf{K}}    \newcommand{\BL}{\mathbf{L}}
+\newcommand{\BM}{\mathbf{M}}    \newcommand{\BN}{\mathbf{N}}    \newcommand{\BO}{\mathbf{O}}    \newcommand{\BP}{\mathbf{P}}    \newcommand{\BQ}{\mathbf{Q}}    \newcommand{\BR}{\mathbf{R}}    \newcommand{\BS}{\mathbf{S}}    \newcommand{\BT}{\mathbf{T}}    \newcommand{\BU}{\mathbf{U}}    \newcommand{\BV}{\mathbf{V}}    \newcommand{\BW}{\mathbf{W}}    \newcommand{\BX}{\mathbf{X}}
+\newcommand{\BY}{\mathbf{Y}}    \newcommand{\BZ}{\mathbf{Z}}    
+
+\newcommand{\bfsym}[1]{\ensuremath{\boldsymbol{#1}}}
+
+ \def\balpha{\bfsym \alpha}
+ \def\bbeta{\bfsym \beta}
+ \def\bgamma{\bfsym \gamma}             \def\bGamma{\bfsym \Gamma}
+ \def\bdelta{\bfsym {\delta}}           \def\bDelta {\bfsym {\Delta}}
+ \def\bfeta{\bfsym {\eta}}              \def\bfEta {\bfsym {\Eta}}
+ \def\bmu{\bfsym {\mu}}                 \def\bMu {\bfsym {\Mu}}
+ \def\bnu{\bfsym {\nu}}
+ \def\btheta{\bfsym {\theta}}           \def\bTheta {\bfsym {\Theta}}
+ \def\beps{\bfsym \varepsilon}          \def\bepsilon{\bfsym \varepsilon}
+ \def\bsigma{\bfsym \sigma}             \def\bSigma{\bfsym \Sigma}
+ \def\blambda {\bfsym {\lambda}}        \def\bLambda {\bfsym {\Lambda}}
+ \def\bomega {\bfsym {\omega}}          \def\bOmega {\bfsym {\Omega}}
+ \def\brho   {\bfsym {\rho}}
+ \def\btau{\bfsym {\tau}}
+ \def\bxi{\bfsym {\xi}}
+ \def\bzeta{\bfsym {\zeta}}
+% May add more in future.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{exercise}{Exercise}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{example}{Example}
+\newtheorem{assumption}{Assumption}
+\newtheorem{condition}{Condition}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\theoremstyle{remark}
+
+
+
+
+
+
+\begin{document}
+\title{Notes on Polish space}
+
+\author{Rui Wang}
+\maketitle
+
+\section{Introduction}
+This document contains notes about Polish space which play an important role in probability and statistics.
+The materials are mainly from \cite{book:992991}, Chapter 8 and \cite{dudleyProbability}, Chapter 13.
+
+\section{Polish space}
+
+\begin{exercise}[\cite{book:992991}, Exercise 8.2.1]
+        Let $A$ be an uncountable analytic subset of the Polish space $X$.
+        Then,
+    \begin{enumerate}[(a)]
+    \item
+        $A$ has a subset that is homeomorphic to $\{0,1\}^{\mathbb N}$.
+    \item
+        $A$ has the cardinality of the continuum.
+    \end{enumerate}
+    \label{CohnEx8.2.1}
+\end{exercise}
+\begin{proof}
+    From \cite{book:992991}, Corollary 8.2.8., there is a continuous function $f$ from $\mathscr N$ onto $A$.
+    By the axiom of choice, there is a set $S\subset \mathscr N$ such that the restriction of $f$ on $S$ is a bijection of $S$ onto $A$.
+    As a subspace of $\mathscr N$, $S$ is an uncountable separable metrizable space.
+    Let $S_0\subset S$ be the set of all condensation points of the space $S$.
+    From \cite{book:992991}, Lemma 8.2.12, $S_0$ is uncountable and each point of $S_0$ is a condensation point of $S_0$.
+    Let $d_{\mathscr N}(\cdot, \cdot)$ be a metric on $\mathscr N$ which metrize the topology of $\mathscr N$.
+    Let $d_{X}(\cdot, \cdot)$ be a metric on $X$ which metrize the topology of $X$.
+
+    Now we construct a homeomorphic between a subset of $X$ and $\{0,1\}^{\mathbb N}$.
+    First, let $x_0$ and $ x_1 $ be two distinct points in $S_0$.
+    Since the restriction of $f$ on $S_0$ is injective, $f(x_0)\neq f(x_1)$.
+    Hence there exists $0<\epsilon_1 <1$ such that $\overline{B(x_0,\epsilon_1)} \cap \overline{B(x_1,\epsilon_1)} = \emptyset$ and $ f(\overline{B(x_0,\epsilon_1)}) \cap f(\overline { B(x_1,\epsilon_1)  }) =\emptyset  $. 
+    For $i=0,1$, let $C(i)=B(x_i,\epsilon_1)$.
+    Note that for $i=0,1$, $C(i) \cap  S_0$ is uncountable and each point of $C(i) \cap  S_0$ is a condensation point of $C(i) \cap  S_0$.
+    Then there exist $x_{i0}$, $x_{i1} \in C(i) \cap S_0$ ($i=0,1$) and  $0< \epsilon_2 <1/2$ such that for $j=0,1$, $B(x_{ij},\epsilon_2) \subset B(x_{i},\epsilon_1)$,  $\overline{B(x_{i0},\epsilon_2)} \cap \overline{B(x_{i1},\epsilon_2)} = \emptyset$ and $ f(\overline{B(x_{i0},\epsilon_2)}) \cap f(\overline { B(x_{i1},\epsilon_2)  }) =\emptyset  $. 
+    For $i,j\in \{0,1\}$, let $C(i,j)=B(x_{ij}, \epsilon_2)$.
+    
+    Inductively construct sets $C(n_1,n_2,\ldots,n_k)$, $n_i\in \{0,1\}$, $k\in \mathbb N$.
+    Then for $\{n_k\}_{k=1}^\infty \in \mathscr N$, consider the set $\cap_{k=1}^\infty \overline {C(n_1,\dots, n_k)}$.
+    By the completeness of $\mathscr N$, $\cap_{k=1}^\infty \overline {C(n_1,\dots, n_k)}\neq \emptyset$.
+    Also, the diameter of $\overline {C(n_1,\dots, n_k)}$ tends to $0$.
+    Then there exists a unique point in $\cap_{k=1}^\infty \overline {C(n_1,\dots, n_k)}$.
+    Let $g$ be the function from $\mathscr N$ to $X$ which maps $\{n_k\}_{k=1}^\infty$ to the unique point of $\cap_{k=1}^\infty \overline {C(n_1,\dots, n_k)}$.
+
+    By the construction of $C(n_1,\dots,n_k)$, $g$ is continuous and injective.
+    Then $f\comp g$ is continuous.
+    To see that $f\comp g$ is injective, let $\{n_k\}_{k=1}^\infty$ and $\{m_k\}_{k=1}^\infty$ be two distinct points of $\{0,1\}^{\mathscr N}$.
+    Let $k_0$ be the first $k$ such that $n_k \neq m_k$.
+    By the construction of $C(\cdot,\dots, \cdot)$, $f(\overline{C(n_1,\dots,n_{k_0})}) \cap  f(\overline{C(m_1,\dots,m_{k_0})}) = \emptyset$.
+    Since $g(\{n_k\}_{k=1}^\infty) \subset \overline{C(n_1,\dots,n_{k_0})}$, $g(\{m_k\}_{k=1}^\infty) \subset \overline{C(m_1,\dots,m_{k_0})}$.
+    Then $f \comp g (\{n_k\}_{k=1}^\infty ) \neq f \comp g (\{m_k\}_{k=1}^\infty ) $.
+
+    Since $\{0,1\}^{\mathscr N}$ is compact, the inverse of $f \comp g$ is also continuous. 
+    This completes the proof of $(a)$.
+
+    (a) implies that $\textrm{card}(A) \geq \mathfrak c $.
+    On the other hand, \cite{book:992991}, Corollary 8.2.8. implies that $\textrm{card}(A) \leq \mathfrak c$.
+    Thus, $\textrm{card}(A) = \mathfrak c $.
+
+\end{proof}
+
+\begin{exercise}
+    Let $X$ be an uncoutable Polish space.
+    Then the collection of analytic subsets of $X$ and the collection of Borel subsets of $X$ have the cardinality of the continuum.
+    \label{CohnEx8.2.2}
+\end{exercise}
+\begin{proof}
+    Exercise \ref{CohnEx8.2.1} implies that the cardinality of $X$ is $\mathfrak c$.
+    Since each single point of $X$ is a Borel set, the cardinality of the collection of Borel subsets of $X$ is at least $\mathfrak c$.
+    We only need to prove that the cardinality of the collection of analytic subsets of $X$ is at most $\mathfrak c$.
+
+    \cite{book:992991}, Proposition 8.2.9 implies that it suffices to upper bound the cardinality of the collection of closed subsets of the Polish space $\mathscr N \times X$.
+    Let $\{U_i\}_{i=1}^\infty$ be a countable base of the topology of $\mathscr N \times X$.
+    Then every closed subset of $\mathscr N \times X$ is the intersection of certain $U_i^\complement$, that is, $\cap_{i\in S} U_i^{\complement}$ where $S$ is a subset of $\mathbb N$.
+    Hence there is an injective map from the collection of closed subsets of $\mathscr N \times X$ to $2^{\mathbb N}$.
+    Thus, the cardinality of the collection of closed subsets of $\mathscr N \times X$ is at most $\mathfrak c$.
+
+\end{proof}
+
+
+
+
+
+
+\bibliographystyle{apalike}
+\bibliography{mybibfile}
+
+\end{document}

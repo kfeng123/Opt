@@ -110,6 +110,12 @@ Kass, R.~E. and Wasserman, L. (1995).
 \newblock {\em Journal of the American Statistical Association},
   90(431):928--934.
 
+\bibitem[Li and Clyde, 2018]{Li2018Mixtures}
+Li, Y. and Clyde, M.~A. (2018).
+\newblock Mixtures of g-priors in generalized linear models.
+\newblock {\em Journal of the American Statistical Association},
+  113(524):1828--1845.
+
 \bibitem[Liang et~al., 2008]{Liang2008Mixtures}
 Liang, F., Paulo, R., Molina, G., Clyde, M.~A., and Berger, J.~O. (2008).
 \newblock Mixtures of g priors for bayesian variable selection.
