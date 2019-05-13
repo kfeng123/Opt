@@ -154,7 +154,7 @@ The materials are mainly from \cite{book:992991}, Chapter 8 and \cite{dudleyProb
 
 \end{proof}
 
-\begin{exercise}
+\begin{exercise}[\cite{book:992991}, Exercise 8.2.2]
     Let $X$ be an uncoutable Polish space.
     Then the collection of analytic subsets of $X$ and the collection of Borel subsets of $X$ have the cardinality of the continuum.
     \label{CohnEx8.2.2}
@@ -172,7 +172,167 @@ The materials are mainly from \cite{book:992991}, Chapter 8 and \cite{dudleyProb
 
 \end{proof}
 
+\begin{exercise}[\cite{book:992991}, Exercise 8.2.3]\
+    \begin{enumerate}[(a)]
+        \item 
+     Let $X$ be a nonempty zero-dimensional Polish space such that each nonempty open subset of $X$ is not compact.
+    Then $X$ is homeomorphic to $\mathscr N$.
+\item
+    the Space $\mathscr I$ of irrational numbers in the interval $(0,1)$ is homeomorphic to $\mathscr N$. 
+    \end{enumerate}
+    \label{CohnEx8.2.3}
+\end{exercise}
+\begin{proof}
+    Let $d(\cdot, \cdot)$ be a complete metric for $X$.
+    We begin by constructing a family $\{C(n_1,\dots,n_k)\}$ of subsets of $X$, indexed by the set of all finite sequences $\{(n_1,\dots,n_k)\}$ of positive integers, in such a way that
+    \begin{enumerate}[1.]
+        \item 
+            $C(n_1,\dots,n_k)$ is nonempty, open, closed and noncompact,
+        \item
+            the diameter of $C(n_1,\dots,n_k)$ is at most $1/k$,
+        \item
+            $\{C(n_1,\dots,n_{k-1},n_k)\}_{n_k=1}^\infty$ are disjoint
+            and
+            $C(n_1,\dots,n_{k-1})=\cup_{n_k=1}^\infty C(n_1,\dots,n_k)$,
+        \item
+            $X=\cup_{n_1=1}^\infty C(n_1)$.
+    \end{enumerate}
+    We do this by induction on $k$.
 
+    First, suppose that $k=1$.
+    Since $X$ is assumed to be not compact, \cite{book:992991}, Lemma 8.2.11 gives a sequnce $\{C(n_1)\}_{n_1=1}^\infty$ where terms are nonempty, open, closed and with diameter at most $1$.
+    By assumption, each $C(n_1)$ is not compact.
+
+    Now suppose that $k>1$ and that $C(n_1,\dots,n_{k-1})$ has already been chosen. 
+    It is easy to use a modification of the construction of the $C(n_1)$'s, now applied to $C(n_1,\dots,n_{k-1})$ rather than to $X$, to produce sets $C(n_1,\dots,n_k)$, $n_k=1,2,\dots$ that satisfy conditions 1 to 4.
+    With this, the induction step in our construction is complete.
+    
+    We turn to the construction of a homeomorphic between $\mathscr N$ and $X$.
+    Let $\mathbf n = \{n_k\}$ be an element of $\mathscr N$.
+    Then the sets $C(n_1)$, $C(n_1,n_2)$, \dots are decreasing nonempty closed sets whose diameters approach to $0$.
+    Since $X$ is complete, there is a unique element in $\cap_{k=1}^\infty C(n_1,\dots,n_k)$.
+    We can define a function $f: \mathscr N \to X$ by letting $f(\mathbf n)$ be the unique member of $\cap_{k=1}^\infty C(n_1,\dots,n_k)$.
+    Note that if $\mathbf m$ and $\mathbf n$ are elements of $\mathscr N$ such that $m_i = n_i$ holds for $k=1,\dots,k$, then $d(\mathbf m, \mathbf n) \leq 1/k$.
+    It follows that $f$ is continuous.
+    Also, it is obvious that $f$ is bijective.
+    It remain to prove that the inverse of $f$ is continuous.
+    Suppose $f(\mathbf n^{(l)}) \to f(\mathbf n)$.
+    Fix $k>0$.
+    Then if $l$ is large enough, $f(\mathbf n^{(l)}) \in C(n_1,\dots,n_k)$.
+    By the construction of $f$, this implies that $n^{(l)}_i= n_i$ for $i=1,\dots,k$.
+    Thus, $\mathbf n^{(l)} \to \mathbf n$ as $l \to \infty$.
+    This completes the proof of $(a)$.
+
+    We turn to the proof of $(b)$.
+    The space $\mathscr I$ is a $G_{\delta}$ set of $[0,1]$, and hence is a Polish space.
+    The family of intervels $(a_i,b_i)$ where $a_i$ and $b_i$ is rational is a base that consists of sets that are both open and closed.
+    It follows that $\mathscr I$ is zero-dimensional.
+    Each interval $(a,b)$ is the union of $\{(a_i,b_i)\}_{i=1}^\infty$ where $a_i$, $b_i$ are rational and $a_i \downarrow a$ and $b_i \uparrow b$.
+    Hence each interval of $\mathscr I$ is not compact.
+    Then the conclusion follows from (a).
+    
+\end{proof}
+
+\begin{exercise}[\cite{book:992991}, Exercise 8.2.3]
+    Each nonempty Polish space is the image of $\mathscr N$ under a continuous open map.
+\end{exercise}
+\begin{proof}
+    We mimic the proof of \cite{book:992991}, Proposition 8.2.7.
+
+    Let $X$ be a nonempty Polish space, and let $d$ be a complete metric for $X$.
+    We begin by constructing a family $\{C(n_1,\dots,n_k)\}$ of subsets of $X$, indexed by the set of all finite sequences $\{n_1,\dots,n_k\}$ of positive integers, in such a way that
+    \begin{enumerate}[1.]
+        \item 
+            $C(n_1,\dots,n_k)$ is nonempty and open,
+        \item
+            the diameter of $C(n_1,\dots,n_k)$ is at most $1/k$,
+        \item
+            $\overline{C(n_1,\dots,n_{k-1},n_k)} \subset C(n_1,\dots,n_{k-1})$ 
+            and
+            $C(n_1,\dots,n_{k-1})=\cup_{n_k=1}^\infty C(n_1,\dots,n_k)$,
+        \item
+            $X=\cup_{n_1=1}^\infty C(n_1)$.
+    \end{enumerate}
+    We do this by induction on $k$.
+
+    First, suppose that $k=1$, and let $\{x_{i}\}_{i=1}^\infty$ be a sequence whose terms form a dense subset of $X$.
+    The sequence $\{X_{i}\}_{i=1}^\infty$ may have duplicated elements.
+    Let $\{C(n_1)\}_{n_1=1}^\infty$ be the collection of open balls which center at certain $x_i$ and with rational radius not larger than $1/2$.
+    Certainly each $C(n_1)$ is open and nonempty and has diameter at most $1$.
+    Furthermore, $X=\cup_{n_1}C(n_1)$.
+
+    Now suppose that $k>1$ and that $C(n_1,\dots,n_{k-1})$ has already been chosen.
+    Let $\{C\left( n_1,\dots,n_{k-1}, n_k \right)\}_{n_k=1}^\infty$ be the collection of open balls which center at centain $x_i$ and with rational radius not larger than $1/(2k)$ and whose closure is contained in $C(n_1,\dots,n_{k-1})$.
+    Certainly each $C(n_1,\dots,n_{k})$ is open and nonempty and has diameter at most $1/k$.
+    Now we prove that $C(n_1,\dots,n_{k-1})=\cup_{n_k=1}^\infty C(n_1,\dots,n_k)$.
+    Suppose $x\in C(n_1,\dots,n_{k-1})$.
+    Since $C(n_1,\dots,n_{k-1})$ is open, there is a open ball $B(x,r) \subset C(n_1,\dots,n_{k-1})$ where $r$ is rational and $r<1/k$.
+    Since $\{x_i\}_{i=1}^\infty$ is dense in $X$, there is an $x_i$ such that $d(x,x_i)< r/3$.
+    Then the ball $B(x_i,r/2)$ contains $x$.
+    Also, the Closure of $B(x_i,r/2)$ has radius not larger than $1/(2k)$ and is contained in $C(n_1,\dots,n_{k-1})$.
+    Thus, $B(x_i,r/2)=C(n_1,\dots,n_k)$ for some $n_k$.
+    With this, the induction step in our construction is complete.
+
+    We turn to the construction of a continuous function that maps $\mathscr N$ onto $X$.
+    Let $\mathbf n =\{n_k\}$ be an element of $\mathscr N$.
+    It follows from 3 that $\cap_{k=1}^\infty C(n_1,\dots,n_k) = \cap_{k=1}^\infty \overline{C(n_1,\dots,n_k)}$ which is intersection of a decreasing sequence of nonempty closd subsets of $X$ whose diameters approach $0$.
+    Thus there is a unique element in the intersection of these sets, and we can define a function $f: \mathscr N \to X$ by letting $f(\mathbf n)$ be the unique member of $\cap_k C(n_1,\dots,n_k)$.
+    Note that if $\mathbf m$ and $\mathbf n$ are elements on $\mathscr N$ such that $m_i=n_i$ holds for $i=1,\dots,k$, then $d(f(\mathbf m, \mathbf n))\leq 1/k$.
+    It follows that $f$ is continuous.
+    Also, 3 and 4 above imply that for each x in $X$ there is an element $\mathbf n = \{n_k\}$ of $\mathscr N$ such that $x\in \cap_k C(n_1,\dots,n_k)$ and hence such that $x=f(\mathbf n)$. 
+    Thus $f$ is surjective.
+
+    It remains to prove that $f$ is an open map.
+    Note that the sets of the form $\{n_1\}\times \dots \times \{n_k\} \times \mathbb N \times \dots$ is a base for the topology of $\mathscr N$.
+    By the construction of $f$, for any $n_1,..,n_k$, $f(\{n_1\}\times \dots \times \{n_k\} \times \mathbb N \times \dots)=C(n_1,\dots,n_k)$ is an open set.
+    This completes the proof.
+
+\end{proof}
+
+
+\begin{exercise}[\cite{book:992991}, Exercise 8.2.5]
+    Each Borel subet of a Polish space is the image under a continuous injective map of some Polish space.
+\end{exercise}
+\begin{proof}
+    Let $X$ be a Polish space.
+    Let $\mathcal A$ be the collection of Borel subsets of $X$ which are the image under continuous injective maps of some Polish spaces.
+    Then all open and closed subsets of $X$ belong to $\mathcal A$ since they are themselves Polish spaces.
+
+    Assume $A_1,\dots,A_n,\dots \in \mathcal A$ and $A_1,\dots,A_n,\dots$ are disjoint.
+    For each $A_i$, there is a Polish space $X_i$ and a continuous infective map $f_i(\cdot)$ such that $f_i(X_i)=A_i$.
+    Define $f: \cup_{i=1}^{\infty} X_i \mapsto  \cup_{i=1}^{\infty} A_i $ by $f(x)=f_i(x)$ if $x\in X_i$.
+    Here $\cup_{i=1}^{\infty} X_i$ is the disjoint union of $X_i$.
+    Then $\cup_{i=1}^{\infty} X_i$ is Polish and $f$ is injective and continuous.
+    Then $\cup_{i=1}^{\infty} A_i \in \mathcal A$.
+
+    Assume $A_1,\dots,A_n,\dots \in \mathcal A$.
+    For each $A_i$, there is a Polish space $X_i$ and a continuous infective map $f_i(\cdot)$ such that $f_i(X_i)=A_i$.
+    Define $f: \prod_{i=1}^{\infty} X_i \mapsto  \prod_{i=1}^{\infty} X $ by $f(\{x_i\}_{i=1}^\infty)=\{f_i(x_i)\}_{i=1}^\infty$.
+    Then  $f$ is injective and continuous onto $\prod_{i=1}^{\infty} A_i \subset \prod_{i=1}^\infty X$.
+    Let $D = \{(x,x,\dots): x\in  X \}$.
+    Define $g:D \mapsto X$ by $g(x,x,\dots) = x$.
+    Then $g$ is a homeomorphism between $D$ and $X$.
+    Consider $g \comp f$ defined on $f^{-1}(D)$.
+    Then $g \comp f$ is injective and continuous from $f^{-1}(D)$ onto $\cap_{i=1}^\infty A_i$.
+    Since $f^{-1}(D)$ is a closed subset of $\prod_{i=1}^\infty X_i$, it is Polish.
+    Thus, $\cap_{i=1}^\infty A_i \in \mathcal A$.
+
+    From \cite{book:992991}, Lemma 8.2.4, $\mathcal A$ contains all Borel subset of $X$.
+    This completes the proof.
+\end{proof}
+
+\begin{exercise}[\cite{book:992991}, Exercise 8.2.6]
+    If $X$ is an uncountable Polish space, then there is an analytic subset of $X$ that is not a Borel set.
+\end{exercise}
+\begin{proof}
+    Let $X$ be an uncountable Polish space.
+    From \cite{book:992991}, Proposition 8.2.13, there is a continuous injective map $f: \mathscr N \to X$ such that $X - f(\mathscr N)$ is countable.
+    From \cite{book:992991}, Corollary 8.2.17, there is an analytic set $A \in \mathscr N$ that is not a Borel set.
+    Then $f(A)$ is not a Borel set of $X$, or else $A= f^{-1}(f(A))$ would be a Borel set, a contradiction.
+    On the other hand, $f(A)$ is analytic.
+    This completes the proof.
+    
+\end{proof}
 
 
 
