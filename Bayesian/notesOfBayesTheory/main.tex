@@ -1,0 +1,504 @@
+\documentclass[11pt]{article}
+ 
+\newcommand\CG[1]{\textcolor{red}{#1}}
+
+\usepackage{lineno,hyperref}
+
+\usepackage[margin=1 in]{geometry}
+\renewcommand{\baselinestretch}{1.25}
+
+
+%\usepackage{refcheck}
+\usepackage{authblk}
+\usepackage{galois} % composition function \comp
+\usepackage{bm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{booktabs}
+\usepackage[page,title]{appendix}
+%\renewcommand\appendixname{haha}
+\usepackage{enumerate}
+\usepackage[FIGTOPCAP]{subfigure}
+\usepackage{changepage}
+\usepackage{datetime}
+\newdate{date}{9}{1}{2017}
+
+%%%%%%%%%%%%%%  Notations %%%%%%%%%%
+\DeclareMathOperator{\mytr}{tr}
+\DeclareMathOperator{\mydiag}{diag}
+\DeclareMathOperator{\myrank}{Rank}
+\DeclareMathOperator{\myP}{P}
+\DeclareMathOperator{\myE}{E}
+\DeclareMathOperator{\myVar}{Var}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+
+\newcommand{\Ba}{\mathbf{a}}    \newcommand{\Bb}{\mathbf{b}}    \newcommand{\Bc}{\mathbf{c}}    \newcommand{\Bd}{\mathbf{d}}    \newcommand{\Be}{\mathbf{e}}    \newcommand{\Bf}{\mathbf{f}}    \newcommand{\Bg}{\mathbf{g}}    \newcommand{\Bh}{\mathbf{h}}    \newcommand{\Bi}{\mathbf{i}}    \newcommand{\Bj}{\mathbf{j}}    \newcommand{\Bk}{\mathbf{k}}    \newcommand{\Bl}{\mathbf{l}}
+\newcommand{\Bm}{\mathbf{m}}    \newcommand{\Bn}{\mathbf{n}}    \newcommand{\Bo}{\mathbf{o}}    \newcommand{\Bp}{\mathbf{p}}    \newcommand{\Bq}{\mathbf{q}}    \newcommand{\Br}{\mathbf{r}}    \newcommand{\Bs}{\mathbf{s}}    \newcommand{\Bt}{\mathbf{t}}    \newcommand{\Bu}{\mathbf{u}}    \newcommand{\Bv}{\mathbf{v}}    \newcommand{\Bw}{\mathbf{w}}    \newcommand{\Bx}{\mathbf{x}}
+\newcommand{\By}{\mathbf{y}}    \newcommand{\Bz}{\mathbf{z}}    
+\newcommand{\BA}{\mathbf{A}}    \newcommand{\BB}{\mathbf{B}}    \newcommand{\BC}{\mathbf{C}}    \newcommand{\BD}{\mathbf{D}}    \newcommand{\BE}{\mathbf{E}}    \newcommand{\BF}{\mathbf{F}}    \newcommand{\BG}{\mathbf{G}}    \newcommand{\BH}{\mathbf{H}}    \newcommand{\BI}{\mathbf{I}}    \newcommand{\BJ}{\mathbf{J}}    \newcommand{\BK}{\mathbf{K}}    \newcommand{\BL}{\mathbf{L}}
+\newcommand{\BM}{\mathbf{M}}    \newcommand{\BN}{\mathbf{N}}    \newcommand{\BO}{\mathbf{O}}    \newcommand{\BP}{\mathbf{P}}    \newcommand{\BQ}{\mathbf{Q}}    \newcommand{\BR}{\mathbf{R}}    \newcommand{\BS}{\mathbf{S}}    \newcommand{\BT}{\mathbf{T}}    \newcommand{\BU}{\mathbf{U}}    \newcommand{\BV}{\mathbf{V}}    \newcommand{\BW}{\mathbf{W}}    \newcommand{\BX}{\mathbf{X}}
+\newcommand{\BY}{\mathbf{Y}}    \newcommand{\BZ}{\mathbf{Z}}    
+
+\newcommand{\bfsym}[1]{\ensuremath{\boldsymbol{#1}}}
+
+ \def\balpha{\bfsym \alpha}
+ \def\bbeta{\bfsym \beta}
+ \def\bgamma{\bfsym \gamma}             \def\bGamma{\bfsym \Gamma}
+ \def\bdelta{\bfsym {\delta}}           \def\bDelta {\bfsym {\Delta}}
+ \def\bfeta{\bfsym {\eta}}              \def\bfEta {\bfsym {\Eta}}
+ \def\bmu{\bfsym {\mu}}                 \def\bMu {\bfsym {\Mu}}
+ \def\bnu{\bfsym {\nu}}
+ \def\btheta{\bfsym {\theta}}           \def\bTheta {\bfsym {\Theta}}
+ \def\beps{\bfsym \varepsilon}          \def\bepsilon{\bfsym \varepsilon}
+ \def\bsigma{\bfsym \sigma}             \def\bSigma{\bfsym \Sigma}
+ \def\blambda {\bfsym {\lambda}}        \def\bLambda {\bfsym {\Lambda}}
+ \def\bomega {\bfsym {\omega}}          \def\bOmega {\bfsym {\Omega}}
+ \def\brho   {\bfsym {\rho}}
+ \def\btau{\bfsym {\tau}}
+ \def\bxi{\bfsym {\xi}}
+ \def\bzeta{\bfsym {\zeta}}
+% May add more in future.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\theoremstyle{plain}
+\newtheorem{theorem}{\quad\quad Theorem}
+\newtheorem{proposition}{\quad\quad Proposition}
+\newtheorem{corollary}{\quad\quad Corollary}
+\newtheorem{lemma}{\quad\quad Lemma}
+\newtheorem{example}{Example}
+\newtheorem{assumption}{\quad\quad Assumption}
+\newtheorem{condition}{\quad\quad Condition}
+
+\theoremstyle{definition}
+\newtheorem{definition}{\quad\quad Definition}
+\newtheorem{remark}{\quad\quad Remark}
+\theoremstyle{remark}
+
+
+
+
+
+
+\begin{document}
+\title{Notes on the theory of Bayesian statistics}
+
+\author{Rui Wang}
+\maketitle
+\begin{abstract}
+    This document provides notes on the theory of Bayesian statistics.
+\end{abstract}
+
+\section{Consistency}
+
+Nonparametric convergence rate.
+The work of \cite{ghosal2000} is seminal.
+A simlar result was obtained by \cite{Shen2001Rates}.
+The work of \cite{ghosal2000} focused on iid case.
+\cite{vaart2007convergence} generalized the results to non iid case.
+This line of research relies on the assumption that there exists a sequence of uniformly consistent test.
+
+\section{Results in \cite{vaart2007convergence}}
+For each $n \in \mathbb N$ and $\theta\in \Theta$, let $P_{\theta}^{(n)}$ admit densities $p_\theta^{(n)}$ relative to a $\sigma$-finite measure $\mu^{(n)}$.
+Assume that $(x,\theta) \mapsto p_{\theta}^{(n)}(x)$ is jointly measurable relative to $\mathscr A \otimes \mathscr B$, where $\mathscr B$ is a $\sigma$-field on $\Theta$.
+The posterior distribution is given by
+\begin{equation*}
+    \Pi_n (B| X^{(n)}) = \frac{
+        \int_B p_{\theta}^{(n)} (X^{(n)}) \,\mathrm d  \Theta_n(\theta)
+    }{
+        \int_{\Theta} p_{\theta}^{(n)} (X^{(n)}) \,\mathrm d  \Theta_n(\theta)
+    } 
+    ,\quad
+    B \in \mathscr B.
+\end{equation*}
+Here $X^{(n)}$ is generated according to $P_{\theta_0}^{(n)}$ for some given $\theta_0 \in \Theta$.
+
+\begin{assumption}
+For each $n$, let $d_n$ and $e_n$ be semimetrics on $\Theta$ with the property that there exist universal constants $\xi >0$ and $K>0$ such that for every $\epsilon > 0$ and for each $\theta_1 \in \Theta$ with $d_n (\theta_1,\theta_0) > \epsilon$, there exists a test $\phi_n$ such that
+\begin{equation*}
+    P_{\theta_0}^{(n)} \phi_n \leq e^{-K n \epsilon^2},
+    \quad
+    \sup_{\theta\in \Theta: e_n (\theta,\theta_1)<\epsilon \xi}
+    P_{\theta}^{(n)} (1-\phi_n) \leq e^{-K n \epsilon^2}.
+\end{equation*}
+    \label{assumption:test}
+\end{assumption}
+
+
+\begin{lemma}
+    Suppose Assumption \ref{assumption:test} holds. 
+    Suppose that for some nonincreasing function $\epsilon \mapsto N(\epsilon)$ and some $\epsilon_n \geq 0$,
+    \begin{equation*}
+        N\left( \frac{\epsilon \xi}{2}, \{\theta\in \Theta: d_n (\theta, \theta_0)< \epsilon\}, e_n \right) \leq N(\epsilon)\quad
+        \textrm{for all }\epsilon> \epsilon_n.
+    \end{equation*}
+    Then for every $\epsilon > \epsilon_n$, there exist tests $\phi_n$, $n\geq 1$, (depending on $\epsilon$) such that \mbox{$P_{\theta_0}^{(n)} \phi_n \leq N(\epsilon) e^{-Kn\epsilon^2}/(1-e^{-Kn\epsilon^2})$} and $P_{\theta}^{(n)} (1-\phi_n) \leq e^{-K n \epsilon^2 j^2}$ for all $\theta \in \Theta$ such that $d_n(\theta,\theta_0) > j \epsilon$ and for every $j \in \mathbb N$.
+    \label{lemma:test}
+\end{lemma}
+\begin{proof}
+    For a given $j \in \mathbb N$, let $\Theta_j = \{\theta \in \Theta: j \epsilon < d_n (\theta, \theta_0) \leq (j+1) \epsilon \}$ and choose a set $\Theta_j'\subset \Theta_j$ such that $\{B_{e_n}(\theta_{(j,i)}, j\epsilon\xi), i=1,\dots, |\Theta_j'|\}$ is a minimal $j\epsilon\xi$-covering.
+    Since $\Theta_j\subset \{\theta\in \Theta: d_n(\theta, \theta_0)\leq 2 j \epsilon\}$, we have
+    \begin{equation*}
+        |\Theta_j'| \leq
+        N\left(  j \epsilon \xi, \{\theta\in \Theta: d_n (\theta, \theta_0)< 2j \epsilon\}, e_n \right) \leq N(2j\epsilon).
+    \end{equation*}
+    By assumption, for every point $\theta_{(j,i)} \in \Theta_j'$, there exists a test $\phi_{n}^{(j,i)}$ with the following properties
+\begin{equation*}
+    P_{\theta_0}^{(n)} \phi_n^{(j,i)} \leq e^{-K n j^2 \epsilon^2},
+    \quad
+    \sup_{\theta\in B_{e_n} (\theta_{(j,i)},j \epsilon \xi)}
+    P_{\theta}^{(n)} (1-\phi_n^{(j,i)})
+    \leq e^{-K n j^2 \epsilon^2}.
+\end{equation*}
+Let
+\begin{equation*}
+    \phi_n = \sup_{\{(j,i): i \in 1,\dots, |\Theta_j'|,j\in \mathbb N\}} \phi_{n}^{(j,i)}.
+\end{equation*}
+Then
+\begin{equation*}
+    P_{\theta_0}^{(n)} \phi_n
+    \leq \sum_{j=1}^\infty
+    \sum_{i=1}^{|\Theta_j'|}
+    P_{\theta_0}^{(n)} \phi_n^{(j,i)}
+    \leq 
+    \sum_{j=1}^\infty
+    |\Theta_j'|
+    e^{-K n j^2 \epsilon^2}
+    \leq 
+    N(\epsilon)
+    \sum_{j=1}^\infty
+    e^{-K n j \epsilon^2}
+    = 
+    N(\epsilon)
+    \frac{e^{-K n \epsilon^2}}{1-e^{-K n \epsilon^2}}
+    .
+\end{equation*}
+On the other hand, for any $\theta \in \Theta$ such that $d_n(\theta,\theta_0)> j\epsilon$, there exists $(j',i')$ such that $j'\geq j$, $\theta \in B_{e_n}(\theta_{(j,i)}, j\epsilon \xi)$.
+\begin{equation*}
+P_{\theta}^{(n)} (1-\phi_n)
+\leq
+P_{\theta}^{(n)} (1-\phi_n^{(j',i')})
+\leq
+\sup_{\theta\in B_{e_n} (\theta_{(j,i)},j \epsilon \xi)}
+P_{\theta}^{(n)} (1-\phi_n^{(j',i')})
+    \leq e^{-K n j'^2 \epsilon^2}
+    \leq e^{-K n j^2 \epsilon^2}.
+\end{equation*}
+This completes the proof.
+
+\end{proof}
+\begin{corollary}
+    If the conclution of Lemma \ref{lemma:test} holds, then for $d_n(\theta,\theta_0)>\epsilon$,
+    \begin{equation*}
+        P_{\theta}^{(n)} (1-\phi_n) 
+        \leq \exp\left\{-\frac{K}{4} n d_n^2(\theta,\theta_0) \right\}.
+    \end{equation*}
+    \label{corollary:test}
+\end{corollary}
+\begin{proof}
+    Lemma \ref{lemma:test} asserts that $P_{\theta}^{(n)} (1-\phi_n) \leq e^{-K n \epsilon^2 j^2}$ for all $\theta \in \Theta$ such that $d_n(\theta,\theta_0) > j \epsilon$ and for every $j \in \mathbb N$.
+    Then $P_{\theta}^{(n)} (1-\phi_n) \leq e^{-K n \epsilon^2 j^2}$ for $\theta \in \Theta$ such that $ j \epsilon< d_n(\theta,\theta_0) \leq (j+1) \epsilon $ for every $j \in \mathbb N$.
+    Thus if $d_n(\theta,\theta_0)>\epsilon$,
+    \begin{align*}
+        P_{\theta}^{(n)} (1-\phi_n) 
+        &\leq e^{-K n \epsilon^2 j^2}
+        \\
+        &= e^{-K n \epsilon^2 (j+1)^2 \frac{j^2}{(j+1)^2}}
+        \\
+        &\leq e^{-\frac{K}{4} n d_n^2(\theta,\theta_0) }
+    \end{align*}
+    
+\end{proof}
+
+For a given $k>1$, let
+\begin{equation*}
+    B_n\left( \theta_0, \epsilon; k \right)=
+    \left\{ 
+    \theta \in \Theta:
+    K\left( p_{\theta_0}^{(n)},p_{\theta}^{(n)} \right)\leq n \epsilon^2,
+    V_{k,0}\left( p_{\theta_0}^{(n)}, p_{\theta}^{(n)} \right)\leq n^{k/2} \epsilon^k
+\right\},
+\end{equation*}
+where $V_{k,0}(f,g)=\int f|\log (f/g)- K(f,g)|^k \, \mathrm d \mu$.
+\begin{lemma}
+    For $k\geq 2$, every $\epsilon>0$ and every probability measure $\bar \Pi_n$ supported on the set $B_n \left( \theta_0, \epsilon; k \right)$, we have, for every $C>0$,
+    \begin{equation*}
+        P_{\theta_0}^{(n)} \left( 
+            \int 
+            \frac{p_{\theta}^{(n)}}{p_{\theta_0}^{(n)}}
+            \,\mathrm d \bar \Pi_n (\theta)
+            \leq e^{-(1+C)n \epsilon^2} 
+        \right)
+        \leq
+        \frac{1}{C^k (n\epsilon^2)^{k/2}}
+    \end{equation*}
+    \label{lemma:KLball}
+\end{lemma}
+\begin{proof}
+    By Jenson's inequality applied to the logarithm, with $\ell_{n,\theta}=\log\left( p_{\theta}^{(n)}/p_{\theta_0}^{(n)} \right)$,
+    we have $\log \int (p_{\theta}^{(n)}/p_{\theta_0}^{(n)}) \, \mathrm d \bar \Pi_n (\theta) \geq \int \ell_{n,\theta} \, \mathrm d \bar \Pi_n (\theta)$.
+    Thus,
+    \begin{align*}
+        &P_{\theta_0}^{(n)} \left( 
+            \int 
+            \frac{p_{\theta}^{(n)}}{p_{\theta_0}^{(n)}}
+            \,\mathrm d \bar \Pi_n (\theta)
+            \leq e^{-(1+C)n \epsilon^2} 
+        \right)
+        \\
+        \leq&
+        P_{\theta_0}^{(n)} \left( 
+            \int 
+            \ell_{n,\theta}
+            \,\mathrm d \bar \Pi_n (\theta)
+            \leq -(1+C)n \epsilon^2
+        \right)
+        \\
+        =&
+        P_{\theta_0}^{(n)} \left( 
+            \int 
+            \left( 
+            \ell_{n,\theta}
+            - P_{\theta_0}^{(n)} \ell_{n,\theta}
+            \right)
+            \,\mathrm d \bar \Pi_n (\theta)
+            \leq -(1+C)n \epsilon^2
+            -
+            \int 
+             P_{\theta_0}^{(n)} \ell_{n,\theta}
+            \,\mathrm d \bar \Pi_n (\theta)
+        \right)
+        \\
+        =&
+        P_{\theta_0}^{(n)} \left( 
+            \int 
+            \left( 
+            \ell_{n,\theta}
+            - P_{\theta_0}^{(n)} \ell_{n,\theta}
+            \right)
+            \,\mathrm d \bar \Pi_n (\theta)
+            \leq -(1+C)n \epsilon^2
+            +
+            \int 
+            K\left( p_{\theta_0}^{(n)}, p_{\theta}^{(n)} \right)
+            \,\mathrm d \bar \Pi_n (\theta)
+        \right)
+        \\
+        \leq&
+        P_{\theta_0}^{(n)} \left( 
+            \int 
+            \left( 
+            \ell_{n,\theta}
+            - P_{\theta_0}^{(n)} \ell_{n,\theta}
+            \right)
+            \,\mathrm d \bar \Pi_n (\theta)
+            \leq -Cn \epsilon^2
+        \right)
+        \\
+        \leq&
+        \frac{
+        P_{\theta_0}^{(n)}  
+            \int 
+            |
+            \ell_{n,\theta}
+            - P_{\theta_0}^{(n)} \ell_{n,\theta}
+            |^k
+            \,\mathrm d \bar \Pi_n (\theta)
+    }{
+        (Cn \epsilon^2)^k
+    }
+    \\
+        =&
+        \frac{
+            \int 
+            V_{k,0}\left( f,g \right)
+            \,\mathrm d \bar \Pi_n (\theta)
+    }{
+        (Cn \epsilon^2)^k
+    }
+    \\
+    \leq&
+    \frac{1}{C^k (n\epsilon^2)^{k/2}}.
+    \end{align*}
+\end{proof}
+
+\begin{theorem}
+    Suppose Assumption \ref{assumption:test} holds.
+    Let $\epsilon_n >0$, $\epsilon_n \to 0$, $(n \epsilon_n^2)^{-1} =  O (1)$, $k > 1$, and $\Theta_n \subset \Theta$ be such that,
+    \begin{equation}\label{condition:1}
+        \sup_{\epsilon>\epsilon_n} \log N \left( \frac{1}{2} \epsilon \xi, \left\{ \theta \in \Theta_n : d_n \left( \theta, \theta_0 \right) < \epsilon \right\}, e_n \right)
+        \leq n \epsilon_n^2,
+    \end{equation}
+    for some $C>0$,
+    \begin{equation}\label{condition:2}
+        \frac{
+e^{(1+C) n \epsilon_n^2} 
+        }{
+\Pi_n \left( B_n \left( \theta_0, \epsilon_n ; k \right) \right)
+        }  
+        \int_{
+            \left\{ \theta \in \Theta_n :  d_n (\theta, \theta_0) \geq M_n \epsilon_n  \right\}
+        } 
+            \exp \left\{-\frac{K}{4}n d_n^2(\theta,\theta_0) \right\}
+            \, \mathrm d \Pi_n \left( \theta \right) \to 0.
+    \end{equation}
+    Then for every $M_n \to \infty$, we have that
+    \begin{equation*}
+        P_{\theta_0}^{(n)} \Pi_n \left( \theta \in \Theta_n : d_n (\theta, \theta_0) \geq M_n \epsilon_n | X^{(n)} \right) \to 0. 
+    \end{equation*}
+    \label{theorem:consistency}
+\end{theorem}
+
+\begin{proof}
+    From Corollary \ref{corollary:test}, applied with $N(\epsilon) = \exp\left( n\epsilon_n^2 \right)$ and $\epsilon = M_n \epsilon_n$ (W.L.O.G $M_n \geq 1$) in its assertion, there exist tests $\phi_n$ that satisfy 
+    \begin{equation*}
+        P_{\theta_0}^{(n)} \phi_n 
+        \leq
+        e^{n \epsilon_n^2} \frac{e^{-K n M_n^2 \epsilon_n^2}}{1-e^{-K n M_n^2 \epsilon_n^2}}
+        ,
+    \end{equation*}
+    \begin{equation*}
+        \quad 
+        P_\theta^{(n)} (1-\phi_n) \leq \exp\left\{-\frac{K}{4}n d_n^2(\theta,\theta_0) \right\}
+        \text{ for all $\theta\in \Theta_n$ s.t. $d_n(\theta,\theta_0)> M_n\epsilon_n$.}
+    \end{equation*}
+
+    The first assertion implies that if $M_n $ is sufficiently large to ensure that $KM_n^2 - 1 > KM_n^2/2$, then as $n \to \infty$, we have
+    \begin{equation*}
+        P_{\theta_0}^{(n)} \left[ \Pi_n \left( \theta \in \Theta_n : d_n (\theta, \theta_0) \geq M_n \epsilon_n | X^{(n)} \right) \phi_n \right]
+        \leq P_{\theta_0}^{(n)} \phi_n \lesssim \exp\left\{ -K M_n^2 n \epsilon_n^2/2 \right\}. 
+    \end{equation*}
+
+    Setting $\Theta_{n}^\dagger = \left\{ \theta \in \Theta_n :  d_n (\theta, \theta_0) \geq M_n \epsilon_n  \right\}$, we obtain, by Fubini's theorem,
+    \begin{align*}
+        &P_{\theta_0}^{(n)} \left[ 
+            \int_{
+            \left\{ \theta \in \Theta_n :  d_n (\theta, \theta_0) \geq M_n \epsilon_n  \right\}
+            } \frac{p_{\theta}^{(n)}}{p_{\theta_0}^{(n)}} 
+            \, \mathrm d \Pi_n \left( \theta \right) \left(1- \phi_n\right)
+        \right]
+        \\
+        =& 
+        \int_{\mathcal X^{(n)}}\int_{
+            \left\{ \theta \in \Theta_n :  d_n (\theta, \theta_0) \geq M_n \epsilon_n  \right\}
+        } \frac{p_{\theta}^{(n)}(X^{(n)})}{p_{\theta_0}^{(n)}(X^{(n)})} 
+            \, \mathrm d \Pi_n \left( \theta \right) \left(1- \phi_n(X^{(n)})\right)
+p_{\theta_0}^{(n)}(X^{(n)})
+            \, \mathrm d \mu^{(n)}
+        \\
+        =& 
+        \int_{
+            \left\{ \theta \in \Theta_n :  d_n (\theta, \theta_0) \geq M_n \epsilon_n  \right\}
+        } {P_{\theta}^{(n)}(1-\phi_n)} 
+            \, \mathrm d \Pi_n \left( \theta \right) 
+        \\
+        \leq
+        & 
+        \int_{
+            \left\{ \theta \in \Theta_n :  d_n (\theta, \theta_0) \geq M_n \epsilon_n  \right\}
+        } 
+            \exp \left\{-\frac{K}{4}n d_n^2(\theta,\theta_0) \right\}
+            \, \mathrm d \Pi_n \left( \theta \right) 
+    \end{align*}
+
+    Fix some $C>0$.
+    By Lemma \ref{lemma:KLball}, we have, on an event $A_n$ with probability at least $1-C^{-k} (n\epsilon_n^2)^{-k/2}$,
+    \begin{equation*}
+        \int_{\Theta}
+\frac{p_{\theta}^{(n)}}{p_{\theta_0}^{(n)}}
+\, \mathrm d \Pi_n (\theta) 
+\geq
+\int_{B_n\left( \theta_0, \epsilon_n ; k \right)}
+\frac{p_{\theta}^{(n)}}{p_{\theta_0}^{(n)}}
+\, \mathrm d \Pi_n (\theta) 
+\geq
+e^{-(1+C) n \epsilon_n^2} 
+\Pi_n \left( B_n \left( \theta_0, \epsilon_n ; k \right) \right).
+    \end{equation*}
+    Thus,
+    \begin{align*}
+    &
+    P_{\theta_0}^{(n)} \left[ 
+        \Pi_n \left(
+            \theta \in \Theta_n : d_n (\theta,\theta_0) >   \epsilon_n M_n
+        |X^{(n)} \right) (1-\phi_n) \mathbf 1_{A_n} 
+    \right]    
+    \\
+    =&
+    P_{\theta_0}^{(n)} \left[ 
+        \frac{
+        \int_{
+            \left\{ \theta \in \Theta_n :  d_n (\theta, \theta_0) \geq M_n \epsilon_n  \right\}
+            } \frac{p_{\theta}^{(n)}}{p_{\theta_0}^{(n)}} 
+            \, \mathrm d \Pi_n \left( \theta \right)
+        }{
+        \int_\Theta
+             \frac{p_{\theta}^{(n)}}{p_{\theta_0}^{(n)}} 
+            \, \mathrm d \Pi_n \left( \theta \right)
+        }  
+        (1-\phi_n) \mathbf 1_{A_n} 
+    \right]    
+    \\
+    \leq &
+        \frac{
+e^{(1+C) n \epsilon_n^2} 
+        }{
+\Pi_n \left( B_n \left( \theta_0, \epsilon_n ; k \right) \right)
+        }  
+    P_{\theta_0}^{(n)} \left[ 
+        \int_{
+            \left\{ \theta \in \Theta_n :  d_n (\theta, \theta_0) \geq M_n \epsilon_n  \right\}
+            } \frac{p_{\theta}^{(n)}}{p_{\theta_0}^{(n)}} 
+            \, \mathrm d \Pi_n \left( \theta \right)
+        (1-\phi_n) \mathbf 1_{A_n} 
+    \right]    
+    \\
+    \leq &
+        \frac{
+e^{(1+C) n \epsilon_n^2} 
+        }{
+\Pi_n \left( B_n \left( \theta_0, \epsilon_n ; k \right) \right)
+        }  
+    P_{\theta_0}^{(n)} \left[ 
+        \int_{
+            \left\{ \theta \in \Theta_n :  d_n (\theta, \theta_0) \geq M_n \epsilon_n  \right\}
+            } \frac{p_{\theta}^{(n)}}{p_{\theta_0}^{(n)}} 
+            \, \mathrm d \Pi_n \left( \theta \right)
+        (1-\phi_n)
+    \right]    
+    \\
+    \leq &
+        \frac{
+e^{(1+C) n \epsilon_n^2} 
+        }{
+\Pi_n \left( B_n \left( \theta_0, \epsilon_n ; k \right) \right)
+        }  
+        \int_{
+            \left\{ \theta \in \Theta_n :  d_n (\theta, \theta_0) \geq M_n \epsilon_n  \right\}
+        } 
+            \exp \left\{-\frac{K}{4}n d_n^2(\theta,\theta_0) \right\}
+            \, \mathrm d \Pi_n \left( \theta \right).
+    \end{align*}
+This completes the proof.
+
+\end{proof}
+
+
+\section{$\rho$-estimator}
+Lucien Birg\'e and Yannick Baraud's work.
+
+
+
+
+\bibliographystyle{apalike}
+\bibliography{mybibfile}
+
+\end{document}

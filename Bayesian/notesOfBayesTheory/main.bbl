@@ -1,0 +1,18 @@
+\begin{thebibliography}{}
+
+\bibitem[Ghosal et~al., 2000]{ghosal2000}
+Ghosal, S., Ghosh, J.~K., and van~der Vaart, A.~W. (2000).
+\newblock Convergence rates of posterior distributions.
+\newblock {\em Ann. Statist.}, 28(2):500--531.
+
+\bibitem[Shen and Wasserman, 2001]{Shen2001Rates}
+Shen, X. and Wasserman, L. (2001).
+\newblock Rates of convergence of posterior distributions.
+\newblock {\em Annals of Statistics}, 29(3):687--714.
+
+\bibitem[van~der {Vaart} and {Ghosal}, 2007]{vaart2007convergence}
+van~der {Vaart}, A. and {Ghosal}, S. (2007).
+\newblock Convergence rates of posterior distributions for noniid observations.
+\newblock {\em Annals of Statistics}, 35(1):192--223.
+
+\end{thebibliography}

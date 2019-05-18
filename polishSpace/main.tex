@@ -100,6 +100,24 @@ This document contains notes about Polish space which play an important role in 
 The materials are mainly from \cite{book:992991}, Chapter 8 and \cite{dudleyProbability}, Chapter 13.
 
 \section{Polish space}
+\begin{exercise}[\cite{book:992991}, Exercise 8.1.3]
+    Let $(X,\mathscr A)$ be a measurable space, let $Y$ be a separable metrizable space, and let $f,g: X \to Y$ be measurable with respect to $\mathscr A$ and $\mathscr B(Y)$.
+    Then $\left\{ x\in X : f(x)=g(x) \right\} \in \mathscr A$.
+\end{exercise}
+\begin{proof}
+    For any $A, B \in \mathscr B(Y)$,
+    \begin{equation*}
+        \left\{ x: (f(x),g(x)) \in A\times B \right\}
+        = f^{-1}(A) \cap f^{-1}(B) \in \mathscr A.
+    \end{equation*}
+    Hence the map $F: x \mapsto (f(x),f(x))$ is measurable with respect to $\mathscr A$ and $\mathscr B (Y) \times \mathscr B (Y)$.
+    Since $Y$ is a separable metrizable space, $\mathscr B (Y) \times \mathscr B (Y)= \mathscr B \left( Y\times Y \right)$.
+    Thus, the map $F$ is measurable with respect to $\mathscr A$ and $\mathscr B (Y \times Y)$.
+    Let $\Delta= \left\{ (y_1,y_2)\in Y \times Y: y_1=y_2 \right\}$.
+    Then $\Delta$ is a closed subset of $Y \times Y$ and $\left\{ x\in X: f(x)=g(x) \right\}=F^{-1}(\Delta)$.
+    It follows that $\left\{ x\in X: f(x)=g(x) \right\}\in \mathscr A$.
+\end{proof}
+
 
 \begin{exercise}[\cite{book:992991}, Exercise 8.2.1]
         Let $A$ be an uncountable analytic subset of the Polish space $X$.
