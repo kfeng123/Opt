@@ -352,6 +352,20 @@ The materials are mainly from \cite{book:992991}, Chapter 8 and \cite{dudleyProb
     
 \end{proof}
 
+\begin{exercise}[\cite{book:992991}, Exercise 8.3.1]
+    Let $X$ and $Y$ be Polish spaces, and let $f: X \to Y$ be a function whose graph is an analytic subset of $X \times Y$.
+    Then $f$ is Borel measurable.
+\end{exercise}
+\begin{remark}
+    It follows from this conclution and \cite{book:992991}, Proposition 8.1.8 that the graph of $f$ can not be an analytic set which is not a Borel set.
+\end{remark}
+\begin{proof}
+    Let $G= \left\{ (x,f(x)): x\in X \right\}$ denote the graph of $f$.
+    For any Borel subset $B$ of $Y$, the sets $G \cap (X \times B)$ and $G \cap (X \times B^\complement)$ are analytic.
+    Then the projection of these two sets on $X$, i.e. $f^{-1}(B)$ and $f^{-1}(B^\complement)$, are also analytic.
+    From separation theorem, i.e. \cite{book:992991}, Theorem 8.3.1, $B$ and $B^\complement$ are Borel sets.
+    Hence $f$ is Borel measurable.
+\end{proof}
 
 
 
