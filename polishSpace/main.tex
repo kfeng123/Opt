@@ -357,7 +357,9 @@ The materials are mainly from \cite{book:992991}, Chapter 8 and \cite{dudleyProb
     Then $f$ is Borel measurable.
 \end{exercise}
 \begin{remark}
-    It follows from this conclution and \cite{book:992991}, Proposition 8.1.8 that the graph of $f$ can not be an analytic set which is not a Borel set.
+    It follows from this conclution and \cite{book:992991}, Proposition 8.1.8 that $f$ is Borel measurable iif the graph of $f$ is a Borel subset of $X\times Y$.
+    Then the graph of $f$ can not be an analytic set which is not a Borel set.
+
 \end{remark}
 \begin{proof}
     Let $G= \left\{ (x,f(x)): x\in X \right\}$ denote the graph of $f$.
@@ -365,6 +367,49 @@ The materials are mainly from \cite{book:992991}, Chapter 8 and \cite{dudleyProb
     Then the projection of these two sets on $X$, i.e. $f^{-1}(B)$ and $f^{-1}(B^\complement)$, are also analytic.
     From separation theorem, i.e. \cite{book:992991}, Theorem 8.3.1, $B$ and $B^\complement$ are Borel sets.
     Hence $f$ is Borel measurable.
+\end{proof}
+
+\begin{exercise}[\cite{book:992991}, Exercise 8.3.2]
+Let $X$ and $Y$ be uncountable Polish spaces.
+Then the cardinality of the collection of Borel measurable functions from $X$ to $Y$ is that of the continuum.
+\end{exercise}
+\begin{proof}
+    The cardinalities of $X$ and $Y$ are both $\mathfrak c$.
+    For each $y \in Y$, the constant function $f(x) \equiv y$ is Borel measurable.
+    Hence the cardinality of the collection of Borel measurable functions from $X$ to $Y$ is at least $\mathfrak c$.
+
+    On the other hand, since the graph of Borel measurable function $f$ is a Borel subset of $X\times Y$, and the collection of Borel subsets of an uncontable Polish space has cardinality $\mathfrak c$, the cardinality of the collection of Borel measurable functions from $X$ to $Y$ is as most $\mathfrak c$.
+    This completes the proof.
+\end{proof}
+
+
+\begin{exercise}[\cite{book:992991}, Exercise 8.3.2]
+    There is a Lebesgue measurable function $f: \mathbb R \to \mathbb R$ such that no real-valued Borel measurable function $f_1$ satisfies $f(x) \leq f_1(x)$ at each $x$ in $\mathbb R$.
+\end{exercise}
+\begin{proof}
+    Let $K$ be the Cantor set. 
+    $K$ is an uncontable Polish space.
+    According to the preceding ecercise, there is a bijection $x \mapsto g_x$ of $K$ onto the set of real-valued Borel functions on $K$.
+    Define $f: \mathbb R \to \mathbb R$ by
+    \begin{equation*}
+        f(x)=
+        \left\{
+            \begin{array}{ll}
+                g_x(x)+1 & \text{if }x \in K,
+                \\
+                0 & \text{ otherwise}.
+            \end{array}
+    \right.
+    \end{equation*}
+    Since $f(x) = 0$ a.e.\@, $f$ is Lebesgue measurable.
+    Suppose there is a real-valued Borel measurable function $f_1$ satisfying $f(x) \leq f_1(x)$ at each $x \in \mathbb R$.
+    Then the restriction of $f_1$ on $K$ is still Borel measurable.
+    Hence there is an $x_1\in K$ such that $f_1(x)=g_{x_1}(x)$ at each $x \in K$.
+    Then $g_{x_1}(x) \geq g_x(x) +1 $ at each $x \in K$.
+    But this is impossible when $x= x_1$.
+    This completes the proof.
+
+
 \end{proof}
 
 
