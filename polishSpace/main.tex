@@ -302,7 +302,7 @@ The materials are mainly from \cite{book:992991}, Chapter 8 and \cite{dudleyProb
 
     It remains to prove that $f$ is an open map.
     Note that the sets of the form $\{n_1\}\times \dots \times \{n_k\} \times \mathbb N \times \dots$ is a base for the topology of $\mathscr N$.
-    By the construction of $f$, for any $n_1,..,n_k$, $f(\{n_1\}\times \dots \times \{n_k\} \times \mathbb N \times \dots)=C(n_1,\dots,n_k)$ is an open set.
+    By the construction of $f$, for any $n_1,\dots,n_k$, $f(\{n_1\}\times \dots \times \{n_k\} \times \mathbb N \times \dots)=C(n_1,\dots,n_k)$ is an open set.
     This completes the proof.
 
 \end{proof}
@@ -409,9 +409,60 @@ Then the cardinality of the collection of Borel measurable functions from $X$ to
     But this is impossible when $x= x_1$.
     This completes the proof.
 
+\end{proof}
+\begin{exercise}[\cite{book:992991}, Exercise 8.3.3]
+    Let $X$ be a Polish space, let $\mu$ be a Borel measure on $X$ such that $\mu(X) = 1$, and let $\lambda$ be Lebesgue measure on the Borel subsets of $[0,1]$.
+    Then there is a Borel measurable function $f: [0,1]\to X$ such that $\mu= \lambda f^{-1}$.
+\end{exercise}
+\begin{proof}
+    If $X$ is countably infinite, let $\{x_i\}_{i=1}^{\infty}$ be an enumeration of the points of $X$.
+    Then $\sum_{i=1}^{\infty} \mu(\{x_i\}) = \mu (\cup_{i=1}^\infty \{x_i\})=1$.
+    We can construct $f$ by letting $f(t)=x_i$ if $t\in \left[\sum_{j=1}^{i-1}x_j, \sum_{j=1}^{i}x_j\right)$, and $f(1)=x_1$.
+    Then $\lambda f^{-1}( \{x_i\})=\lambda\left([\sum_{j=1}^{i-1}x_j, \sum_{j=1}^{i}x_j)\right)= x_i$.
+    Hence $\mu = \lambda f^{-1}$.
+    If $X$ is finite, the construction of $f$ is similar.
 
+    Now suppose $X$ is uncountable, from \cite{book:992991}, Theorem 8.3.6, there is a bijection $g$ from $\mathbb R$ onto $X$ which is Borel isomorphism.
+    Then the measure $\mu g$ is a probability measure on the Borel sets of $\mathbb R$.
+    From \cite{book:992991}, Proposition 10.1.15, there is a Borel measurable function h from $[0,1]$ to $\mathbb R$ such that $\mu g = \lambda h^{-1}$.
+    Thus, for any $A\in \mathcal B (X)$,
+    \begin{equation*}
+        \mu(A) = \mu ( g g^{-1} A) = \mu g(g^{-1} A)= \lambda h^{-1}(g^{-1}A)
+        =\lambda (h^{-1} g^{-1} A)
+        =\lambda ( (g\comp h)^{-1} A)
+        =\lambda (g\comp h)^{-1} (  A).
+    \end{equation*}
+The conclusion follows by letting $f= g\comp h$.
 \end{proof}
 
+\begin{exercise}[\cite{book:992991}, Exercise 8.4.1]
+    Let $(X,\mathscr A)$ be a measurable space. 
+    \begin{enumerate}[(a)]
+        \item 
+            A function $f: X\to [-\infty, + \infty]$ is $\mathscr A_*$-measurable if and only if for each finite measure $\mu$ on $ (X, \mathscr A)$ there are $\mathscr A $-measurable functions $f_0, f_1: X\to [-\infty, + \infty]$ that satisfy $f_0 \leq f \leq f_1$ everywhere on $X$ and $f_0=f_1$ $\mu$-almost surely.
+        \item
+            If $f: X\to [-\infty, + \infty]$ is $ \mathscr A_*$-measurable and if the functions $f_0$ and $f_1$ in part (a) can be chosen independently of $\mu$, then $f$ is $\mathscr A$-measurable.
+    \end{enumerate}
+\end{exercise}
+\begin{proof}
+    It is understood that $\mathscr A_*$-measurable means $\mathscr A_*/ \mathscr B([-\infty, +\infty])$ measurable.
+
+    Suppose $f: X\to [-\infty, + \infty]$ is $\mathscr A_*$-measurable.
+    Then for each finite measure $\mu$ on $(X, \mathscr A)$, since $\mathscr A \subset \mathscr A_\mu$, $f$ is $\mathscr A_\mu$ measurable.
+    Then the existence of $f_0, f_1$ is implied by \cite{book:992991}, Proposition 2.2.5.
+    Conversely, suppose for each finite measure $\mu$, such $f_0,f_1$ exist.
+    Then \cite{book:992991}, Proposition 2.2.5 implies that $f$ is $\mathscr A_\mu$ measurable.
+    Thus, for any $A \in \mathscr B ([-\infty, + \infty])$, $f^{-1}(A) \in \cap_{\mu} \mathscr A_\mu  = \mathscr A_*$.
+    This completes the proof of (a).
+
+    We turn to (b).
+    Consider the set $A=\{x: f_0(x) \neq f_1(x)\}$.
+    By assumption, $\mu^*(A)=0$ for any finite $\mu$ on $\mathscr A$.
+    If $A$ is not empty, let $x$ be a point of $A$ and $\delta_x$ be the point mass concentrated on $x$.
+    Then $\delta_x^* (A)=1$, a contradiction.
+    It follows that $A= \emptyset$.
+    Thus $f=f_0$, hence $f$ is $\mathscr A$-measurable.
+\end{proof}
 
 
 \bibliographystyle{apalike}

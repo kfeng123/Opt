@@ -16,7 +16,7 @@
 \usepackage{amssymb}
 \usepackage{mathrsfs}
 \usepackage{amsthm}
-\usepackage{natbib}
+\usepackage[numbers]{natbib}
 \usepackage{graphicx}
 \usepackage{color}
 \usepackage{booktabs}
@@ -490,6 +490,244 @@ e^{(1+C) n \epsilon_n^2}
 This completes the proof.
 
 \end{proof}
+
+\section{Fractional posteriors}
+\textbf{Consistency:}
+
+\cite{kar10563}, \cite{Bha2016}, \cite{Alquier2017a} (variational fractional posterior, also contains an example of mixture model).
+
+nonregular models: \cite{Ghosal1995}, \cite{Dudley2002}, \cite{Bochkina2014}.
+
+Martingale methods: \cite{walker2004new}, \cite{Walker2007}.
+
+
+Fractional posterior with power $t$ is defined as
+\begin{align*}
+    \Pi^{(t)}( \theta \in B | \BX^{(n)} )
+    =
+    \frac{
+        \int_{B} \left[ p_n ( \BX^{(n)} | \theta ) \right]^t \Pi_n \left( \mathrm d \theta \right)
+    }{
+        \int_{\Theta} \left[ p_n ( \BX^{(n)} | \theta ) \right]^t \Pi_n\left( \mathrm d \theta \right)
+    }.
+\end{align*}
+
+
+For two parameters $\theta_1$ and $\theta_2$, the $\alpha$ order R\'enyi divergence ($0< \alpha <1$) of $P_{\theta_1}$ from $P_{\theta_2}$ (suppose $P_{\theta_1} \ll P_{\theta_2}$) is defined to be
+\begin{equation*}
+    D_{\alpha}(\theta_1 \| \theta_2) = - \frac{1}{1-\alpha} \log \rho_\alpha (\theta_1,\theta_2),
+\end{equation*}
+where $\rho_\alpha (\theta_1, \theta_2)= \int_{\mathcal X} p(X|\theta_1)^\alpha p(X|\theta_2)^{1-\alpha} \mathrm d \mu$ is the so-called Hellinger integral.
+
+ The Kullback-Leibler between $P$ and $Q$ is
+\begin{equation*}
+    D_1 (P \| Q) =
+   \left\{ 
+       \begin{array}{ll}
+       \int_{\mathcal X} \log \frac{\mathrm d P}{\mathrm d Q}  \mathrm d P,
+           & \text{ if $P \ll Q$,}\\ 
+           + \infty & \text{ otherwise.}
+       \end{array}
+\right.
+\end{equation*}
+
+It is known that $\lim_{\alpha  \uparrow 1} D_{\alpha} (\theta_1 \| \theta_2) = D_1 (\theta_1 \| \theta_2)$.
+
+
+
+\subsection{Results in \cite{Subhashis2017Fundamentals}, Section 8.6}
+
+\begin{lemma}
+    Suppose $v$ are nonnegative measurable function from $\Theta$ to $\mathbb R$ such that
+    \begin{equation*}
+      0<\int_{\Theta} v(\theta) \Pi(\mathrm d \theta)< \infty.
+    \end{equation*}
+    Let 
+    \begin{equation*}
+        \mathcal W = \left\{ 
+            w: \text{$w$ is a nonnegative measurable function from $\Theta$ to $\mathbb R$ s.t. 
+$\int_{\Theta} w(\theta) \Pi(\mathrm d \theta)=1$}
+        \right\} .
+    \end{equation*}
+    Then 
+    \begin{align*}
+        \log \int_{\Theta} v(\theta) \Pi (\mathrm d \theta)
+        =
+        \sup_{w \in \mathcal W }\int_{\Theta} \left[ - \log w(\theta) +  \log v(\theta)   \right]w(\theta) \Pi(\mathrm d \theta) .
+    \end{align*}
+    The equality holds when
+    \begin{equation*}
+        w(\theta) = \frac{v(\theta)}{ \int_{\Theta} v(\theta)\,\Pi(\mathrm d \theta )} .
+    \end{equation*}
+    \label{lemma:variation}
+\end{lemma}
+\begin{remark}
+    This lemma seems well known.
+    One can find it in \cite{Catoni2007}, Lemma 1.1.3.
+    
+\end{remark}
+\begin{proof}
+    The conclusion follows from
+    \begin{equation*}
+        D_1\left(w \Pi(\mathrm d \theta )\Big\| \frac{v \Pi(\mathrm d \theta )}{ \int_{\Theta} v\,\Pi(\mathrm d \theta )} \right)  \geq 0.
+    \end{equation*}
+\end{proof}
+
+
+\begin{theorem}
+    For any numbers $\epsilon > 0$, $\beta \in (0,1)$, $\gamma \geq 0$, for $\alpha = (\gamma + \beta)/ (\gamma + 1)$,
+    \begin{equation*}
+        \frac{1-\beta}{\gamma + 1}
+        P_{\theta_0}^{(n)}
+        \int_{\Theta}
+    D_{\beta}(\theta \| \theta_0)
+        \Pi^{(\alpha)}( \mathrm d \theta |\BX^{(n)})
+        \leq
+-\log \int_{\Theta}  e^{- \alpha D_1(\theta_0\| \theta)} \Pi(\mathrm d \theta) .
+    \end{equation*}
+    \label{Subhashis2017Fundamentals}
+\end{theorem}
+\begin{proof}
+    Apply Lemma \ref{lemma:variation} twice, first with $v(\theta) = (p_{\theta} / p_{\theta_0})^{\delta} (X)$, and second with $v(\theta) = (p_{\theta} / p_{\theta_0})^\beta (X) / \rho_{\beta}(\theta , \theta_0) $.
+    We have
+    \begin{align*}
+        \int_{\Theta} \left( -\log w(\theta) + \delta \log \frac{p_\theta}{p_{\theta_0}}(X) \right) w(\theta) \Pi(\mathrm d \theta) \leq 
+        \log \int_{\Theta} \left(\frac{p_\theta }{ p_{\theta_0}}\right)^\delta (X) \Pi (\mathrm d \theta),
+    \end{align*}
+    \begin{align*}
+        \int_{\Theta} \left( -\log w(\theta) + \beta \log \frac{p_\theta}{p_{\theta_0}}(X) - \log \rho_\beta (\theta, \theta_0) \right) w(\theta) \Pi(\mathrm d \theta) \leq 
+        \log \int_{\Theta} \left(\frac{p_\theta }{ p_{\theta_0}}\right)^\beta (X) \frac{1}{\rho_\beta (\theta, \theta_0)} \Pi (\mathrm d \theta).
+    \end{align*}
+    Adding the second inequality to $\gamma$ times the first inequality yields
+    \begin{align*}
+        &\int_{\Theta} \left( -(\gamma + 1) \log w(\theta) + (  \gamma\delta + \beta  ) \log \frac{p_\theta}{p_{\theta_0}}(X) - \log \rho_\beta (\theta, \theta_0) \right) w(\theta) \Pi(\mathrm d \theta) 
+        \\
+        \leq 
+        &\log \int_{\Theta} \left(\frac{p_\theta }{ p_{\theta_0}}\right)^\beta (X) \frac{1}{\rho_\beta (\theta, \theta_0)} \Pi (\mathrm d \theta)
+        +
+        \gamma
+        \log \int_{\Theta} \left(\frac{p_\theta }{ p_{\theta_0}}\right)^\delta (X) \Pi (\mathrm d \theta).
+    \end{align*}
+    Note that the right hand side does not depend on $w(\theta)$, and
+    \begin{align*}
+        &P_{\theta_0}\log \int_{\Theta} \left(\frac{p_\theta }{ p_{\theta_0}}\right)^\delta (X) \Pi (\mathrm d \theta)
+        \\
+        \leq
+        &
+        \log  P_{\theta_0}\int_{\Theta} \left(\frac{p_\theta }{ p_{\theta_0}}\right)^\delta (X) \Pi (\mathrm d \theta)
+        = 
+        \log  \int_{\Theta} P_{\theta_0} \left(\frac{p_\theta }{ p_{\theta_0}}\right)^\delta (X) \Pi (\mathrm d \theta)
+        \\
+        = &
+        \log  \int_{\Theta} P_{\theta_0} \left(\frac{p_\theta }{ p_{\theta_0}}\right)^\delta (X) \Pi (\mathrm d \theta)
+        = 
+        \log  \int_{\Theta} \rho_{\delta}(\theta, \theta_0) \Pi (\mathrm d \theta)
+        \\
+        \leq &
+        \log  \int_{\Theta}  \Pi (\mathrm d \theta)
+        \leq 0
+        .
+    \end{align*}
+    Similarly,
+    \begin{align*}
+        &P_{\theta_0}\log \int_{\Theta} \left(\frac{p_\theta }{ p_{\theta_0}}\right)^\beta (X) \frac{1}{\rho_\beta (\theta, \theta_0)} \Pi (\mathrm d \theta)
+        \\
+        \leq
+        &
+        \log  P_{\theta_0}\int_{\Theta} \left(\frac{p_\theta }{ p_{\theta_0}}\right)^\beta (X) \frac{1}{\rho_\beta (\theta, \theta_0)}\Pi (\mathrm d \theta)
+        = 
+        \log  \int_{\Theta} P_{\theta_0} \left(\frac{p_\theta }{ p_{\theta_0}}\right)^\beta (X) \frac{1}{\rho_\beta (\theta, \theta_0)}\Pi (\mathrm d \theta)
+        \\
+        = &
+        \log  \int_{\Theta} P_{\theta_0} \left(\frac{p_\theta }{ p_{\theta_0}}\right)^\beta (X) \frac{1}{\rho_\beta (\theta, \theta_0)}\Pi (\mathrm d \theta)
+        = 
+        \log  \int_{\Theta}  \Pi (\mathrm d \theta)
+        \leq 0
+        .
+    \end{align*}
+    It follows that for every choice of $w(\theta)$ ($w(\theta)$ may depende on $X$), we have
+    \begin{align*}
+        &
+        P_{\theta_0}
+        \int_{\Theta} \left( -(\gamma + 1) \log w(\theta) + (  \gamma\delta + \beta  ) \log \frac{p_\theta}{p_{\theta_0}}(X) - \log \rho_\beta (\theta, \theta_0) \right) w(\theta) \Pi(\mathrm d \theta) 
+        \leq 
+        0.
+    \end{align*}
+    Note that
+    \begin{align*}
+        \int_{\Theta}  - \log \rho_\beta (\theta, \theta_0)  w(\theta) \Pi(\mathrm d \theta) 
+        \geq 
+        0.
+    \end{align*}
+    Then for any $w(\theta)$,
+    \begin{align*}
+        &
+        P_{\theta_0}\int_{\Theta}  - \log \rho_\beta (\theta, \theta_0)  w(\theta) \Pi(\mathrm d \theta) 
+        \leq 
+        P_{\theta_0}
+        \int_{\Theta} \left( (\gamma + 1) \log w(\theta) - (  \gamma\delta + \beta  ) \log \frac{p_\theta}{p_{\theta_0}}(X)  \right) w(\theta) \Pi(\mathrm d \theta) 
+        .
+    \end{align*}
+    Divided both sides by $\gamma+1$, we have
+    \begin{align*}
+        \frac{1}{\gamma+1}P_{\theta_0}\int_{\Theta}  - \log \rho_\beta (\theta, \theta_0)  w(\theta) \Pi(\mathrm d \theta) 
+        \leq  &
+        P_{\theta_0}
+        \int_{\Theta} \left(  \log w(\theta) -  \log\left( \frac{p_\theta}{p_{\theta_0}}(X) \right)^\alpha   \right) w(\theta) \Pi(\mathrm d \theta) 
+        ,
+    \end{align*}
+    where $\alpha = \frac{\gamma \delta + \beta}{\gamma+1}$.
+    From Lemma \ref{lemma:variation}, the right hand side is minimized (for $w\in \mathcal W$ and $w$ can depends on $X$) when
+    \begin{equation*}
+        w(\theta) = \frac{\displaystyle p_{\theta}^{\alpha} (X) }{
+\displaystyle
+            \int_{\Theta} 
+            p_{\theta}^{\alpha } (X) 
+            \Pi(\mathrm d \theta)
+        }.
+    \end{equation*}
+    And the minimum value of the right hand side is $-P_{\theta_0} \log \int_{\Theta} \left( \frac{p_{\theta}}{p_{\theta_0}}(X) \right)^\alpha \Pi(\mathrm d \theta)$.
+    In this case, $w(\theta) \Pi(\mathrm d \theta) = \Pi^{\alpha}( \mathrm d \theta | \BX^{(n)}) $.
+    Thus,
+    \begin{align*}
+        &\frac{1}{\gamma+1} P_{\theta_0} \int_{\Theta} - \log \rho_\beta(\theta, \theta_0) \Pi^\alpha (\mathrm d \theta | \BX^{(n)})
+        \\
+        \leq &
+-P_{\theta_0} \log \int_{\Theta} \left( \frac{p_{\theta}}{p_{\theta_0}}(X) \right)^\alpha \Pi(\mathrm d \theta)
+\\
+= &
+        P_{\theta_0}
+        \inf_{w\in \mathcal W}
+        \int_{\Theta} \left(  \log w(\theta) -  \log\left( \frac{p_\theta}{p_{\theta_0}}(X) \right)^\alpha   \right) w(\theta) \Pi(\mathrm d \theta) 
+\\
+\leq &
+\inf_{w\in \mathcal W}
+        P_{\theta_0}
+        \int_{\Theta} \left(  \log w(\theta) -  \log\left( \frac{p_\theta}{p_{\theta_0}}(X) \right)^\alpha   \right) w(\theta) \Pi(\mathrm d \theta) 
+\\
+= &
+\inf_{w\in \mathcal W}
+        \int_{\Theta} \left(  \log w(\theta) - \alpha P_{\theta_0}\log \frac{p_\theta}{p_{\theta_0}}(X)  \right) w(\theta) \Pi(\mathrm d \theta) 
+\\
+= &
+\inf_{w\in \mathcal W}
+\int_{\Theta} \left(  \log w(\theta) -\log e^{- \alpha D_1(\theta_0\| \theta)}   \right) w(\theta) \Pi(\mathrm d \theta) 
+\\
+= &
+-\log \int_{\Theta}  e^{- \alpha D_1(\theta_0\| \theta)} \Pi(\mathrm d \theta) .
+    \end{align*}
+    This completes the proof.
+    
+\end{proof}
+
+
+\section{Hausdorff entropy}
+\cite{Xing2008},
+\cite{Xing2009},
+\cite{Xing2010},
+\cite{Xing2015},
+
+\CG{Their results can be generalized to non iid case.}
 
 
 \section{$\rho$-estimator}

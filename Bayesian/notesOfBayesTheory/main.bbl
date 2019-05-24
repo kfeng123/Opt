@@ -1,9 +1,40 @@
 \begin{thebibliography}{}
 
+\bibitem[Alquier and Ridgway, ]{Alquier2017a}
+Alquier, P. and Ridgway, J.
+\newblock Concentration of tempered posteriors and of their variational
+  approximations.
+
+\bibitem[Bhattacharya et~al., 2019]{Bha2016}
+Bhattacharya, A., Pati, D., and Yang, Y. (2019).
+\newblock Bayesian fractional posteriors.
+\newblock {\em The Annals of Statistics}, 47(1):39--66.
+
+\bibitem[Bochkina and Green, 2014]{Bochkina2014}
+Bochkina, N.~A. and Green, P.~J. (2014).
+\newblock The {B}ernstein-von {M}ises theorem and nonregular models.
+\newblock {\em The Annals of Statistics}, 42(5):1850--1878.
+
+\bibitem[Dudley and Haughton, 2002]{Dudley2002}
+Dudley, R.~M. and Haughton, D. (2002).
+\newblock Asymptotic normality with small relative errors of posterior
+  probabilities of half-spaces.
+\newblock {\em The Annals of Statistics}, 30(5):1311--1344.
+
+\bibitem[Ghosal et~al., 1995]{Ghosal1995}
+Ghosal, S., Ghosh, J.~K., and Samanta, T. (1995).
+\newblock On convergence of posterior distributions.
+\newblock {\em The Annals of Statistics}, 23(6):2145--2152.
+
 \bibitem[Ghosal et~al., 2000]{ghosal2000}
 Ghosal, S., Ghosh, J.~K., and van~der Vaart, A.~W. (2000).
 \newblock Convergence rates of posterior distributions.
 \newblock {\em Ann. Statist.}, 28(2):500--531.
+
+\bibitem[Ghosal and van~der Vaart, 2017]{Subhashis2017Fundamentals}
+Ghosal, S. and van~der Vaart, A. (2017).
+\newblock {\em Fundamentals of Nonparametric Bayesian Inference}.
+\newblock Cambridge University Press, 1st edition.
 
 \bibitem[Shen and Wasserman, 2001]{Shen2001Rates}
 Shen, X. and Wasserman, L. (2001).
@@ -14,5 +45,22 @@ Shen, X. and Wasserman, L. (2001).
 van~der {Vaart}, A. and {Ghosal}, S. (2007).
 \newblock Convergence rates of posterior distributions for noniid observations.
 \newblock {\em Annals of Statistics}, 35(1):192--223.
+
+\bibitem[{Walker}, 2004]{walker2004new}
+{Walker}, S.~G. (2004).
+\newblock New approaches to bayesian consistency.
+\newblock {\em Annals of Statistics}, 32(5):2028--2043.
+
+\bibitem[Walker and Hjort, 2001]{kar10563}
+Walker, S.~G. and Hjort, N.~L. (2001).
+\newblock On bayesian consistency.
+\newblock {\em Journal of the Royal Statistical Society: Series B (Statistical
+  Methodology)}, 63(4):811--821.
+
+\bibitem[Walker et~al., 2007]{Walker2007}
+Walker, S.~G., Lijoi, A., and Pr\"{u}nster, I. (2007).
+\newblock On rates of convergence for posterior distributions in
+  infinite-dimensional models.
+\newblock {\em The Annals of Statistics}, 35(2):738--746.
 
 \end{thebibliography}
