@@ -464,6 +464,57 @@ The conclusion follows by letting $f= g\comp h$.
     Thus $f=f_0$, hence $f$ is $\mathscr A$-measurable.
 \end{proof}
 
+\begin{exercise}[\cite{book:992991}, Exercise 8.4.2]
+    Let $(X, \mathscr A)$ be a measurable space. Then
+    \begin{enumerate}[(a)]
+        \item 
+            $(\mathscr A_*)_* = \mathscr A_*$.
+        \item
+            If $\mu$ is a finite measure on $(X,\mathscr A)$, then $(\mathscr A_\mu)_* = \mathscr A_\mu$.
+    \end{enumerate}
+\end{exercise}
+\begin{proof}
+    First we proof (b). 
+    It is clear that $(\mathscr A_\mu)_* \supset \mathscr A_\mu$.
+    On the other hand, $(\mathscr A_\mu)_* \subset (\mathscr A_\mu)_\mu = \mathscr A_\mu$.
+    This completes the proof of (b).
+
+    We turn to (a). 
+    It is clear that $(\mathscr A_*)_* \supset \mathscr A_*$.
+    On the other hand, let $ \mu $ be any finite measure on $\mathscr A$.
+    Then $(\mathscr A_*)_* \subset  (\mathscr A_\mu)_* = \mathscr A_{\mu}$.
+    Hence $(\mathscr A_*)_* \subset  \cap_{\mu} \mathscr A_{\mu} = \mathscr A_*$.
+\end{proof}
+
+\begin{exercise}[\cite{book:992991}, Exercise 8.4.3]
+    There is a Lebesgue measurable subset of $\mathbb R$ that is not universally measurable.
+\end{exercise}
+\begin{proof}
+    Let $C$ be the Cantor set on $[0,1]$ (see  \cite{book:992991}, example 1.4.6), let $f:[0,1] \to [0,1]$ be the Cantor function (see \cite{book:992991}, example 2.1.10).
+    It is known that $f$ is nondecreasing and continuous.
+
+    Let $\lambda$ be the Lebesgue measure on $\mathbb R$.
+    Let $\lambda_{[0,1]}$ be the Lebesgue measure on $[0,1]$.
+    Let $\mu$ be the measure on $[0,1]$ with distribution function $f$.
+    It is known that $\mu(C)=1$.
+    Define $\mu_1=\lambda + \mu$.
+    Then for $x\in [0,1]$, $\mu_1([0,x]) =f(x)+x$.
+    Define $g:[0,1] \to [0,2]$ by $g(x)= f(x) + x$.
+    Then $g$ is strict increasing and continuous.
+    Thus, $g$ is a Borel isomorphism from $([0,1], \mathscr B ([0,1]), \mu_1)$ to $([0,2], \mathscr B([0,2]), \lambda)$.
+    That is, $\lambda \comp g = \mu_1$.
+    It ca be easily seen that $g$ is also an isomorphism from the completion space $([0,1], \mathscr B ([0,1])_{\mu_1}, \mu_1)$ to the completion space $([0,2], \mathscr B([0,2])_{\lambda}, \lambda)$.
+    It can be shown that $\lambda(g(C^\complement))= 1 $. 
+    Hence $\lambda(g(C))=2-1=1$.
+    Then There is a Lebesgue \textbf{non}measurable subset $D$ of $g(C)$ (see \cite{book:992991}, exercise 1.4.6).
+    Then $g^{-1}(D)$ is a $\mathscr B ([0,1])_{\mu_1}$-nonmeasurable subset of $C$.
+    Note also that $g^{-1}(D)$ is Lebesgue measurable since $g^{-1} (D)$ is a subset of $C$ which has Lebesgue measure $0$.
+    Thus, $g^{-1}(D)$ is a Lebesgue measurable subset of $\mathbb R$ which is not universally measurable.
+
+
+
+\end{proof}
+
 
 \bibliographystyle{apalike}
 \bibliography{mybibfile}
