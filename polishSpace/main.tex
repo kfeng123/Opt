@@ -486,6 +486,31 @@ The conclusion follows by letting $f= g\comp h$.
     Hence $(\mathscr A_*)_* \subset  \cap_{\mu} \mathscr A_{\mu} = \mathscr A_*$.
 \end{proof}
 
+
+The following lemma is useful in proving the next two lemmas.
+\begin{lemma}
+    Let $(X,\mathscr A)$ and $(Y, \mathscr B)$ are two measurable spaces. 
+    Let $f$ be an isomorphism between $(X,\mathscr A)$ and $(Y, \mathscr B)$, that is, $f$ is a bijection and $f$ and $f^{-1}$ are both measurable.
+    Then for any finite measure $\mu$ on $\mathscr A$, $f$ is also an isomorphism between $(X,\mathscr A_\mu)$ and $ (Y,\mathscr B_{\mu f^{-1}})$.
+    Furthermore, $f$ is an isomorphism between $(X,\mathscr A_*)$ and $ (Y,\mathscr B_*)$.
+    \label{lemma:BorelIso}
+\end{lemma}
+\begin{proof}
+    Let $\mu$ be any finite measure on $\mathscr A$.
+    For any $A\in \mathscr A_\mu$, there exist $A_0,A_1\in \mathscr A$ such that $A_0 \subset A \subset A_1$ and $\mu(A_1/A_0)=0$.
+    Then $f(A_0), f(A_1) \in \mathscr B$, $f(A_0)\subset f(A) \subset f(A_1)$ and $\mu f^{-1} (f(A_1) / f(A_0)) = \mu (A_1 / A_0) = 0$. Then $f(A)\in \mathscr B_{\mu f^{-1}}$.
+    Similarly, if $B \in \mathscr B_{\mu f^{-1}}$, then $f^{-1}(B) \in \mathscr A_\mu$.
+    Thus, $f$ is an isomorphism between $(X,\mathscr A_\mu)$ and $ (Y,\mathscr B_{\mu f^{-1}})$.
+
+    This is true for any finite measure $\mu$ on $\mathscr A$.
+    Hence $f$ is an isomorphism between $(X, \cap_{\mu}\mathscr A_\mu)$ and $ (Y,\cap_{\mu} \mathscr B_{\mu f^{-1}})$.
+    By definition, $\cap_{\mu}\mathscr A_\mu = A_*$.
+    On the other hand, for any finite measure $\nu$ on $\mathscr B$, $\nu (B)= \nu (f \comp f^{-1} B)= \nu f ( f^{-1} B) =  (\nu f) f^{-1} (B)$.
+    Note that $\nu f$ is a finite measure on $\mathscr A$.
+    It follows that  $\cap_{\mu} \mathscr B_{\mu f^{-1}}= \cap_{\nu} \mathscr B_{\nu}= \mathscr B_*$.
+    This complemtes the proof.
+\end{proof}
+
 \begin{exercise}[\cite{book:992991}, Exercise 8.4.3]
     There is a Lebesgue measurable subset of $\mathbb R$ that is not universally measurable.
 \end{exercise}
@@ -502,8 +527,8 @@ The conclusion follows by letting $f= g\comp h$.
     Define $g:[0,1] \to [0,2]$ by $g(x)= f(x) + x$.
     Then $g$ is strict increasing and continuous.
     Thus, $g$ is a Borel isomorphism from $([0,1], \mathscr B ([0,1]), \mu_1)$ to $([0,2], \mathscr B([0,2]), \lambda)$.
-    That is, $\lambda \comp g = \mu_1$.
-    It ca be easily seen that $g$ is also an isomorphism from the completion space $([0,1], \mathscr B ([0,1])_{\mu_1}, \mu_1)$ to the completion space $([0,2], \mathscr B([0,2])_{\lambda}, \lambda)$.
+    Also, $\lambda \comp g = \mu_1$.
+    From Lemma \ref{lemma:BorelIso}, $g$ is also an isomorphism between the completion spaces $([0,1], \mathscr B ([0,1])_{\mu_1}, \mu_1)$ and $([0,2], \mathscr B([0,2])_{\lambda}, \lambda)$.
     It can be shown that $\lambda(g(C^\complement))= 1 $. 
     Hence $\lambda(g(C))=2-1=1$.
     Then There is a Lebesgue \textbf{non}measurable subset $D$ of $g(C)$ (see \cite{book:992991}, exercise 1.4.6).
@@ -511,9 +536,177 @@ The conclusion follows by letting $f= g\comp h$.
     Note also that $g^{-1}(D)$ is Lebesgue measurable since $g^{-1} (D)$ is a subset of $C$ which has Lebesgue measure $0$.
     Thus, $g^{-1}(D)$ is a Lebesgue measurable subset of $\mathbb R$ which is not universally measurable.
 
+\end{proof}
+
+\begin{exercise}[\cite{book:992991}, Exercise 8.4.4]
+    Each uncountable Polish space has a subset that is not universally measurable.
+\end{exercise}
+\begin{proof}
+    Let $X$ be an uncountable Polish space.
+    From \cite{book:992991}, Theorem 8.3.6, there is a Borel isomorphism $f$ between $(X, \mathscr B (X))$ and $(\mathbb R, \mathscr B(\mathbb R))$.
+    Form Lemma \ref{lemma:BorelIso}, $f$ is an isomorphism between $(X, \mathscr B(X)_*)$ and $(\mathbb R, \mathscr B(\mathbb R)_*)$.
+    But there is an $B \notin \mathscr B(\mathbb R)_*$, e.g., a Lebesgue nonmeasurable set.
+    Then $f^{-1}(B) \notin \mathscr B (X)_*$.
+    This complemtes the proof.
+\end{proof}
+
+\begin{exercise}[\cite{book:992991}, Exercise 8.4.5]
+    There is a measurable space $(X, \mathscr A)$ and an outer measure $\mu^*$ on it such that there exists an increasing sequence $\{A_n\}$ of subsets of $X$,
+    \begin{equation*}
+        \mu^* ( \cup_n A_n )  = \lim_n \mu^* (A_n).
+    \end{equation*}
+\end{exercise}
+\begin{remark}
+    An outher measure $\mu^*$ on $(X, \mathscr A)$ is a function from $\mathscr A$ to $[0, +\infty]$ such that
+    \begin{enumerate}[(a)]
+    \item 
+        $\mu^* (\emptyset ) = 0$.
+    \item
+        if $A\subset B \subset X$, then $ \mu^* (A) \leq \mu^* (B)$, and
+    \item
+        if $\{A_n\}$ is an infinite sequence of subsets of $X$, then $\mu^* (\cup_n A_n) \leq \sum_n \mu^* (A_n)$.
+\end{enumerate}
+\end{remark}
+\begin{proof}
+    Let $X = \mathbb N$, $\mathscr A = 2^X$.
+    Let $\mu^* (\emptyset) = 0$, $\mu^* (X) =2$ and $\mu^* (A)=1$ for $A \neq \emptyset, X$.
+    It is an easy task to check $\mu^* $ is an outer measure.
+    Now consider $A_n =\{0,1,\dots,n\}$.
+    Then $\cup_n A_n = X$.
+    And $\mu^* (\cup_n A_n) = 2 > 1 = \lim_n \mu^* (A_n)$.
+\end{proof}
+
+\begin{definition}
+    Let $(X,\mathscr A)$ and $(Y, \mathscr B)$ be measurable spaces.
+    A function $K: X \times \mathscr B \to [0, +\infty]$ is called a \emph{kernel} from $(X,\mathscr A)$ to $(Y, \mathscr B)$ if
+    \begin{enumerate}[(i)]
+        \item 
+            for each $x \in X$ the function $B\mapsto K(x,B)$ is a measure on $(Y, \mathscr B)$, and
+        \item
+            for each $B \in \mathscr B$ the function $x \mapsto K(x, B)$ is $\mathscr A$-measurable.
+    \end{enumerate}
+\end{definition}
+\begin{exercise}[\cite{book:992991}, Exercise 2.4.7]
+    Suppose that $K$ is a kernel from $(X, \mathscr A)$ to $(Y, \mathscr B)$, that $ \mu$ is a measure on $(X, \mathscr A)$, and that $f$ is a $[0,+\infty]$-valued $\mathscr B$-measurable function on $Y$. Then
+    \begin{enumerate}[(a)]
+        \item 
+            $B\mapsto \int K(x,B)\mu(\mathrm d x)$ is a measure on $(Y, \mathscr B)$,
+        \item
+            $x\mapsto \int f(y) K(x, \mathrm d y)$ is an $\mathscr A$-measurable function on $X$, and
+        \item
+            if $\nu$ is the measure on $(Y, \mathscr B)$ defined in part (a), then $\int f(y) \nu(\mathrm d y) = \int (\int f(y) K(x, \mathrm d y)) \mu (\mathrm d x)$.
+    \end{enumerate}
+\end{exercise}
+\begin{proof}
+\
+
+\noindent(a):
+As a function of $x$, $K(x,B)$ is $\mathscr A$-measurable. 
+Hence $\int K(x,B)\mu(\mathrm d x)$ is well defined for each $B$.
+Clearly, $\int K(x,\emptyset )\mu(\mathrm d x) = \int 0 \mu (\mathrm d x) = 0$.
+Suppose $\left\{ A_i \right\}_{i=1}^\infty$ is an infinite sequence of disjoint sets that belongs to $\mathscr A$.
+Then
+\begin{align*}
+    \int K(x,\cup_{i=1}^\infty A_i )\mu(\mathrm d x) 
+    =
+    \int \sum_{i=1}^\infty K(x, A_i )\mu(\mathrm d x) 
+    =
+    \sum_{i=1}^\infty\int  K(x, A_i )\mu(\mathrm d x) ,
+\end{align*}
+where the last equality follows from the monotone convergence theorem.
+
+\noindent(b):
+If $f= \mathbf 1_A$ for $A\in \mathscr B$, then $\int f(y) K(x, \mathrm d y) = K(x,B)$ is $\mathscr A$-measurable by the definition of kernel.
+It follows that $\int f(y) K(x, \mathrm d y) = K(x,B)$ is $\mathscr A$-measurable for every simple $\mathscr B$-measurable function $f$.
+Finally, let $f: Y \to [0,+\infty]$ be an arbitrary $\mathscr B$-measurable function, and choose a sequence $\{g_n\}$ of simple $\mathscr B$-measurable functions from $Y$ to $[0,+\infty)$ such that $g_n(y) \uparrow f(y)$ for each $y\in Y$.
+Then the monotone convergence theorem implies that
+$
+\int f(y) K(x, \mathrm d y)
+=
+\int \lim_n g_n(y) K(x, \mathrm d y)
+=
+\lim_n
+\int  g_n(y) K(x, \mathrm d y)
+$.
+It follows that $\int f(y) K(x, \mathrm d y)$ is $\mathscr A$-measurable.
+
+\noindent(c):
+If $f= \mathbf 1_A$ for $A\in \mathscr B$, then 
+\begin{align*}
+    \int f(y) \nu (\mathrm d y)
+    =
+     \nu (A)
+     =
+     \int K(x,A) \mu (\mathrm d x)
+ =
+ \int \int f(y) K(x, \mathrm d y) \mu (\mathrm d x).
+\end{align*}
+By the linearity of integral, the conclustion holds for any $[0,+\infty ]$ valued simple $\mathscr B$-measurable function.
+Finally, the conclusion holds for any $[0,+\infty ]$-valued $\mathscr B$-measurable function on $Y$ by the monotone convergence theorem.
 
 
 \end{proof}
+
+
+\begin{exercise}[\cite{book:992991}, Exercise 8.4.6]
+    Let $(X,\mathscr A)$ and $(Y, \mathscr B)$ be measurable spaces, and let $K$ be a kernel from $(X,\mathscr A)$ to $(Y,\mathscr B)$ such that $\sup \left\{ K(x,Y), : x \in X \right\}$ is finite.
+    For each $x$ in $X$ let $B\mapsto \overline K (x, B)$ be the restriction to $\mathscr B_*$ of the completion of the measure $B \mapsto K (x, B)$.
+    Finally, for each finite measure $\mu$ on $(X, \mathscr A)$ let $\mu K$ be the measure on $(Y, \mathscr B)$ defined by $(\mu K) (B) = \int K (x,B) \mu (\mathrm d x)$.
+    \begin{enumerate}[(a)]
+        \item 
+            $x,B \to \overline K (x,B)$ is a kernel from $(X, \mathscr A_*)$ to $(Y, \mathscr B_*)$.
+        \item
+            Suppose that $\mu$ is a finite measure on $(X, \mathscr A)$ and that $\overline \mu$ and $\overline{\mu K}$ are the restrictions to $\mathscr A_*$ and $\mathscr B_*$ of the completions of $\mu$ and $\mu K$.
+            Then $\overline{\mu K} = \overline \mu \overline K$, that is,
+            \begin{equation*}
+                \overline{\mu K} (B) = \int \overline K (x, B) \overline \mu (\mathrm d x)
+            \end{equation*}
+            holds for each $B$ in $\mathscr B_*$.
+    \end{enumerate}
+
+\end{exercise}
+
+\begin{proof}
+\
+
+\noindent(a):
+By definition, for any fixed $x \in X$, $B \mapsto \overline K (x,B)$ is a measure on $(Y, \mathscr B)$.
+We only need to prove that for each $B \in \mathscr B_*$, the function $x\mapsto \overline K (x, B)$ is $\mathscr A_*$-measurable.
+We apply [\cite{book:992991}, Exercise 8.4.1(a)] to prove this claim.
+Fix $B \in \mathscr B_*$.
+We shall prove that for each finite measure $\mu $ on $(X,\mathscr A)$ there are $\mathscr A$-measurable functions $f_0, f_1 : X \to [0,+\infty]$ that satisfy $f_0 \leq \overline K (x,B) \leq f_1$ everywhere on $X$ and $f_0=f_1$ $\mu$-almost everywhere.
+
+From
+\cite{book:992991}, Exercise 2.4.7(a),
+the measure $\mu K : \mathscr B \to [0,+\infty]$ defined as $ A  \mapsto \int K(x, A) \mu (\mathrm d x)$ is well defined.
+Also $\int K(x, Y) \mu (\mathrm d x) \leq  \int \sup_{x\in X} K(x, Y) \mu (\mathrm d x) = \sup_{x\in X} K(x, Y) \mu (X) <\infty$.
+Hence $\mu K$ is a finite measure on $\mathscr B$.
+Since $B$ is universally measurable, there exists $B_0, B_1 \in \mathscr B$ such that $B_0\subset B \subset B_1$ and $\mu K (B_0) = \mu K (B_1)$.
+It follows that
+\begin{align*}
+    \int K(x, B_1 ) -  K(x, B_0 ) \mu (\mathrm d x) =0.
+\end{align*} 
+Hence $ K(x, B_1  ) = K(x, B_0 )$ $\mu$-almost everywhere.
+Note that $K(x,B_0)  \leq \overline K (x, B) \leq K(x, B_1)$.
+This completes the proof.
+
+\noindent(b):
+For $B \in \mathscr B$, $\overline{ \mu K } (B) = \mu K (B)$ by definition, and 
+\begin{align*}
+    \overline \mu \overline K (B) =
+    \int \overline K (x,B) \overline \mu (\mathrm d x)
+    =
+    \int  K (x,B) \overline \mu (\mathrm d x)
+    =
+    \int  K (x,B)  \mu (\mathrm d x)
+    =\mu K (B)
+    .
+\end{align*}
+Thus $\overline{\mu K}= \overline \mu \overline K $ on $\mathscr B$.
+Hence they agree on $\mathscr B_*$.
+    
+\end{proof}
+
 
 
 \bibliographystyle{apalike}

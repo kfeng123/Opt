@@ -444,18 +444,9 @@ Generalization of $g$ priors to $p>n$: \cite{maruyama2011}, \cite{Shang2011}.
 
 
 \subsubsection{Imaginary training sample approach}
-To determine the arbitrary magnitude of $\text{BF}[\mathcal M_1:\mathcal M_0]$, we consider $c\text{BF}[\mathcal M_1:\mathcal M_0]$ where $c>0$ is an absolute constant (which does not depend on $n$) to be chosen.
-To choose $c$, it suffices to set up the Bayes factor for a fixed imaginary data $X_0$.
-\cite{Spiegelhalter1982} proposed the following creteria to choose an imaginary training.
-\begin{enumerate}[(a)]
-    \item 
-        It involves the smallest possible sample size permitting a comparison of $\mathcal M_0$ and $ \mathcal M_1$.
-    \item
-        It provides maximum possible support for $\mathcal M_0$.
-\end{enumerate}
-That is, take $n$ to be the minimal training sample size and choose $X$ such that $\text{BF}[\mathcal M_1:\mathcal M_0]$ attains its minimum $\text{BF}_{*}[\mathcal M_1:\mathcal M_0]$.
-Then take $c=\text{BF}_{*}[\mathcal M_1:\mathcal M_0]^{-1}$.
-
+To determine the arbitrary magnitude of $\text{BF}[1:0]$, we consider $c\text{BF}[1:0]$ where $c>0$ is an absolute constant (which does not depend on $n$) to be chosen.
+To choose $c$, \cite{Spiegelhalter1982}
+we only need to set up
 
 
 \subsubsection{Intrinsic prior}
@@ -1308,20 +1299,17 @@ This section is adapted from \cite{Liang2008Mixtures}.
 Fractional Bayes factor is proposed by \cite{Fractional1995}.
 Fractional intrinsic Bayes factor is proposed by \cite{santis1997Alt}.
 See \cite{Santis1999} for a review.
-
-\section{Divergence-based priors}
 Divergence-based (DB) priors are proposed by \cite{Bayarri2008Gen}.
+
+
+
+
+
+
+
 
 \section{Expected-posterior priors}
 Expected-posterior prior is proposed by \cite{Perez2002}.
-It can be likely used in subjective Bayes inference.
-
-
-
-
-
-
-
 \section{Normal-inverse-gamma (NIG) prior}
 \cite{zhou2018On}
 
@@ -1463,9 +1451,6 @@ Thus, under $\mathcal M_1$, we put prior
 \end{equation*}
 
 \subsection{Fractional intrinsic priors}
-
-
-
 Suppose we are comparing two models based on $n$ iid observations, $\mathcal M_i: f_i (x|\theta_i)$, $i=0,1$, where $f_0(x|\theta_0)$ is nested in $f_1(x|\theta_1)$. Suppose prior $\pi_i (\theta_i)$ is imposed under $\mathcal M_i$, $i=0,1$.
 Bayes factors suffers from some paradox.
 Several remedies have been proposed.

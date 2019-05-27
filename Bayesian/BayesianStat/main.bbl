@@ -1,3 +1,24 @@
 \begin{thebibliography}{}
 
+\bibitem[Dobriban and Wager, 2018]{Dobriban2018}
+Dobriban, E. and Wager, S. (2018).
+\newblock High-dimensional asymptotics of prediction: Ridge regression and
+  classification.
+\newblock {\em The Annals of Statistics}, 46(1):247--279.
+
+\bibitem[Efron, 2012]{Efron2012}
+Efron, B. (2012).
+\newblock Bayesian inference and the parametric bootstrap.
+\newblock {\em The Annals of Applied Statistics}, 6(4):1971--1997.
+
+\bibitem[Ghosh, 2011]{Ghosh2011}
+Ghosh, M. (2011).
+\newblock Objective priors: An introduction for frequentists.
+\newblock {\em Statistical Science}, 26(2):187--202.
+
+\bibitem[Sweeting et~al., 2006]{Sweeting2006}
+Sweeting, T.~J., Datta, G.~S., and Ghosh, M. (2006).
+\newblock Nonsubjective priors via predictive relative entropy regret.
+\newblock {\em The Annals of Statistics}, 34(1):441--468.
+
 \end{thebibliography}
