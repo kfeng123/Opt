@@ -709,6 +709,41 @@ Hence they agree on $\mathscr B_*$.
 
 
 
+
+\begin{proposition}[\cite{book:992991}, Proposition 8.4.4]
+    Let $(X, \mathscr A)$ be a measurable space, let $Y$ be a Polish space, and let $C$ be a subset of $X \times Y$ that belongs to the product $\sigma$-algebra $\mathscr A \times \mathscr B(Y)$.
+    Then the projection of $C$ on $X$ is universally measurable with respect to $(X, \mathscr A)$.
+\end{proposition}
+
+\begin{corollary}[\cite{book:992991}, Corollary 8.5.4]
+    Let $(X, \mathscr A)$ be a measurable space, let $Y$ be a Polish space, let $C$ be a subset of $X \times Y$ that belongs to the $\sigma$-algebra $\mathscr A \times \mathscr B (Y)$, and let $C_0$ be the projection of $C$ on $X$.
+    Then there is a function $f: C_0 \to Y$ such that
+    \begin{enumerate}[(a)]
+        \item 
+            the graph of $f$ is a subset of $C$, and
+        \item
+            $f$ is measurable with respect to $\mathscr A_*$ and $\mathscr B (Y)$.
+    \end{enumerate}
+\end{corollary}
+
+\begin{exercise}[\cite{book:992991}, Exercise 8.5.1]
+    The Polish space $Y$ in \cite{book:992991}, Proposition 8.4.4 and \cite{book:992991}, Corollary 8.5.4 cannot be replaced with an arbitrary measurable space $(Y, \mathscr B)$.
+\end{exercise}
+
+\begin{proof}
+    Let $(X, \mathscr A)$ be $(\mathbb R, \mathscr B (\mathbb R))$, let $Y$ be a subset of $\mathbb R$ that is not Lebesgue measurable, and let $\mathscr B$ be the trace of $\mathscr B (\mathbb R)$ on $Y$.
+    Let $C= \left\{ (x,y) \in X\times Y: x=y \right\}$.
+    From \cite{book:992991}, Lemma 7.2.2, $(Y, \mathscr B)= (Y, \mathscr B (Y))$.
+    Since $X$ and $Y$ are both separable, $\mathscr B(X) \times \mathscr B (Y) = \mathscr B (X\times Y)$.
+    $C$ is a closed subset of $X\times Y$, hence belongs to $\mathscr B (X\times Y)=\mathscr B(X) \times \mathscr B (Y) $.
+    
+    The projection of $C$ on $X$ is $Y$ which is not Lebesgue measurable, hence does not belong to $\mathscr B (X)_*$.
+
+    The $f$ must be $f(x) = x$. But $f^{-1}(Y) = Y$ is not universally measurable in $X$. 
+    This completes the proof.
+    
+\end{proof}
+
 \bibliographystyle{apalike}
 \bibliography{mybibfile}
 
