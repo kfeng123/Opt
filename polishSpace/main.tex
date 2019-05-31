@@ -744,6 +744,61 @@ Hence they agree on $\mathscr B_*$.
     
 \end{proof}
 
+
+\begin{exercise}[\cite{book:992991}, Exercise 8.5.2]
+    Let $(X, \mathscr A)$ be a measurable space, let $Y$ be a Polish space, and let $C$ be a subset of $X \times Y$ such that
+    \begin{enumerate}[(i)]
+        \item 
+            for each $x$ in $X$ the section $C_x$ is closed and nonempty, and
+        \item
+            for each open subset $U$ of $Y$ the set $\left\{ x\in X : C_x \cap U \neq \emptyset \right\}$ belongs to $\mathscr A$.
+    \end{enumerate}
+    Then there is a function $f: X \to Y$ such that
+    \begin{enumerate}[(a)]
+        \item 
+            $f$ is measurable with respect to $\mathscr A$ and $\mathscr B (Y)$, and
+        \item
+            the graph of $f$ is included in $C$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    Let $d$ be a complete metric for $Y$, and let $D=\{x_i\}_{i=1}^\infty$ be a countable dense subset of $Y$.
+    Let $C(i) = B(y_i, 2^{-1})$, $i=1,2,\dots$.
+    Suppose $C(i_1,\dots,i_k)$ is defined for $i_1,\dots,i_k \in \{1,2,\dots\}$, we define $C(i_1,\dots,i_k , i)= B(y_i, 2^{-(k+1)})\cap C(i_1,\dots,i_k)$.
+    Then $C(i_1,\dots,i_k)$ are open sets in $Y$ and $\cup_{i=1}^\infty C(i) = Y$, $\cup_{i=1}^\infty C(i_1,\dots,i_k, i) = C(i_1,\dots,i_k)$.
+    Define $E(i_1,\dots,i_k) = \left\{ x\in X : C_x \cap C(i_1,\dots,i_k) \neq \emptyset \right\}$ and recursively define $E(i) = \left\{ x\in X : C_x \cap C(i) \neq \emptyset \right\} \backslash E(i-1) $.
+    By assumption, $\cup_{i=1}^\infty E(i) = X$, $\cup_{i=1}^\infty C(i_1,\dots,i_k , i) = C(i_1,\dots,i_k)$ and $E_n(i_1,\dots,i_k) \in \mathscr A$.
+    Let $F(1)=E(1)$, $F(i)=E(i)\backslash \cup_{j=1}^{i-1} E(i)$, $i\geq 2$.
+    Suppose $F(i_1,\dots,i_k)$ are defined, let
+    \begin{align*}
+        F(i_1,\dots,i_k, i)= F(i_1,\dots,i_k) \cap \left(  E(i_1,\dots,i_k, i) \backslash \cup_{j=1}^{i-1} E(i_1,\dots,i_k ,j)  \right).
+    \end{align*}
+    Then $\{F(i_1,\dots,i_k,i)\}_{i=1}^\infty$ are disjoint and $\cup_{i=1}^\infty F(i_1,\dots,i_k ,i ) = F(i_1,\dots,i_k)$.
+    For $x \in F(i_1,\dots,i_k)$, let $f_k (x) = y_{i_k}$.
+    Then $f_k (\cdot)$ is measurable.
+    If $x \in F(i_1,\dots,i_k)$, then $x \in E(i_1,\dots,i_k)$, and then $C_x \cap C(i_1,\dots,i_k) \neq \emptyset$, and then 
+    $d(f_k(x), C_x) < 2^{-k}$.
+    On the other hand, 
+    if $x \in F(i_1,\dots,i_k,i_{k+1})$, then $C(i_1,\dots,i_k, i_{k+1}) \neq \emptyset$, that is
+    \begin{align*}
+        B(y_{i_{k+1}}, 2^{-(k+1)}) \cap C(i_1,\dots,i_k) \neq \emptyset.
+    \end{align*}
+    Hence
+    \begin{align*}
+        B(y_{i_{k+1}}, 2^{-(k+1)}) \cap B(y_{i_k}, 2^{-k}) \neq \emptyset.
+    \end{align*}
+    That is, $d(y_{i_{k}}, y_{i_{k+1}})\leq 2^{-(k-1)} $.
+    Then $d(f_{k+1}(x), f_k (x)) =d(y_{i_{k+1}},y_{i_k}) \leq 2^{-(k-1)} $.
+    Since $Y$ is complete, we can define $f(\cdot)$ by $f(x) = \lim_n f_n(x)$.
+    Since $d(f_n(x),C_x) < 2^{-k}$ and $C_x$ is closed, $f(x) \in C_x$.
+    This completes the proof.
+
+    
+    
+\end{proof}
+
+
 \bibliographystyle{apalike}
 \bibliography{mybibfile}
 
