@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.15)  31 MAY 2019 16:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.15)  4 JUN 2019 10:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -610,19 +610,19 @@ cmsy/m/n/10.95 7! [] \OML/cmm/m/it/10.95 K\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.
  []
 
 [10] [11] (./main.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 805.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 834.
  [12]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 805.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 834.
  (./main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 805.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 805.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 834.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 834.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 295777199FEEBB65F347F6885C7B931A;94.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 805.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 834.
  ) 
 Here is how much of TeX's memory you used:
- 9045 strings out of 493029
- 126396 string characters out of 6136233
+ 9047 strings out of 493029
+ 126418 string characters out of 6136233
  243500 words of memory out of 5000000
  12349 multiletter control sequences out of 15000+600000
  16140 words of font info for 61 fonts, out of 8000000 for 9000
@@ -646,10 +646,10 @@ texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/public/rsfs/rsfs10.pfb>
-Output written on main.pdf (12 pages, 241007 bytes).
+Output written on main.pdf (12 pages, 243671 bytes).
 PDF statistics:
- 322 PDF objects out of 1000 (max. 8388607)
- 286 compressed objects within 3 object streams
- 76 named destinations out of 1000 (max. 500000)
+ 328 PDF objects out of 1000 (max. 8388607)
+ 292 compressed objects within 3 object streams
+ 78 named destinations out of 1000 (max. 500000)
  17 words of extra memory for PDF output out of 10000 (max. 10000000)
 

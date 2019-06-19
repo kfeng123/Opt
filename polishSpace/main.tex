@@ -798,6 +798,35 @@ Hence they agree on $\mathscr B_*$.
     
 \end{proof}
 
+\begin{exercise}[\cite{book:992991}, Exercise 8.6.1]
+    Let $(X, \mathscr A)$ be a measurable space. If $\mathscr A$ is separated and countably generated, then $\mathscr A$ is countably separated.
+\end{exercise}
+\begin{proof}
+    Suppose $\mathscr C = \left\{ C_i \right\}_{i=1}^\infty $ and $\mathscr A = \sigma(\mathscr C)$.
+    We show that $\mathscr C$ separates the points of $X$.
+    Suppose the contrary holds, there is a pair $x$, $y$ of distinct points in $X$ such that each $C_i$ contains both or none of $x$ and $y$.
+    Let $\mathscr A^*$ be the collection of the subsets $A$ of $X$ such that $A$ contains both or none of $x$ and $y$.
+    Then $\mathscr A^*$ is obviously a $\sigma$-algebra containing $\mathscr C$.
+    Hence $\mathscr A^* \supset \sigma(\mathscr C) = \mathscr A$.
+    This contradicts the fact that $\mathscr A$ is separated.
+\end{proof}
+
+\begin{exercise}[\cite{book:992991}, Exercise 8.6.2]
+    There is a $\sigma$-algebra on $\mathbb R$ that is included in $\mathscr B (\mathbb R)$ and is separated but not countably separated.
+\end{exercise}
+\begin{proof}
+    Let $\mathscr A$ be the class of subsets of $\mathbb R$ which are countable or the complement of which are countable.
+    It can be obviously seen that $\mathscr A \subset \mathscr B (\mathbb R)$ and $\mathscr A$ separates the points in $\mathbb R$.
+    We show that $\mathscr A$ is not countably separated.
+    Suppose the contrary, that there exists a countable collection $\{C_i\}_{i=1}^\infty \subset \mathscr A$ which separates the points of $\mathbb R$.
+    Let $D_i= C_i$ if $C_i$ is countable, $C_i^\complement$ if the complement of $C_i$ is countable.
+    Then $\left\{ D_i \right\}_{i=1}^\infty$ separates the points of $\mathbb R$.
+    But $\cup_{i=1}^\infty D_i $ is countable and hence is a proper subset of $\mathbb R$.
+    The points in $\mathbb R \backslash \cup_{i=1}^\infty D_i $ can not be separated by $\{D_i\}_{i=1}^\infty$, a contradicty.
+\end{proof}
+
+
+
 
 \bibliographystyle{apalike}
 \bibliography{mybibfile}

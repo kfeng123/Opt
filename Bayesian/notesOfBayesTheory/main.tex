@@ -727,7 +727,173 @@ $\int_{\Theta} w(\theta) \Pi(\mathrm d \theta)=1$}
 \cite{Xing2010},
 \cite{Xing2015},
 
+
 \CG{Their results can be generalized to non iid case.}
+
+
+\begin{lemma}
+    For $x>0$, $y\geq 1$, $\log (1+ x) \leq  y x^{1/y}$.
+\end{lemma}
+
+\begin{proposition}
+    Consistency for $t =1 $, $2$.
+    \label{newConsistency}
+\end{proposition}
+\begin{proof}
+    Let 
+    \begin{align*}
+    \left\{ \theta: \|\theta - \theta_0\| \geq M_n /\sqrt n \right\}
+    = \cup_{i=1}^\infty A_i.
+    \end{align*}
+    Let $\theta_i \in A_i$.
+    Let $\pi_i (\theta)= \mathbf 1_{A_i}(\theta) \pi(\theta)/\Pi(A_i)$ be the restriction of $\pi(\cdot )$ on $A_i$.
+    Then
+    \begin{align*}
+        &
+        \int_{
+    \left\{ \theta: \|\theta - \theta_0\| \geq M_n /\sqrt n \right\}
+        }
+        e^{-t R_n (\theta_0 \| \theta)} \pi(\theta) \, \mathrm d \theta
+        \\
+        \leq
+        &
+        \sum_{i=1}^\infty
+        \Pi(A_i)
+        \int_{
+            A_i
+        }
+        e^{-t R_n (\theta_0 \| \theta)} \pi_i(\theta) \, \mathrm d \theta
+        \\
+        =
+        &
+        \sum_{i=1}^\infty
+        \Pi(A_i)
+e^{-t R_n (\theta_0 \| \theta_i)}
+\left( 
+    1
++
+        \int_{
+            A_i
+        }
+        (e^{-t R_n (\theta_i\| \theta)} -1) \pi_i(\theta) \, \mathrm d \theta
+\right)
+        \\
+        \leq
+        &
+        \sum_{i=1}^\infty
+        \Pi(A_i)
+e^{-t R_n (\theta_0 \| \theta_i)}
++
+        \sum_{i=1}^\infty
+        \Pi(A_i)
+e^{-t R_n (\theta_0 \| \theta_i)}
+        \int_{
+            A_i
+        }
+        |e^{-t R_n (\theta_i\| \theta)} -1| \pi_i(\theta) \, \mathrm d \theta
+        .
+    \end{align*}
+    Thus,
+    \begin{align*}
+        &
+    \log
+    \left(
+        1+ 
+        \int_{
+    \left\{ \theta: \|\theta - \theta_0\| \geq M_n /\sqrt n \right\}
+        }
+        e^{-t R_n (\theta_0 \| \theta)} \pi(\theta) \, \mathrm d \theta
+    \right)
+    \\
+    \leq&
+        \sum_{i=1}^\infty
+        \log\left( 
+        1+
+        \Pi(A_i)
+e^{-t R_n (\theta_0 \| \theta_i)}
+    \right)
++
+        \sum_{i=1}^\infty
+        \log\left( 
+        1+
+        \Pi(A_i)
+e^{-t R_n (\theta_0 \| \theta_i)}
+        \int_{
+            A_i
+        }
+        |e^{-t R_n (\theta_i\| \theta)} -1| \pi_i(\theta) \, \mathrm d \theta
+    \right)
+    \\
+    \leq &
+        2 t
+        \sum_{i=1}^\infty
+        \Pi(A_i)^{\frac{1}{2t}}
+e^{-\frac 1 2 R_n (\theta_0 \| \theta_i)}
++
+        \frac 4 3
+        t
+        \sum_{i=1}^\infty
+        \Pi(A_i)^{\frac{3}{ 4 t }}
+e^{- \frac 3 4 R_n (\theta_0 \| \theta_i)}
+\left( 
+        \int_{
+            A_i
+        }
+        |e^{-t R_n (\theta_i\| \theta)} -1| \pi_i(\theta) \, \mathrm d \theta
+    \right)^{\frac{3}{ 4 t }}.
+    \end{align*}
+    We have
+    \begin{align*}
+        P_{\theta_0}^n 
+e^{-\frac 1 2 R_n (\theta_0 \| \theta_i)}
+= e^{ -\frac n 2 D_{1/2} (\theta_0 \| \theta_i)}.
+    \end{align*}
+    \begin{align*}
+        &
+        P_{\theta_0}^n 
+e^{- \frac 3 4 R_n (\theta_0 \| \theta_i)}
+\left( 
+        \int_{
+            A_i
+        }
+        |e^{-t R_n (\theta_i\| \theta)} -1| \pi_i(\theta) \, \mathrm d \theta
+    \right)^{\frac{3}{ 4 t }}
+    \\
+    =&
+    P_{\theta_i}^n e^{-\frac 1 4 R_n(\theta_i\| \theta_0)} 
+\left( 
+        \int_{
+            A_i
+        }
+        |e^{-t R_n (\theta_i\| \theta)} -1| \pi_i(\theta) \, \mathrm d \theta
+    \right)^{\frac{3}{ 4 t }}
+    \\
+    \leq &
+    \sqrt{
+    P_{\theta_i}^n 
+    e^{-\frac 1 2 R_n(\theta_i\| \theta_0)} 
+}
+    \sqrt{
+P_{\theta_i}^n
+\left( 
+        \int_{
+            A_i
+        }
+        |e^{-t R_n (\theta_i\| \theta)} -1| \pi_i(\theta) \, \mathrm d \theta
+    \right)^{\frac{3}{ 2 t }}
+}
+    \end{align*}
+\end{proof}
+
+
+
+
+
+
+
+
+
+
 
 
 \section{$\rho$-estimator}
