@@ -1,0 +1,355 @@
+name: "retinanet"
+op {
+  input: "gpu_0/res5_2_sum"
+  input: "gpu_0/fpn_inner_res5_2_sum_w"
+  input: "gpu_0/fpn_inner_res5_2_sum_b"
+  output: "gpu_0/fpn_inner_res5_2_sum"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 1
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/res4_5_sum"
+  input: "gpu_0/fpn_inner_res4_5_sum_lateral_w"
+  input: "gpu_0/fpn_inner_res4_5_sum_lateral_b"
+  output: "gpu_0/fpn_inner_res4_5_sum_lateral"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 1
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/fpn_inner_res5_2_sum"
+  output: "gpu_0/fpn_inner_res4_5_sum_topdown"
+  name: ""
+  type: "UpsampleNearest"
+  arg {
+    name: "scale"
+    i: 2
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+}
+op {
+  input: "gpu_0/fpn_inner_res4_5_sum_lateral"
+  input: "gpu_0/fpn_inner_res4_5_sum_topdown"
+  output: "gpu_0/fpn_inner_res4_5_sum"
+  name: ""
+  type: "Sum"
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+}
+op {
+  input: "gpu_0/res3_3_sum"
+  input: "gpu_0/fpn_inner_res3_3_sum_lateral_w"
+  input: "gpu_0/fpn_inner_res3_3_sum_lateral_b"
+  output: "gpu_0/fpn_inner_res3_3_sum_lateral"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 1
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/fpn_inner_res4_5_sum"
+  output: "gpu_0/fpn_inner_res3_3_sum_topdown"
+  name: ""
+  type: "UpsampleNearest"
+  arg {
+    name: "scale"
+    i: 2
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+}
+op {
+  input: "gpu_0/fpn_inner_res3_3_sum_lateral"
+  input: "gpu_0/fpn_inner_res3_3_sum_topdown"
+  output: "gpu_0/fpn_inner_res3_3_sum"
+  name: ""
+  type: "Sum"
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+}
+op {
+  input: "gpu_0/fpn_inner_res5_2_sum"
+  input: "gpu_0/fpn_res5_2_sum_w"
+  input: "gpu_0/fpn_res5_2_sum_b"
+  output: "gpu_0/fpn_res5_2_sum"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/fpn_inner_res4_5_sum"
+  input: "gpu_0/fpn_res4_5_sum_w"
+  input: "gpu_0/fpn_res4_5_sum_b"
+  output: "gpu_0/fpn_res4_5_sum"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/fpn_inner_res3_3_sum"
+  input: "gpu_0/fpn_res3_3_sum_w"
+  input: "gpu_0/fpn_res3_3_sum_b"
+  output: "gpu_0/fpn_res3_3_sum"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/res5_2_sum"
+  input: "gpu_0/fpn_6_w"
+  input: "gpu_0/fpn_6_b"
+  output: "gpu_0/fpn_6"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 2
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/fpn_6"
+  output: "gpu_0/fpn_6_relu"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/fpn_6_relu"
+  input: "gpu_0/fpn_7_w"
+  input: "gpu_0/fpn_7_b"
+  output: "gpu_0/fpn_7"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 2
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+type: "dag"
+num_workers: 4
+external_input: "gpu_0/res5_2_sum"
+external_input: "gpu_0/fpn_inner_res5_2_sum_w"
+external_input: "gpu_0/fpn_inner_res5_2_sum_b"
+external_input: "gpu_0/res4_5_sum"
+external_input: "gpu_0/fpn_inner_res4_5_sum_lateral_w"
+external_input: "gpu_0/fpn_inner_res4_5_sum_lateral_b"
+external_input: "gpu_0/res3_3_sum"
+external_input: "gpu_0/fpn_inner_res3_3_sum_lateral_w"
+external_input: "gpu_0/fpn_inner_res3_3_sum_lateral_b"
+external_input: "gpu_0/fpn_res5_2_sum_w"
+external_input: "gpu_0/fpn_res5_2_sum_b"
+external_input: "gpu_0/fpn_res4_5_sum_w"
+external_input: "gpu_0/fpn_res4_5_sum_b"
+external_input: "gpu_0/fpn_res3_3_sum_w"
+external_input: "gpu_0/fpn_res3_3_sum_b"
+external_input: "gpu_0/fpn_6_w"
+external_input: "gpu_0/fpn_6_b"
+external_input: "gpu_0/fpn_7_w"
+external_input: "gpu_0/fpn_7_b"

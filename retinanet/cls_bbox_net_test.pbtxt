@@ -1,0 +1,2488 @@
+name: "retinanet"
+op {
+  input: "gpu_0/fpn_res3_3_sum"
+  input: "gpu_0/retnet_cls_conv_n0_fpn3_w"
+  input: "gpu_0/retnet_cls_conv_n0_fpn3_b"
+  output: "gpu_0/retnet_cls_conv_n0_fpn3"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n0_fpn3"
+  output: "gpu_0/retnet_cls_conv_n0_fpn3"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n0_fpn3"
+  input: "gpu_0/retnet_cls_conv_n1_fpn3_w"
+  input: "gpu_0/retnet_cls_conv_n1_fpn3_b"
+  output: "gpu_0/retnet_cls_conv_n1_fpn3"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n1_fpn3"
+  output: "gpu_0/retnet_cls_conv_n1_fpn3"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n1_fpn3"
+  input: "gpu_0/retnet_cls_conv_n2_fpn3_w"
+  input: "gpu_0/retnet_cls_conv_n2_fpn3_b"
+  output: "gpu_0/retnet_cls_conv_n2_fpn3"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n2_fpn3"
+  output: "gpu_0/retnet_cls_conv_n2_fpn3"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n2_fpn3"
+  input: "gpu_0/retnet_cls_conv_n3_fpn3_w"
+  input: "gpu_0/retnet_cls_conv_n3_fpn3_b"
+  output: "gpu_0/retnet_cls_conv_n3_fpn3"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n3_fpn3"
+  output: "gpu_0/retnet_cls_conv_n3_fpn3"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n3_fpn3"
+  input: "gpu_0/retnet_cls_pred_fpn3_w"
+  input: "gpu_0/retnet_cls_pred_fpn3_b"
+  output: "gpu_0/retnet_cls_pred_fpn3"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_pred_fpn3"
+  output: "gpu_0/retnet_cls_prob_fpn3"
+  name: ""
+  type: "Sigmoid"
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+}
+op {
+  input: "gpu_0/fpn_res4_5_sum"
+  input: "gpu_0/retnet_cls_conv_n0_fpn3_w"
+  input: "gpu_0/retnet_cls_conv_n0_fpn3_b"
+  output: "gpu_0/retnet_cls_conv_n0_fpn4"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n0_fpn4"
+  output: "gpu_0/retnet_cls_conv_n0_fpn4"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n0_fpn4"
+  input: "gpu_0/retnet_cls_conv_n1_fpn3_w"
+  input: "gpu_0/retnet_cls_conv_n1_fpn3_b"
+  output: "gpu_0/retnet_cls_conv_n1_fpn4"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n1_fpn4"
+  output: "gpu_0/retnet_cls_conv_n1_fpn4"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n1_fpn4"
+  input: "gpu_0/retnet_cls_conv_n2_fpn3_w"
+  input: "gpu_0/retnet_cls_conv_n2_fpn3_b"
+  output: "gpu_0/retnet_cls_conv_n2_fpn4"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n2_fpn4"
+  output: "gpu_0/retnet_cls_conv_n2_fpn4"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n2_fpn4"
+  input: "gpu_0/retnet_cls_conv_n3_fpn3_w"
+  input: "gpu_0/retnet_cls_conv_n3_fpn3_b"
+  output: "gpu_0/retnet_cls_conv_n3_fpn4"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n3_fpn4"
+  output: "gpu_0/retnet_cls_conv_n3_fpn4"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n3_fpn4"
+  input: "gpu_0/retnet_cls_pred_fpn3_w"
+  input: "gpu_0/retnet_cls_pred_fpn3_b"
+  output: "gpu_0/retnet_cls_pred_fpn4"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_pred_fpn4"
+  output: "gpu_0/retnet_cls_prob_fpn4"
+  name: ""
+  type: "Sigmoid"
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+}
+op {
+  input: "gpu_0/fpn_res5_2_sum"
+  input: "gpu_0/retnet_cls_conv_n0_fpn3_w"
+  input: "gpu_0/retnet_cls_conv_n0_fpn3_b"
+  output: "gpu_0/retnet_cls_conv_n0_fpn5"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n0_fpn5"
+  output: "gpu_0/retnet_cls_conv_n0_fpn5"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n0_fpn5"
+  input: "gpu_0/retnet_cls_conv_n1_fpn3_w"
+  input: "gpu_0/retnet_cls_conv_n1_fpn3_b"
+  output: "gpu_0/retnet_cls_conv_n1_fpn5"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n1_fpn5"
+  output: "gpu_0/retnet_cls_conv_n1_fpn5"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n1_fpn5"
+  input: "gpu_0/retnet_cls_conv_n2_fpn3_w"
+  input: "gpu_0/retnet_cls_conv_n2_fpn3_b"
+  output: "gpu_0/retnet_cls_conv_n2_fpn5"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n2_fpn5"
+  output: "gpu_0/retnet_cls_conv_n2_fpn5"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n2_fpn5"
+  input: "gpu_0/retnet_cls_conv_n3_fpn3_w"
+  input: "gpu_0/retnet_cls_conv_n3_fpn3_b"
+  output: "gpu_0/retnet_cls_conv_n3_fpn5"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n3_fpn5"
+  output: "gpu_0/retnet_cls_conv_n3_fpn5"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n3_fpn5"
+  input: "gpu_0/retnet_cls_pred_fpn3_w"
+  input: "gpu_0/retnet_cls_pred_fpn3_b"
+  output: "gpu_0/retnet_cls_pred_fpn5"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_pred_fpn5"
+  output: "gpu_0/retnet_cls_prob_fpn5"
+  name: ""
+  type: "Sigmoid"
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+}
+op {
+  input: "gpu_0/fpn_6"
+  input: "gpu_0/retnet_cls_conv_n0_fpn3_w"
+  input: "gpu_0/retnet_cls_conv_n0_fpn3_b"
+  output: "gpu_0/retnet_cls_conv_n0_fpn6"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n0_fpn6"
+  output: "gpu_0/retnet_cls_conv_n0_fpn6"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n0_fpn6"
+  input: "gpu_0/retnet_cls_conv_n1_fpn3_w"
+  input: "gpu_0/retnet_cls_conv_n1_fpn3_b"
+  output: "gpu_0/retnet_cls_conv_n1_fpn6"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n1_fpn6"
+  output: "gpu_0/retnet_cls_conv_n1_fpn6"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n1_fpn6"
+  input: "gpu_0/retnet_cls_conv_n2_fpn3_w"
+  input: "gpu_0/retnet_cls_conv_n2_fpn3_b"
+  output: "gpu_0/retnet_cls_conv_n2_fpn6"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n2_fpn6"
+  output: "gpu_0/retnet_cls_conv_n2_fpn6"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n2_fpn6"
+  input: "gpu_0/retnet_cls_conv_n3_fpn3_w"
+  input: "gpu_0/retnet_cls_conv_n3_fpn3_b"
+  output: "gpu_0/retnet_cls_conv_n3_fpn6"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n3_fpn6"
+  output: "gpu_0/retnet_cls_conv_n3_fpn6"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n3_fpn6"
+  input: "gpu_0/retnet_cls_pred_fpn3_w"
+  input: "gpu_0/retnet_cls_pred_fpn3_b"
+  output: "gpu_0/retnet_cls_pred_fpn6"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_pred_fpn6"
+  output: "gpu_0/retnet_cls_prob_fpn6"
+  name: ""
+  type: "Sigmoid"
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+}
+op {
+  input: "gpu_0/fpn_7"
+  input: "gpu_0/retnet_cls_conv_n0_fpn3_w"
+  input: "gpu_0/retnet_cls_conv_n0_fpn3_b"
+  output: "gpu_0/retnet_cls_conv_n0_fpn7"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n0_fpn7"
+  output: "gpu_0/retnet_cls_conv_n0_fpn7"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n0_fpn7"
+  input: "gpu_0/retnet_cls_conv_n1_fpn3_w"
+  input: "gpu_0/retnet_cls_conv_n1_fpn3_b"
+  output: "gpu_0/retnet_cls_conv_n1_fpn7"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n1_fpn7"
+  output: "gpu_0/retnet_cls_conv_n1_fpn7"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n1_fpn7"
+  input: "gpu_0/retnet_cls_conv_n2_fpn3_w"
+  input: "gpu_0/retnet_cls_conv_n2_fpn3_b"
+  output: "gpu_0/retnet_cls_conv_n2_fpn7"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n2_fpn7"
+  output: "gpu_0/retnet_cls_conv_n2_fpn7"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n2_fpn7"
+  input: "gpu_0/retnet_cls_conv_n3_fpn3_w"
+  input: "gpu_0/retnet_cls_conv_n3_fpn3_b"
+  output: "gpu_0/retnet_cls_conv_n3_fpn7"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n3_fpn7"
+  output: "gpu_0/retnet_cls_conv_n3_fpn7"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_conv_n3_fpn7"
+  input: "gpu_0/retnet_cls_pred_fpn3_w"
+  input: "gpu_0/retnet_cls_pred_fpn3_b"
+  output: "gpu_0/retnet_cls_pred_fpn7"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_cls_pred_fpn7"
+  output: "gpu_0/retnet_cls_prob_fpn7"
+  name: ""
+  type: "Sigmoid"
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+}
+op {
+  input: "gpu_0/fpn_res3_3_sum"
+  input: "gpu_0/retnet_bbox_conv_n0_fpn3_w"
+  input: "gpu_0/retnet_bbox_conv_n0_fpn3_b"
+  output: "gpu_0/retnet_bbox_conv_n0_fpn3"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n0_fpn3"
+  output: "gpu_0/retnet_bbox_conv_n0_fpn3"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n0_fpn3"
+  input: "gpu_0/retnet_bbox_conv_n1_fpn3_w"
+  input: "gpu_0/retnet_bbox_conv_n1_fpn3_b"
+  output: "gpu_0/retnet_bbox_conv_n1_fpn3"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n1_fpn3"
+  output: "gpu_0/retnet_bbox_conv_n1_fpn3"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n1_fpn3"
+  input: "gpu_0/retnet_bbox_conv_n2_fpn3_w"
+  input: "gpu_0/retnet_bbox_conv_n2_fpn3_b"
+  output: "gpu_0/retnet_bbox_conv_n2_fpn3"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n2_fpn3"
+  output: "gpu_0/retnet_bbox_conv_n2_fpn3"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n2_fpn3"
+  input: "gpu_0/retnet_bbox_conv_n3_fpn3_w"
+  input: "gpu_0/retnet_bbox_conv_n3_fpn3_b"
+  output: "gpu_0/retnet_bbox_conv_n3_fpn3"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n3_fpn3"
+  output: "gpu_0/retnet_bbox_conv_n3_fpn3"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/fpn_res4_5_sum"
+  input: "gpu_0/retnet_bbox_conv_n0_fpn3_w"
+  input: "gpu_0/retnet_bbox_conv_n0_fpn3_b"
+  output: "gpu_0/retnet_bbox_conv_n0_fpn4"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n0_fpn4"
+  output: "gpu_0/retnet_bbox_conv_n0_fpn4"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n0_fpn4"
+  input: "gpu_0/retnet_bbox_conv_n1_fpn3_w"
+  input: "gpu_0/retnet_bbox_conv_n1_fpn3_b"
+  output: "gpu_0/retnet_bbox_conv_n1_fpn4"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n1_fpn4"
+  output: "gpu_0/retnet_bbox_conv_n1_fpn4"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n1_fpn4"
+  input: "gpu_0/retnet_bbox_conv_n2_fpn3_w"
+  input: "gpu_0/retnet_bbox_conv_n2_fpn3_b"
+  output: "gpu_0/retnet_bbox_conv_n2_fpn4"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n2_fpn4"
+  output: "gpu_0/retnet_bbox_conv_n2_fpn4"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n2_fpn4"
+  input: "gpu_0/retnet_bbox_conv_n3_fpn3_w"
+  input: "gpu_0/retnet_bbox_conv_n3_fpn3_b"
+  output: "gpu_0/retnet_bbox_conv_n3_fpn4"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n3_fpn4"
+  output: "gpu_0/retnet_bbox_conv_n3_fpn4"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/fpn_res5_2_sum"
+  input: "gpu_0/retnet_bbox_conv_n0_fpn3_w"
+  input: "gpu_0/retnet_bbox_conv_n0_fpn3_b"
+  output: "gpu_0/retnet_bbox_conv_n0_fpn5"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n0_fpn5"
+  output: "gpu_0/retnet_bbox_conv_n0_fpn5"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n0_fpn5"
+  input: "gpu_0/retnet_bbox_conv_n1_fpn3_w"
+  input: "gpu_0/retnet_bbox_conv_n1_fpn3_b"
+  output: "gpu_0/retnet_bbox_conv_n1_fpn5"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n1_fpn5"
+  output: "gpu_0/retnet_bbox_conv_n1_fpn5"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n1_fpn5"
+  input: "gpu_0/retnet_bbox_conv_n2_fpn3_w"
+  input: "gpu_0/retnet_bbox_conv_n2_fpn3_b"
+  output: "gpu_0/retnet_bbox_conv_n2_fpn5"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n2_fpn5"
+  output: "gpu_0/retnet_bbox_conv_n2_fpn5"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n2_fpn5"
+  input: "gpu_0/retnet_bbox_conv_n3_fpn3_w"
+  input: "gpu_0/retnet_bbox_conv_n3_fpn3_b"
+  output: "gpu_0/retnet_bbox_conv_n3_fpn5"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n3_fpn5"
+  output: "gpu_0/retnet_bbox_conv_n3_fpn5"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/fpn_6"
+  input: "gpu_0/retnet_bbox_conv_n0_fpn3_w"
+  input: "gpu_0/retnet_bbox_conv_n0_fpn3_b"
+  output: "gpu_0/retnet_bbox_conv_n0_fpn6"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n0_fpn6"
+  output: "gpu_0/retnet_bbox_conv_n0_fpn6"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n0_fpn6"
+  input: "gpu_0/retnet_bbox_conv_n1_fpn3_w"
+  input: "gpu_0/retnet_bbox_conv_n1_fpn3_b"
+  output: "gpu_0/retnet_bbox_conv_n1_fpn6"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n1_fpn6"
+  output: "gpu_0/retnet_bbox_conv_n1_fpn6"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n1_fpn6"
+  input: "gpu_0/retnet_bbox_conv_n2_fpn3_w"
+  input: "gpu_0/retnet_bbox_conv_n2_fpn3_b"
+  output: "gpu_0/retnet_bbox_conv_n2_fpn6"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n2_fpn6"
+  output: "gpu_0/retnet_bbox_conv_n2_fpn6"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n2_fpn6"
+  input: "gpu_0/retnet_bbox_conv_n3_fpn3_w"
+  input: "gpu_0/retnet_bbox_conv_n3_fpn3_b"
+  output: "gpu_0/retnet_bbox_conv_n3_fpn6"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n3_fpn6"
+  output: "gpu_0/retnet_bbox_conv_n3_fpn6"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/fpn_7"
+  input: "gpu_0/retnet_bbox_conv_n0_fpn3_w"
+  input: "gpu_0/retnet_bbox_conv_n0_fpn3_b"
+  output: "gpu_0/retnet_bbox_conv_n0_fpn7"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n0_fpn7"
+  output: "gpu_0/retnet_bbox_conv_n0_fpn7"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n0_fpn7"
+  input: "gpu_0/retnet_bbox_conv_n1_fpn3_w"
+  input: "gpu_0/retnet_bbox_conv_n1_fpn3_b"
+  output: "gpu_0/retnet_bbox_conv_n1_fpn7"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n1_fpn7"
+  output: "gpu_0/retnet_bbox_conv_n1_fpn7"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n1_fpn7"
+  input: "gpu_0/retnet_bbox_conv_n2_fpn3_w"
+  input: "gpu_0/retnet_bbox_conv_n2_fpn3_b"
+  output: "gpu_0/retnet_bbox_conv_n2_fpn7"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n2_fpn7"
+  output: "gpu_0/retnet_bbox_conv_n2_fpn7"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n2_fpn7"
+  input: "gpu_0/retnet_bbox_conv_n3_fpn3_w"
+  input: "gpu_0/retnet_bbox_conv_n3_fpn3_b"
+  output: "gpu_0/retnet_bbox_conv_n3_fpn7"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n3_fpn7"
+  output: "gpu_0/retnet_bbox_conv_n3_fpn7"
+  name: ""
+  type: "Relu"
+  arg {
+    name: "cudnn_exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n3_fpn3"
+  input: "gpu_0/retnet_bbox_pred_fpn3_w"
+  input: "gpu_0/retnet_bbox_pred_fpn3_b"
+  output: "gpu_0/retnet_bbox_pred_fpn3"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n3_fpn4"
+  input: "gpu_0/retnet_bbox_pred_fpn3_w"
+  input: "gpu_0/retnet_bbox_pred_fpn3_b"
+  output: "gpu_0/retnet_bbox_pred_fpn4"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n3_fpn5"
+  input: "gpu_0/retnet_bbox_pred_fpn3_w"
+  input: "gpu_0/retnet_bbox_pred_fpn3_b"
+  output: "gpu_0/retnet_bbox_pred_fpn5"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n3_fpn6"
+  input: "gpu_0/retnet_bbox_pred_fpn3_w"
+  input: "gpu_0/retnet_bbox_pred_fpn3_b"
+  output: "gpu_0/retnet_bbox_pred_fpn6"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+op {
+  input: "gpu_0/retnet_bbox_conv_n3_fpn7"
+  input: "gpu_0/retnet_bbox_pred_fpn3_w"
+  input: "gpu_0/retnet_bbox_pred_fpn3_b"
+  output: "gpu_0/retnet_bbox_pred_fpn7"
+  name: ""
+  type: "Conv"
+  arg {
+    name: "kernel"
+    i: 3
+  }
+  arg {
+    name: "exhaustive_search"
+    i: 0
+  }
+  arg {
+    name: "pad"
+    i: 1
+  }
+  arg {
+    name: "order"
+    s: "NCHW"
+  }
+  arg {
+    name: "stride"
+    i: 1
+  }
+  device_option {
+    device_type: 1
+    device_id: 0
+  }
+  engine: "CUDNN"
+}
+type: "dag"
+num_workers: 4
+external_input: "gpu_0/fpn_res3_3_sum"
+external_input: "gpu_0/retnet_cls_conv_n0_fpn3_w"
+external_input: "gpu_0/retnet_cls_conv_n0_fpn3_b"
+external_input: "gpu_0/retnet_cls_conv_n1_fpn3_w"
+external_input: "gpu_0/retnet_cls_conv_n1_fpn3_b"
+external_input: "gpu_0/retnet_cls_conv_n2_fpn3_w"
+external_input: "gpu_0/retnet_cls_conv_n2_fpn3_b"
+external_input: "gpu_0/retnet_cls_conv_n3_fpn3_w"
+external_input: "gpu_0/retnet_cls_conv_n3_fpn3_b"
+external_input: "gpu_0/retnet_cls_pred_fpn3_w"
+external_input: "gpu_0/retnet_cls_pred_fpn3_b"
+external_input: "gpu_0/fpn_res4_5_sum"
+external_input: "gpu_0/fpn_res5_2_sum"
+external_input: "gpu_0/fpn_6"
+external_input: "gpu_0/fpn_7"
+external_input: "gpu_0/retnet_bbox_conv_n0_fpn3_w"
+external_input: "gpu_0/retnet_bbox_conv_n0_fpn3_b"
+external_input: "gpu_0/retnet_bbox_conv_n1_fpn3_w"
+external_input: "gpu_0/retnet_bbox_conv_n1_fpn3_b"
+external_input: "gpu_0/retnet_bbox_conv_n2_fpn3_w"
+external_input: "gpu_0/retnet_bbox_conv_n2_fpn3_b"
+external_input: "gpu_0/retnet_bbox_conv_n3_fpn3_w"
+external_input: "gpu_0/retnet_bbox_conv_n3_fpn3_b"
+external_input: "gpu_0/retnet_bbox_pred_fpn3_w"
+external_input: "gpu_0/retnet_bbox_pred_fpn3_b"
