@@ -93,3 +93,14 @@ Note that there is a StopGradient op for 'gpu_0/res2_2_sum'. This implies that t
 
 36 = 9 * 4 (4 is (xmin, ymin, xmax, ymax))
 
+
+
+![inference_0](fig/inference_0.png)
+![inference_1](fig/inference_1.png)
+![inference_2](fig/inference_2.png)
+![inference_3](fig/inference_3.png)
+![inference_4](fig/inference_4.png)
+![inference_5](fig/inference_5.png)
+![inference_6](fig/inference_6.png)
+![inference_7](fig/inference_7.png)
+![inference_8](fig/inference_8.png)
