@@ -95,12 +95,12 @@ Note that there is a StopGradient op for 'gpu_0/res2_2_sum'. This implies that t
 
 
 
-![inference_0](fig/inference_0.png)
-![inference_1](fig/inference_1.png)
-![inference_2](fig/inference_2.png)
-![inference_3](fig/inference_3.png)
-![inference_4](fig/inference_4.png)
-![inference_5](fig/inference_5.png)
-![inference_6](fig/inference_6.png)
-![inference_7](fig/inference_7.png)
-![inference_8](fig/inference_8.png)
+![inference_0](https://github.com/kfeng123/Opt/tree/master/retinanet/fig/inference_0.png)
+![inference_1](https://github.com/kfeng123/Opt/tree/master/retinanet/fig/inference_1.png)
+![inference_2](https://github.com/kfeng123/Opt/tree/master/retinanet/fig/inference_2.png)
+![inference_3](https://github.com/kfeng123/Opt/tree/master/retinanet/fig/inference_3.png)
+![inference_4](https://github.com/kfeng123/Opt/tree/master/retinanet/fig/inference_4.png)
+![inference_5](https://github.com/kfeng123/Opt/tree/master/retinanet/fig/inference_5.png)
+![inference_6](https://github.com/kfeng123/Opt/tree/master/retinanet/fig/inference_6.png)
+![inference_7](https://github.com/kfeng123/Opt/tree/master/retinanet/fig/inference_7.png)
+![inference_8](https://github.com/kfeng123/Opt/tree/master/retinanet/fig/inference_8.png)
